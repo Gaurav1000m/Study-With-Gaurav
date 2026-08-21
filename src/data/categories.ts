@@ -270,6 +270,15 @@ export const CATEGORIES: Category[] = [
     logo: "https://framerusercontent.com/images/N5AlmRNRnQQa7FnlvrGcUzUhZGY.png?scale-down-to=512",
     description: "Official portal for Padhle Akshay study resources, notes, and batches.",
     featured: true
+  },
+  {
+    id: "all-competition",
+    name: "All competition",
+    shortName: "All Competition",
+    iconName: "Target",
+    logo: "https://img.magnific.com/free-vector/corporate-leadership-bullseye-concept-background-company-success_1017-63147.jpg?semt=ais_hybrid&w=740&q=80",
+    description: "Preparation resources and classes for all competitive exams.",
+    featured: true
   }
 ];
 
