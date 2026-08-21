@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { ExternalLink, ShieldCheck, Sparkles, Flame, Check } from "lucide-react";
 import { Website } from "@/types/website";
 import { CATEGORY_MAP } from "@/data/categories";
@@ -22,10 +24,12 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
   const categoryName = categoryObj ? categoryObj.shortName || categoryObj.name : website.category;
   const monogram = getMonogram(website.name);
 
+  const targetUrl = website.url;
+
   const handleCopyLink = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    navigator.clipboard.writeText(website.url);
+    navigator.clipboard.writeText(targetUrl);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
   };
@@ -40,11 +44,13 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
           {/* Logo Container */}
           <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl border border-slate-200/80 bg-slate-50 flex items-center justify-center overflow-hidden shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
             {!hasImageError && imgSrc ? (
-              <img
+              <Image
                 src={imgSrc}
-                alt={`${website.name} logo`}
+                alt={`${website.name} educational logo`}
+                width={44}
+                height={44}
+                unoptimized
                 className="w-full h-full object-contain p-1"
-                referrerPolicy="no-referrer"
                 onError={() => {
                   if (imgSrc !== getFaviconUrl(website.url)) {
                     setImgSrc(getFaviconUrl(website.url));
@@ -52,7 +58,6 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
                     setHasImageError(true);
                   }
                 }}
-                loading="lazy"
               />
             ) : (
               <div className="w-full h-full bg-navy-900 text-white font-bold text-xs sm:text-sm flex items-center justify-center">
@@ -93,12 +98,12 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
         {/* Title & Subcategory */}
         <div className="space-y-0.5 mb-1 w-full">
           <h3 className="text-sm sm:text-base font-extrabold text-slate-900 group-hover:text-blue-700 transition-colors leading-snug break-words">
-            <a
-              href={website.url}
+            <Link
+              href={targetUrl}
               className="focus:outline-none after:absolute after:inset-0"
             >
               {website.name}
-            </a>
+            </Link>
           </h3>
           {website.subcategory && (
             <p className="text-[9px] sm:text-[10px] font-semibold text-slate-400 uppercase tracking-wider truncate">
@@ -149,13 +154,13 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
           )}
         </button>
 
-        <a
-          href={website.url}
+        <Link
+          href={targetUrl}
           className="inline-flex items-center gap-1 font-bold text-blue-700 group-hover:text-blue-800 hover:underline transition-colors min-h-[32px] px-0.5"
         >
           <span>Visit Website</span>
           <ExternalLink className="w-3.5 h-3.5" />
-        </a>
+        </Link>
       </div>
     </article>
   );

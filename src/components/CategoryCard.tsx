@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { Category } from "@/types/website";
 
@@ -19,12 +19,14 @@ export function CategoryCard({ category, count }: CategoryCardProps) {
       {/* Background Watermark */}
       {category.logo && (
         <div className="absolute -right-3 -bottom-3 w-20 h-20 sm:w-32 sm:h-32 opacity-[0.08] group-hover:opacity-[0.16] group-hover:scale-110 transition-all duration-300 pointer-events-none select-none overflow-hidden">
-          <img
-            src={category.logo}
+          <Image
+            src={category.logo || "/images/logo.webp"}
             alt=""
             aria-hidden="true"
+            width={128}
+            height={128}
+            unoptimized
             className="w-full h-full object-contain filter blur-[0.5px]"
-            referrerPolicy="no-referrer"
           />
         </div>
       )}
@@ -37,12 +39,13 @@ export function CategoryCard({ category, count }: CategoryCardProps) {
         <div className="flex items-center justify-between gap-1.5 mb-2 sm:mb-3">
           <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-white border border-slate-200/90 shadow-2xs group-hover:border-blue-200 flex items-center justify-center transition-colors shrink-0 overflow-hidden p-1 z-20 relative">
             {category.logo ? (
-              <img
-                src={category.logo}
-                alt={`${category.name} logo`}
+              <Image
+                src={category.logo || "/images/logo.webp"}
+                alt={`${category.name} portal logo`}
+                width={44}
+                height={44}
+                unoptimized
                 className="w-full h-full object-contain relative z-20"
-                referrerPolicy="no-referrer"
-                loading="lazy"
               />
             ) : (
               <div className="w-full h-full rounded-md bg-blue-600 text-white flex items-center justify-center font-black text-xs sm:text-sm relative z-20">
@@ -68,7 +71,7 @@ export function CategoryCard({ category, count }: CategoryCardProps) {
 
       {/* Card Action Link Indicator */}
       <div className="relative z-10 mt-2 sm:mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] sm:text-xs font-bold text-slate-500 group-hover:text-blue-600">
-        <span>Explore</span>
+        <span>View Category</span>
         <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" />
       </div>
     </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { CATEGORIES } from "@/data/categories";
 import { Shield, Sparkles, FolderCheck } from "lucide-react";
 import { SearchBar } from "./SearchBar";
@@ -26,12 +27,13 @@ export function Hero({
       className="relative w-full bg-gradient-to-b from-slate-100/90 via-white to-slate-50 pt-5 pb-6 sm:pt-14 sm:pb-16 border-b border-slate-200/80 overflow-hidden"
     >
       {/* Majestic Lion Background Shadow Watermark */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[540px] sm:h-[540px] lg:w-[680px] lg:h-[680px] opacity-[0.06] sm:opacity-[0.09] pointer-events-none select-none z-0 overflow-hidden mix-blend-multiply">
-        <img
-          src="/black-and-white-portrait-of-a-lion.webp"
-          alt=""
-          aria-hidden="true"
-          className="w-full h-full object-contain filter drop-shadow-2xl grayscale"
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[540px] sm:h-[540px] lg:w-[680px] lg:h-[680px] opacity-[0.06] sm:opacity-[0.09] pointer-events-none select-none z-0 overflow-hidden mix-blend-multiply relative">
+        <Image
+          src="/images/lionbg.webp"
+          alt="Decorative lion watermark background"
+          fill
+          sizes="(max-width: 640px) 280px, (max-width: 1024px) 540px, 680px"
+          className="object-contain filter drop-shadow-2xl grayscale"
         />
       </div>
 

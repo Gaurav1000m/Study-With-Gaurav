@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/data/config";
 
 // Custom inline SVG social icons to prevent lucide-react export mismatches
@@ -74,10 +75,12 @@ export function Footer({ onOpenSuggestModal }: FooterProps) {
             href="/"
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            <div className="w-12 h-12 rounded-xl bg-slate-900 overflow-hidden flex items-center justify-center shadow-md">
-              <img
-                src="/black-and-white-portrait-of-a-lion.webp"
-                alt="Logo"
+            <div className="w-12 h-12 rounded-xl bg-slate-900 overflow-hidden flex items-center justify-center shadow-md relative">
+              <Image
+                src="/images/lionbg.webp"
+                alt="Study with Gaurav logo"
+                width={48}
+                height={48}
                 className="w-full h-full object-cover"
               />
             </div>

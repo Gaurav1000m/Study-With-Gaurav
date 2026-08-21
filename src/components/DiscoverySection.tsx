@@ -4,6 +4,7 @@ import { CATEGORIES } from "@/data/categories";
 import { CategoryId } from "@/types/website";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatedCounter } from "./AnimatedCounter";
 
 interface DiscoverySectionProps {
@@ -26,10 +27,13 @@ export function DiscoverySection({ onOptionSelect }: DiscoverySectionProps) {
       onClick={() => onOptionSelect(cat.id)}
       className="flex items-center gap-4 w-full bg-white p-3 rounded-full border border-slate-200/80 shadow-sm hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 shrink-0 group focus:outline-none"
     >
-      <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-slate-100 bg-slate-50 flex items-center justify-center p-1">
-        <img 
-          src={cat.logo} 
-          alt={cat.name} 
+      <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-slate-100 bg-slate-50 flex items-center justify-center p-1 relative">
+        <Image 
+          src={cat.logo || "/images/logo.webp"} 
+          alt={`${cat.name} category icon`} 
+          width={36}
+          height={36}
+          unoptimized
           className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
         />
       </div>

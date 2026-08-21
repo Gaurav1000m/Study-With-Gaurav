@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 export function ModernLearningSection() {
@@ -39,10 +40,11 @@ export function ModernLearningSection() {
           {/* Image Side */}
           <div className="relative w-full flex items-center justify-center order-1 lg:order-2">
             <div className="relative w-full max-w-lg mx-auto">
+              {/* Using standard img for external domain without needing next.config.js changes if any */}
               <img 
                 src="https://px.pixxo.io/sheryians/nyc/learnfrom/tradition.png" 
-                alt="Traditional vs Modern Learning" 
-                className="w-full h-auto object-contain rounded-3xl drop-shadow-xl"
+                alt="Traditional vs Modern Learning workflow diagram" 
+                className="w-full h-auto object-contain filter drop-shadow-2xl transition-transform hover:scale-105 duration-500"
               />
             </div>
           </div>

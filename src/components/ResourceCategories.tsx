@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { CATEGORIES } from "@/data/categories";
 import { Category } from "@/types/website";
 import { ChevronRight } from "lucide-react";
@@ -17,12 +17,14 @@ function CategoryCardItem({ cat }: { cat: Category }) {
       {/* Background Watermark/Shadow Logo Effect */}
       {cat.logo && (
         <div className="absolute -right-4 -bottom-4 w-32 h-32 sm:w-36 sm:h-36 opacity-[0.10] group-hover:opacity-[0.20] group-hover:scale-110 transition-all duration-300 pointer-events-none select-none overflow-hidden">
-          <img
-            src={cat.logo}
+          <Image
+            src={cat.logo || "/images/logo.webp"}
             alt=""
             aria-hidden="true"
+            width={144}
+            height={144}
+            unoptimized
             className="w-full h-full object-contain filter blur-[0.5px]"
-            referrerPolicy="no-referrer"
           />
         </div>
       )}
@@ -34,12 +36,13 @@ function CategoryCardItem({ cat }: { cat: Category }) {
         {/* Category Logo Box */}
         <div className="w-12 h-12 rounded-xl bg-white border border-slate-200/90 shadow-2xs group-hover:border-blue-200 flex items-center justify-center overflow-hidden p-1.5 shrink-0 group-hover:scale-105 transition-transform duration-200 z-20 relative">
           {cat.logo ? (
-            <img
-              src={cat.logo}
-              alt={`${cat.name} logo`}
+            <Image
+              src={cat.logo || "/images/logo.webp"}
+              alt={`${cat.name} portal logo`}
+              width={40}
+              height={40}
+              unoptimized
               className="w-full h-full object-contain relative z-20"
-              referrerPolicy="no-referrer"
-              loading="lazy"
             />
           ) : (
             <div className="w-full h-full rounded-lg bg-blue-600 text-white flex items-center justify-center font-black text-sm relative z-20">
@@ -61,7 +64,7 @@ function CategoryCardItem({ cat }: { cat: Category }) {
 
       {/* Card Action Link Indicator */}
       <div className="relative z-10 pt-2 border-t border-slate-100/80 flex items-center justify-between text-xs font-bold text-slate-500 group-hover:text-blue-600">
-        <span>Explore Category</span>
+        <span>Browse Category</span>
         <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
       </div>
     </Link>

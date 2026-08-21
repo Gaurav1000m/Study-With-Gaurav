@@ -60,5 +60,32 @@ export default async function CategoryDetailPage({ params }: CategoryPageProps) 
 
   const categoryWebsites = WEBSITES.filter((w) => w.category === slug);
 
-  return <CategorySlugClient category={category} categoryWebsites={categoryWebsites} />;
+  const jsonLdCollection = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": `${category.name} Educational Resources`,
+    "description": category.description,
+    "url": `https://studywithgaurav.cc.cd/categories/${slug}`,
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": categoryWebsites.length,
+      "itemListElement": categoryWebsites.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": item.name,
+        "url": item.url,
+        "description": item.description,
+      }))
+    }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdCollection) }}
+      />
+      <CategorySlugClient category={category} categoryWebsites={categoryWebsites} />
+    </>
+  );
 }

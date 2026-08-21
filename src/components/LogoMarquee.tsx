@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { CATEGORIES } from "@/data/categories";
 import { cn } from "@/lib/utils";
 
@@ -27,12 +28,17 @@ export function LogoMarquee() {
               key={`${category.id}-${index}`}
               className="flex flex-col items-center justify-center min-w-[120px] sm:min-w-[160px] px-6 transition-all duration-300 hover:scale-105"
             >
-              <img
-                src={category.logo}
-                alt={category.name}
-                className="h-16 sm:h-20 w-auto object-contain rounded-lg drop-shadow-sm"
-                title={category.name}
-              />
+              <div className="relative h-16 sm:h-20 w-16 sm:w-20">
+                <Image
+                  src={category.logo || "/images/logo.webp"}
+                  alt={`${category.name} platform logo`}
+                  width={80}
+                  height={80}
+                  unoptimized
+                  className="w-full h-full object-contain rounded-lg drop-shadow-sm"
+                  title={category.name}
+                />
+              </div>
             </div>
           ))}
         </div>

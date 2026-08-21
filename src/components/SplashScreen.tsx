@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export function SplashScreen() {
@@ -32,17 +33,20 @@ export function SplashScreen() {
         
         {/* Logo Container */}
         <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-2xl sm:rounded-3xl bg-white overflow-hidden border border-slate-200 shadow-xl flex items-center justify-center">
-          <img
-            src="/black-and-white-portrait-of-a-lion.webp"
+          <Image
+            src="/images/lionbg.webp"
             alt="Study with Gaurav Logo"
+            width={128}
+            height={128}
+            priority
             className="w-full h-full object-cover animate-[scale-up_10s_ease-out_forwards]"
           />
         </div>
 
         {/* Brand Name */}
-        <h1 className="mt-8 text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+        <div className="mt-8 text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
           Study with <span className="text-blue-600">Gaurav</span>
-        </h1>
+        </div>
         
         {/* Tagline */}
         <p className="mt-2 text-sm text-slate-500 font-medium">

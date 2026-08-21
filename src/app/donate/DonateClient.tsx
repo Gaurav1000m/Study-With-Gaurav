@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SuggestModal } from "@/components/SuggestModal";
@@ -148,9 +149,11 @@ export function DonateClient() {
 
                 {/* QR Code Image Display */}
                 <div className="relative flex justify-center bg-slate-50 p-3 sm:p-4 rounded-xl border border-slate-200/80">
-                  <img
+                  <Image
                     src="/Qrcode.jpg"
                     alt="Scan QR Code to Donate via PhonePe, GPay, Paytm, BHIM"
+                    width={260}
+                    height={260}
                     className="max-w-[220px] sm:max-w-[260px] w-full h-auto rounded-lg shadow-sm border border-slate-200 object-contain"
                   />
                 </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Star, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
@@ -35,8 +36,6 @@ const REVIEWS = [
   },
 ];
 
-
-
 export function TestimonialsSection() {
   const [mounted, setMounted] = useState(false);
   
@@ -69,16 +68,15 @@ export function TestimonialsSection() {
           
           {/* Left: Map */}
           <div className="relative w-full aspect-square max-w-md mx-auto lg:max-w-none lg:w-full flex items-center justify-center">
-            {/* We use a simplified SVG representation of an India Map outline or generic dots */}
             <div className="relative w-full h-full max-h-[500px]">
-              {/* Map Image (India Outline) */}
-              <img 
+              <Image 
                 src="https://scienceandfun.live/scienceandfun/testimonial-map.svg" 
-                alt="Map of India" 
+                alt="Map of student reach in India" 
+                width={500}
+                height={500}
+                unoptimized
                 className="w-full h-full object-contain" 
               />
-              
-              {/* Floating Avatars Removed as requested */}
             </div>
           </div>
 
@@ -95,13 +93,16 @@ export function TestimonialsSection() {
                   >
                     <Quote className="absolute top-6 right-6 w-8 h-8 text-blue-100 group-hover:text-blue-200 transition-colors" />
                     <div className="flex items-center gap-4 relative z-10">
-                      <img 
+                      <Image 
                         src={review.avatar} 
-                        alt={review.name} 
-                        className="w-14 h-14 rounded-full bg-slate-50 border-2 border-slate-100 shadow-sm"
+                        alt={`Student reviewer avatar for ${review.name}`} 
+                        width={56}
+                        height={56}
+                        unoptimized
+                        className="w-14 h-14 rounded-full bg-slate-50 border-2 border-slate-100 shadow-sm object-cover"
                       />
                       <div>
-                        <h4 className="font-bold text-slate-900 text-lg">{review.name}</h4>
+                        <h3 className="font-bold text-slate-900 text-lg">{review.name}</h3>
                         <div className="flex items-center gap-1 mt-1">
                           {Array.from({ length: 5 }).map((_, i) => (
                             <Star 
@@ -129,13 +130,16 @@ export function TestimonialsSection() {
                   >
                     <Quote className="absolute top-6 right-6 w-8 h-8 text-blue-100 group-hover:text-blue-200 transition-colors" />
                     <div className="flex items-center gap-4 relative z-10">
-                      <img 
+                      <Image 
                         src={review.avatar} 
-                        alt={review.name} 
-                        className="w-14 h-14 rounded-full bg-slate-50 border-2 border-slate-100 shadow-sm"
+                        alt={`Student reviewer avatar for ${review.name}`} 
+                        width={56}
+                        height={56}
+                        unoptimized
+                        className="w-14 h-14 rounded-full bg-slate-50 border-2 border-slate-100 shadow-sm object-cover"
                       />
                       <div>
-                        <h4 className="font-bold text-slate-900 text-lg">{review.name}</h4>
+                        <h3 className="font-bold text-slate-900 text-lg">{review.name}</h3>
                         <div className="flex items-center gap-1 mt-1">
                           {Array.from({ length: 5 }).map((_, i) => (
                             <Star 

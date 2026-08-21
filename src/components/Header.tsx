@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { BookOpen, Search, PlusCircle, Menu, X, ShieldCheck, ChevronRight, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -101,10 +102,13 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps) {
             href="/"
             className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg py-1 pr-1.5"
           >
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 overflow-hidden flex items-center justify-center text-white shadow-2xs group-hover:scale-105 transition-transform duration-200 shrink-0 border border-slate-800">
-              <img
-                src="/black-and-white-portrait-of-a-lion.webp"
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 overflow-hidden flex items-center justify-center text-white shadow-2xs group-hover:scale-105 transition-transform duration-200 shrink-0 border border-slate-800 relative">
+              <Image
+                src="/images/lionbg.webp"
                 alt="Study with Gaurav logo"
+                width={36}
+                height={36}
+                priority
                 className="w-full h-full object-cover"
               />
             </div>
@@ -199,10 +203,12 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps) {
             {/* Drawer Top Header */}
             <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center overflow-hidden border border-slate-800 shrink-0">
-                  <img
-                    src="/black-and-white-portrait-of-a-lion.webp"
-                    alt="Logo"
+                <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center overflow-hidden border border-slate-800 shrink-0 relative">
+                  <Image
+                    src="/images/lionbg.webp"
+                    alt="Study with Gaurav logo"
+                    width={32}
+                    height={32}
                     className="w-full h-full object-cover"
                   />
                 </div>
