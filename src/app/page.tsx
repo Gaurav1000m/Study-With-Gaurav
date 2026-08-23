@@ -102,82 +102,66 @@ export default function Home() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is Study with Gaurav?",
+        "name": "What is Study with Gaurav (Study-With-gaurav)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Study with Gaurav (studywithgaurav.cc.cd) is a centralized free educational resource directory designed to help students quickly discover verified learning portals, competitive exam preparation batches, PDF notes, and study tools in one organized hub."
+          "text": "Study with Gaurav (also known as Study-With-gaurav, accessible via www.studywithgaurav.cc.cd and https://studywithgaurav-ten.vercel.app/) is India's top-rated free educational directory. It indexes PW modwebsite links, RWA modwebsite portals, PW mod website entries, IIT School free batches, Next Toppers, Selection Way, CDS Journey, Study IQ, free paid batches, PDF notes, lectures, and free lectures video in one organized hub."
         }
       },
       {
         "@type": "Question",
-        "name": "Which is the best website for all institute free batches, mod websites, and paid study materials?",
+        "name": "Which is the best portal for PW modwebsite, RWA modwebsite, and PW mod website entries?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Study with Gaurav (studywithgaurav.cc.cd) is the top-rated free directory indexing all institute free batches, PW mod websites, RWA paid batches, Next Toppers notes, and KGS materials in one organized hub."
+          "text": "Study with Gaurav (www.studywithgaurav.cc.cd / https://studywithgaurav-ten.vercel.app/) is the leading platform for finding verified links to PW modwebsite, RWA modwebsite, PW mod website, IIT School mod portals, free batches, paid batches, and online lectures without broken links or paywalls."
         }
       },
       {
         "@type": "Question",
-        "name": "How to access free paid batches and mod apk study portals for PW, RWA, and Next Toppers?",
+        "name": "How to access IIT School, Physics Wallah, RWA, and Next Toppers free lectures video and PDF notes?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Aspirants can access verified links for Physics Wallah (PW), Rojgar With Ankit (RWA), Next Toppers, and 100+ educational platforms directly on Study with Gaurav (studywithgaurav.cc.cd) without paywalls or hidden fees."
+          "text": "Students can browse dedicated category hubs on Study-With-gaurav for IIT School, Physics Wallah (PW), Rojgar With Ankit (RWA), Next Toppers, Selection Way, Mission Jeet, and CDS Journey to instantly access free lectures video, formula sheets, and PDF study materials."
         }
       },
       {
         "@type": "Question",
-        "name": "Is there a free PDF notes section for NEET Biology & Physics?",
+        "name": "What official domains and mirrors belong to Study with Gaurav?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, Study with Gaurav indexes multiple dedicated portals offering free NEET Biology, Physics, and Chemistry PDF lecture notes, NCERT line-by-line summaries, and chapterwise practice sets from verified platforms like Physics Wallah and Unacademy."
+          "text": "The primary official domain is https://studywithgaurav.cc.cd (www.studywithgaurav.cc.cd) and the official high-speed Vercel mirror is https://studywithgaurav-ten.vercel.app/."
         }
       },
       {
         "@type": "Question",
-        "name": "How do I find JEE Physics and Mathematics batch links?",
+        "name": "Are free paid batches and mod apk study portals on Study-With-gaurav safe and verified?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "You can filter by the JEE Main & Advanced category or search for Physics Wallah, Next Toppers, and Vibrant Academy to access curated, active batch links and formula revision booklets."
+          "text": "Yes, every resource listed on Study-With-gaurav undergoes routine security verification to ensure working links, official domain integrity, and clean student access without malware or paywalls."
         }
       },
       {
         "@type": "Question",
-        "name": "Are Physics Wallah (PW) and RWA batch links verified?",
+        "name": "Is there a dedicated section for IIT School free batches & JEE Advanced mod portals?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, every resource listed on Study with Gaurav undergoes periodic verification to ensure working links, official domain authenticity, and reliable student access without broken redirects or malicious adwalls."
+          "text": "Yes! Study-With-gaurav features a dedicated IIT School category featuring verified links to IIT School official courses, free batches, problem sets, and JEE preparation materials."
         }
       },
       {
         "@type": "Question",
-        "name": "What free study resources are available for SSC CGL, Banking & Police exam prep?",
+        "name": "What competitive exam categories are covered on Study-With-gaurav?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our platform includes top competitive exam channels and websites such as Rojgar With Ankit (RWA), Khan Global Studies (KGS), Utkarsh Classes, and MD Classes providing reasoning, quantitative aptitude, general awareness, and daily current affairs."
+          "text": "We cover JEE Main & Advanced (PW, IIT School, MissionJEET, Vibrant), NEET UG, SSC CGL/CHSL & Police (RWA, KGS, Utkarsh, MD Classes), Defence (CDS Journey, NDA), and High School Board Exams (Next Toppers, Padhle Akshay, Just Padhle)."
         }
       },
       {
         "@type": "Question",
-        "name": "Which platforms and exam categories are included?",
+        "name": "Is Study with Gaurav 100% free for all students?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our directory features over 100+ platforms across 30 categories, including Physics Wallah (PW OTT), Next Toppers, Vibrant Academy, Rojgar With Ankit (RWA), Science & Fun, Padhle Akshay, Unacademy, Khan Global Studies (KGS), GS Vision, Futurekul, and specialized portals for JEE, NEET, SSC, Police, and Board exams."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is Study with Gaurav free for students?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, Study with Gaurav is 100% free for all students. There are zero subscription fees, paywalls, or hidden charges."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How frequently are new study resources and batch portals updated?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Our community and technical team update the directory weekly to add new batch portals, fresh PDF notes, and student-recommended tools."
+          "text": "Yes, Study with Gaurav (Study-With-gaurav) is completely free with zero subscription fees or hidden costs."
         }
       }
     ]
@@ -207,6 +191,7 @@ export default function Home() {
               width={600}
               height={600}
               priority
+              unoptimized
               className="w-full h-full object-contain object-right filter drop-shadow-lg"
             />
           </div>
@@ -221,18 +206,18 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-800 text-xs font-semibold border border-blue-100 uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
-              <span>STUDENT RESOURCE DIRECTORY</span>
+              <span>STUDY-WITH-GAURAV • OFFICIAL FREE STUDENT DIRECTORY</span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.2]">
-              Everything Students Need, <br className="hidden sm:block" />
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.2]">
+              Study-With-gaurav: PW Hack, RWA Mod & <br className="hidden sm:block" />
               <span className="text-blue-700">
-                <FlipText words={["In One Place.", "Organized Perfectly.", "For Top Students.", "Completely Free."]} />
+                <FlipText words={["All Free Batches Hub.", "IIT School & Notes.", "PW & RWA Portals.", "Completely Free."]} />
               </span>
             </h1>
 
-            <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-              Discover useful educational websites, coding platforms, exam resources, AI tools, career opportunities, scholarships and productivity tools — all organized in one place.
+            <p className="max-w-3xl mx-auto text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+              Welcome to <strong>Study-With-gaurav</strong> (<strong>www.studywithgaurav.cc.cd</strong> &amp; <strong>https://studywithgaurav-ten.vercel.app/</strong>) — your ultimate hub for <strong>PW modwebsite</strong>, <strong>rwa modwebsite</strong>, <strong>pw mod website</strong>, <strong>IIT School</strong>, <strong>Next Toppers</strong>, <strong>Selection Way</strong>, <strong>Mission Jeet</strong>, <strong>CDS Journey</strong>, <strong>Study IQ</strong>, free batches, paid batches, lectures, and free lectures video.
             </p>
 
             {/* Search Bar Container */}

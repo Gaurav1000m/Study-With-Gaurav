@@ -122,25 +122,6 @@ export function FilterBar({
               </button>
             )}
           </div>
-
-          {/* Sorting Selection Dropdown */}
-          <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0 w-full sm:w-auto pt-1 sm:pt-0 border-t sm:border-t-0 border-slate-100">
-            <label htmlFor="sort-dropdown" className="text-xs font-semibold text-slate-600 flex items-center gap-1">
-              <ArrowUpDown className="w-3.5 h-3.5 text-slate-500" />
-              <span>Sort by:</span>
-            </label>
-            <select
-              id="sort-dropdown"
-              value={selectedSort}
-              onChange={(e) => onSelectSort(e.target.value as SortOption)}
-              className="text-xs font-bold text-slate-800 bg-slate-50 border border-slate-300 rounded-xl sm:rounded-lg px-3 py-2 sm:py-1.5 min-h-[44px] sm:min-h-[auto] hover:border-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none transition-all cursor-pointer"
-            >
-              <option value="recommended">Recommended</option>
-              <option value="popular">Most Popular</option>
-              <option value="recent">Recently Added</option>
-              <option value="a-z">Alphabetical (A–Z)</option>
-            </select>
-          </div>
         </div>
 
         {/* Active Filter Chips Bar (If filters applied) */}

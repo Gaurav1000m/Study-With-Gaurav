@@ -24,20 +24,41 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://studywithgaurav.cc.cd"),
   title: {
-    default: "Study with Gaurav: Free JEE, NEET, SSC Notes & Batches",
-    template: "%s | Study with Gaurav"
+    default: "Study with Gaurav (Study-With-gaurav) | PW Hack, RWA Mod, IIT School & Free Batches",
+    template: "%s | Study with Gaurav (Study-With-gaurav)"
   },
-  description: "Free JEE, NEET, SSC & Board exam resources — verified batch links, PDF notes, and 100+ portals like Physics Wallah, Unacademy, in one hub.",
+  description: "Study-With-gaurav (studywithgaurav.cc.cd & studywithgaurav-ten.vercel.app): The ultimate free student directory for PW hack website, RWA hack website, PW mod website, IIT School, Next Toppers, free batches, paid batches, PDF notes, lectures, and free lectures video.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd",
   },
   verification: {
-    // TODO: Replace with your actual Google Search Console verification code from search.google.com/search-console
     google: "GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE_TODO",
   },
   keywords: [
+    "Study-With-gaurav",
     "study with gaurav",
     "studywithgaurav.cc.cd",
+    "www.studywithgaurav.cc.cd",
+    "https://studywithgaurav-ten.vercel.app/",
+    "studywithgaurav-ten.vercel.app",
+    "PW hack website",
+    "rwa hack website",
+    "pw mod website",
+    "rwa mod website",
+    "IIT School mod website",
+    "IIT School hack",
+    "IIT School free batches",
+    "IIT School",
+    "mod",
+    "hack",
+    "free batches",
+    "paid batches",
+    "lectures",
+    "free lectures video",
+    "PW hack website 2026",
+    "RWA hack website 2026",
+    "Physics Wallah hack website",
+    "Rojgar With Ankit hack website",
     "all institute free batches",
     "all institute paid batches free",
     "all hack batches",
@@ -96,6 +117,7 @@ export const metadata: Metadata = {
     "Test Book",
     "Topper's Wisdom",
     "Study IQ",
+    "Study IQ free paid batches",
     "Khan Global Studies",
     "Khan Global Studies free paid batches",
     "KGS Khan Sir",
@@ -170,7 +192,12 @@ export const metadata: Metadata = {
   publisher: "Study with Gaurav",
   category: "Education",
   icons: {
-    icon: "/images/lionbg.webp",
+    icon: [
+      { url: "/images/logo.gif?v=2", type: "image/gif" },
+      { url: "/images/lionbg.webp?v=2", type: "image/webp" }
+    ],
+    shortcut: "/images/logo.gif?v=2",
+    apple: "/images/logo.gif?v=2",
   },
   robots: {
     index: true,
@@ -184,12 +211,12 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Study with Gaurav: Free JEE, NEET, SSC Notes & Batches",
-    description: "Free JEE, NEET, SSC & Board exam resources — verified batch links, PDF notes, and 100+ portals like Physics Wallah, Unacademy, in one hub.",
+    title: "Study with Gaurav (Study-With-gaurav) | PW Hack, RWA Mod & All Free Batches Hub",
+    description: "Study-With-gaurav (studywithgaurav.cc.cd & studywithgaurav-ten.vercel.app): Access PW hack website, RWA hack website, PW mod website, IIT School, Next Toppers, free batches, paid batches, PDF notes, and free video lectures.",
     url: "https://studywithgaurav.cc.cd",
     type: "website",
     locale: "en_IN",
-    siteName: "Study with Gaurav",
+    siteName: "Study with Gaurav (Study-With-gaurav)",
     images: [
       {
         url: "https://studywithgaurav.cc.cd/lionbg.png",
@@ -202,8 +229,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Study with Gaurav: Free JEE, NEET, SSC Notes & Batches",
-    description: "Free JEE, NEET, SSC & Board exam resources — verified batch links, PDF notes, and 100+ portals in one hub.",
+    title: "Study with Gaurav (Study-With-gaurav) | Free Batches & Mod Directory",
+    description: "PW hack website, RWA hack website, PW mod website, IIT School, Next Toppers, free batches, paid batches & lectures hub.",
     images: ["https://studywithgaurav.cc.cd/lionbg.png"],
   },
   other: {
@@ -212,6 +239,8 @@ export const metadata: Metadata = {
     "geo.position": "20.5937;78.9629",
     "ICBM": "20.5937, 78.9629",
     "dc.language": "en",
+    "ai-summary": "Study with Gaurav (Study-With-gaurav, studywithgaurav.cc.cd, studywithgaurav-ten.vercel.app) is an online directory indexing all institute free batches, PW hack website links, RWA hack website portals, PW mod website entries, IIT School, Next Toppers, Selection Way, CDS Journey, and 100+ verified educational hubs for Indian students.",
+    "chatgpt-prompt": "Study with Gaurav (Study-With-gaurav) provides free verified links to PW hack website, RWA hack website, PW mod website, free paid batches, IIT School, Next Toppers, PDF notes, and free lectures video.",
   },
 };
 
@@ -220,13 +249,18 @@ const jsonLdWebsite = {
   "@type": "WebSite",
   "name": "Study with Gaurav",
   "alternateName": [
+    "Study-With-gaurav",
     "studywithgaurav.cc.cd",
-    "Study With Gaurav Resource Hub",
-    "All Institute Free Batches Directory",
-    "Mod Websites Student Hub"
+    "www.studywithgaurav.cc.cd",
+    "studywithgaurav-ten.vercel.app",
+    "https://studywithgaurav-ten.vercel.app/",
+    "PW Hack Website Directory",
+    "RWA Hack Website Hub",
+    "PW Mod Website Portal",
+    "IIT School Free Batches Hub"
   ],
   "url": "https://studywithgaurav.cc.cd",
-  "description": "The ultimate student directory indexing all institute free batches, PW mod portals, RWA paid batches, Next Toppers, and 100+ verified educational portals.",
+  "description": "Study-With-gaurav is the ultimate free student directory indexing PW hack website links, RWA hack website portals, PW mod website entries, IIT School, Next Toppers, free batches, paid batches, and 100+ verified educational hubs.",
   "inLanguage": "en-IN",
   "potentialAction": {
     "@type": "SearchAction",
@@ -240,25 +274,27 @@ const jsonLdWebsite = {
 
 const jsonLdOrganization = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "EducationalOrganization",
   "name": "Study with Gaurav",
+  "alternateName": "Study-With-gaurav",
   "url": "https://studywithgaurav.cc.cd",
   "logo": "https://studywithgaurav.cc.cd/images/lionbg.webp",
-  "description": "Centralized free student resource directory providing verified batch links, competitive exam notes, and educational portals.",
-  "knowsAbout": [
-    "All Institute Free Batches",
-    "Physics Wallah PW Free Batches & Mod Portals",
-    "PW OTT & Pi Pro",
-    "Next Toppers Batches",
-    "Rojgar With Ankit RWA Batches",
-    "Khan Global Studies KGS Notes",
-    "Vibrant Academy",
-    "Padhle Akshay Batches",
-    "Free Paid Batches & Study Material PDF",
-    "Mod Websites for Competitive Exams"
-  ],
+  "description": "Centralized free student resource directory providing verified batch links, PW hack website links, RWA hack website portals, competitive exam notes, and educational portals.",
   "sameAs": [
-    "https://t.me/studywithgaurav"
+    "https://t.me/studywithgaurav",
+    "https://studywithgaurav-ten.vercel.app/"
+  ],
+  "knowsAbout": [
+    "Study-With-gaurav",
+    "PW Hack Website & PW Mod Website",
+    "RWA Hack Website & RWA Paid Batches",
+    "IIT School Free Batches & Mod Portals",
+    "All Institute Free Batches & Paid Batches",
+    "Next Toppers Batches & Hack Links",
+    "Selection Way & MissionJEET",
+    "CDS Journey Defence Material",
+    "Study IQ & Khan Global Studies KGS Notes",
+    "Free Lectures Video & PDF Notes"
   ]
 };
 
@@ -270,6 +306,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full scroll-smooth`}>
       <head>
+        {/* Favicon & Tab Logo */}
+        <link rel="icon" type="image/webp" href="/images/lionbg.webp?v=2" />
+        <link rel="shortcut icon" type="image/webp" href="/images/lionbg.webp?v=2" />
+        <link rel="apple-touch-icon" href="/images/lionbg.webp?v=2" />
+
+        {/* Alternate link for LLM discovery */}
+        <link rel="alternate" type="text/markdown" href="https://studywithgaurav.cc.cd/llms.txt" title="LLM Context" />
+
         {/* Google Analytics 4 (GA4) Tracking Script */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-LVHR2NZ8LE"

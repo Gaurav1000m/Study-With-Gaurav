@@ -279,6 +279,15 @@ export const CATEGORIES: Category[] = [
     logo: "https://img.magnific.com/free-vector/corporate-leadership-bullseye-concept-background-company-success_1017-63147.jpg?semt=ais_hybrid&w=740&q=80",
     description: "Preparation resources and classes for all competitive exams.",
     featured: true
+  },
+  {
+    id: "iit-school",
+    name: "IIT School",
+    shortName: "IIT School",
+    iconName: "GraduationCap",
+    logo: "https://cdn-1.webcatalog.io/catalog/iit-school/iit-school-icon-filled-256.png?v=1717862732147",
+    description: "Platform for IIT-JEE and competitive exam preparation.",
+    featured: true
   }
 ];
 

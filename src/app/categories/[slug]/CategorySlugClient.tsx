@@ -6,8 +6,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SuggestModal } from "@/components/SuggestModal";
 import { ResourceGrid } from "@/components/ResourceGrid";
-import { Category, SortOption, Website } from "@/types/website";
-import { ArrowLeft, ArrowUpDown, SlidersHorizontal } from "lucide-react";
+import { Category, Website } from "@/types/website";
+import { ArrowLeft } from "lucide-react";
 
 interface CategorySlugClientProps {
   category: Category;
@@ -16,27 +16,8 @@ interface CategorySlugClientProps {
 
 export function CategorySlugClient({ category, categoryWebsites }: CategorySlugClientProps) {
   const [isSuggestModalOpen, setIsSuggestModalOpen] = useState(false);
-  const [selectedSort, setSelectedSort] = useState<SortOption>("recommended");
-
-  // Sort
-  const filteredWebsites = useMemo(() => {
-    return [...categoryWebsites].sort((a, b) => {
-      if (selectedSort === "popular") {
-        if (a.popular && !b.popular) return -1;
-        if (!a.popular && b.popular) return 1;
-        return (b.rating || 0) - (a.rating || 0);
-      }
-      if (selectedSort === "recent") {
-        return new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime();
-      }
-      if (selectedSort === "a-z") {
-        return a.name.localeCompare(b.name);
-      }
-      if (a.featured && !b.featured) return -1;
-      if (!a.featured && b.featured) return 1;
-      return (b.rating || 0) - (a.rating || 0);
-    });
-  }, [categoryWebsites, selectedSort]);
+  // Use categoryWebsites directly since sorting is removed
+  const filteredWebsites = categoryWebsites;
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -125,40 +106,12 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
             </p>
           </div>
 
-          {/* Controls & Sorting Bar */}
-          <div className="bg-white border border-slate-200 rounded-xl p-3.5 sm:p-4 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-            <div className="flex items-center gap-2">
-              <SlidersHorizontal className="w-4 h-4 text-blue-600 shrink-0" />
-              <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">
-                Showing {filteredWebsites.length} {category.name} resources
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pt-1 sm:pt-0 border-t sm:border-t-0 border-slate-100">
-              <label htmlFor="cat-sort" className="text-xs font-semibold text-slate-600 flex items-center gap-1">
-                <ArrowUpDown className="w-3.5 h-3.5 text-slate-500" />
-                <span>Sort by:</span>
-              </label>
-              <select
-                id="cat-sort"
-                value={selectedSort}
-                onChange={(e) => setSelectedSort(e.target.value as SortOption)}
-                className="text-xs font-bold text-slate-800 bg-slate-50 border border-slate-300 rounded-xl sm:rounded-lg px-3 py-2 sm:py-1.5 min-h-[44px] sm:min-h-[auto] hover:border-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none transition-all cursor-pointer"
-              >
-                <option value="recommended">Recommended</option>
-                <option value="popular">Most Popular</option>
-                <option value="recent">Recently Added</option>
-                <option value="a-z">Alphabetical (A–Z)</option>
-              </select>
-            </div>
-          </div>
 
           {/* Resource Cards Grid */}
           <ResourceGrid
             websites={filteredWebsites}
             searchQuery=""
             onResetFilters={() => {
-              setSelectedSort("recommended");
             }}
           />
         </div>
