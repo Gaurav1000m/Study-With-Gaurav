@@ -1,0 +1,11 @@
+; ==============================================================================
+; DNS for AI Discovery (DNS-AID) Records
+; Spec: draft-mozleywilliams-dnsop-dnsaid & RFC 9460 (SVCB/HTTPS)
+; Domain: studywithgaurav.cc.cd
+; ==============================================================================
+
+; 1. Well-known index entrypoint record
+_index._agents.studywithgaurav.cc.cd. 3600 IN SVCB 1 studywithgaurav.cc.cd. alpn="h2,h3" port=443 mandatory=alpn,port
+
+; 2. Agent-to-Agent (A2A) protocol entrypoint record
+_a2a._agents.studywithgaurav.cc.cd.   3600 IN SVCB 1 studywithgaurav.cc.cd. alpn="a2a" port=443 mandatory=alpn,port

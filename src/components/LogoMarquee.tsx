@@ -10,7 +10,7 @@ export function LogoMarquee() {
 
   return (
     <section className="w-full py-10 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12">
         <h3 className="text-center text-sm sm:text-base font-bold text-slate-500 uppercase tracking-widest">
           Trusted by students from top platforms
         </h3>

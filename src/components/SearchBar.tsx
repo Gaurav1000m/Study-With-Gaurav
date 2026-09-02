@@ -5,6 +5,7 @@ import { Search, X, Tag } from "lucide-react";
 
 import { CATEGORIES } from "@/data/categories";
 import { WEBSITES } from "@/data/websites";
+import StarBorder from "./StarBorder";
 
 interface SearchBarProps {
   searchQuery: string;
@@ -58,36 +59,47 @@ export function SearchBar({
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-2">
-      {/* Search Input Container */}
-      <div className="relative flex items-center w-full">
-        <div className="absolute left-3.5 sm:left-4 pointer-events-none text-slate-400 shrink-0">
-          <Search className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
-        </div>
-        <input
-          ref={ref}
-          type="text"
-          value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="Search educational websites, tools, exams..."
-          className="w-full pl-10 sm:pl-11 pr-10 sm:pr-11 py-2.5 sm:py-3.5 min-h-[44px] sm:min-h-[50px] text-xs sm:text-sm text-slate-900 bg-white border border-slate-300/90 rounded-xl shadow-2xs hover:border-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none transition-all placeholder:text-slate-400 truncate"
-          aria-label="Search educational websites directory"
-        />
-        {searchQuery ? (
-          <button
-            onClick={() => onSearchChange("")}
-            className="absolute right-2 min-w-[44px] min-h-[44px] rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-            title="Clear search"
-            aria-label="Clear search query"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        ) : (
-          <div className="absolute right-4 hidden sm:flex items-center gap-1 text-[11px] text-slate-400 bg-slate-100 px-2 py-1 rounded border border-slate-200">
-            <span>Press</span>
-            <kbd className="font-mono font-semibold text-slate-600">/</kbd>
+      {/* Search Input Container with React Bits StarBorder Animation */}
+      <StarBorder
+        as="div"
+        className="w-full rounded-2xl transition-all duration-300 shadow-2xs hover:shadow-md focus-within:shadow-md"
+        innerClassName="!p-0 rounded-2xl w-full focus-within:ring-2 focus-within:ring-blue-600/30 transition-all"
+        color="#2563eb"
+        speed="4s"
+        thickness={2}
+        backgroundColor="#ffffff"
+        borderColor="#cbd5e1"
+      >
+        <div className="relative flex items-center w-full bg-white rounded-2xl">
+          <div className="absolute left-3.5 sm:left-4 pointer-events-none text-slate-400 shrink-0 z-10">
+            <Search className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
           </div>
-        )}
-      </div>
+          <input
+            ref={ref}
+            type="text"
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
+            placeholder="Search educational websites, tools, exams..."
+            className="w-full pl-10 sm:pl-11 pr-10 sm:pr-11 py-2.5 sm:py-3.5 min-h-[44px] sm:min-h-[50px] text-xs sm:text-sm text-slate-900 bg-transparent border-none rounded-2xl focus:outline-none placeholder:text-slate-400 truncate"
+            aria-label="Search educational websites directory"
+          />
+          {searchQuery ? (
+            <button
+              onClick={() => onSearchChange("")}
+              className="absolute right-2 min-w-[44px] min-h-[44px] rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 z-10"
+              title="Clear search"
+              aria-label="Clear search query"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          ) : (
+            <div className="absolute right-4 hidden sm:flex items-center gap-1 text-[11px] text-slate-400 bg-slate-100 px-2 py-1 rounded border border-slate-200 z-10">
+              <span>Press</span>
+              <kbd className="font-mono font-semibold text-slate-600">/</kbd>
+            </div>
+          )}
+        </div>
+      </StarBorder>
 
       {/* Quick Search Tag Pills (Horizontally scrollable on mobile without page overflow) */}
       {popularTags.length > 0 && (

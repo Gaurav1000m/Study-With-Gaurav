@@ -1,15 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Archivo } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { SplashScreen } from "@/components/SplashScreen";
 import { TelegramFloat } from "@/components/TelegramFloat";
 import { BottomNav } from "@/components/BottomNav";
 import { VpnGuard } from "@/components/VpnGuard";
+import { DevToolsGuard } from "@/components/DevToolsGuard";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -24,10 +31,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://studywithgaurav.cc.cd"),
   title: {
-    default: "Study with Gaurav (Study-With-gaurav) | PW Hack, RWA Mod, IIT School & Free Batches",
-    template: "%s | Study with Gaurav (Study-With-gaurav)"
+    default: "Study with Gaurav | India's Premier Open Access Educational Directory",
+    template: "%s | Study with Gaurav"
   },
-  description: "Study-With-gaurav (studywithgaurav.cc.cd & studywithgaurav-ten.vercel.app): The ultimate free student directory for PW hack website, RWA hack website, PW mod website, IIT School, Next Toppers, free batches, paid batches, PDF notes, lectures, and free lectures video.",
+  description: "Discover Study with Gaurav, the most comprehensive open-access educational directory in India. We aggregate verified free batches, premium study materials, structured lectures, and essential resources for JEE, NEET, and competitive exams. Bypass paywalls and access top-tier education completely free.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd",
   },
@@ -168,23 +175,49 @@ export const metadata: Metadata = {
     "free pdf notes directory",
     "best student resource directory India",
     "competitive exam prep 2026",
+    "study with gaurav",
     "study with gaurav official",
+    "study with gaurav website",
+    "study with gaurav link",
+    "study with gaurav portal",
+    "study with gaurav batches",
+    "study with gaurav free batches",
+    "study with gaurav pw link",
+    "study with gaurav physics wallah",
+    "study with gaurav rwa",
+    "study with gaurav notes",
+    "study with gaurav pdf",
+    "study with gaurav telegram",
     "study with gaurav telegram link",
+    "study with gaurav telegram channel",
     "studywithgaurav",
-    "study with gaurav free notes",
-    "viral study material 2026",
-    "pw khazana free link",
-    "pw latest mod apk 2026",
-    "yakeen batch latest free",
-    "lakshya batch free link 2026",
-    "arjuna batch free access",
-    "jee mains 2026 latest syllabus notes free",
-    "neet 2026 free study material pdf",
-    "all institute hack links working",
-    "free premium batches",
-    "best student portal for free batches",
-    "upsc free batches pdf notes",
+    "studywithgaurav.cc.cd",
+    "studywithgaurav cc cd",
+    "studywithgaurav official",
+    "studywithgaurav batches",
+    "studywithgaurav notes",
     "study with gaurav online platform",
+    "study by gaurav",
+    "gaurav study website",
+    "gaurav sir study portal",
+    "study with gaurav test series",
+    "study with gaurav books",
+    "study with gaurav iit jee",
+    "study with gaurav neet",
+    "study with gaurav ssc",
+    "study with gaurav defence",
+    "study with gaurav next toppers",
+    "study with gaurav missionjeet",
+    "study with gaurav vibrant",
+    "study with gaurav unacademy",
+    "study with gaurav futurekul",
+    "best student portal for free batches",
+    "viral student study directory 2026",
+    "all coaching batches free in one place",
+    "how to get free coaching batches",
+    "pw hack website 2026",
+    "rwa hack website 2026",
+    "free jee neet study material 2026",
     "free educational resources for Indian students",
     "exam preparation free tools"
   ],
@@ -211,12 +244,12 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Study with Gaurav (Study-With-gaurav) | PW Hack, RWA Mod & All Free Batches Hub",
-    description: "Study-With-gaurav (studywithgaurav.cc.cd & studywithgaurav-ten.vercel.app): Access PW hack website, RWA hack website, PW mod website, IIT School, Next Toppers, free batches, paid batches, PDF notes, and free video lectures.",
+    title: "Study with Gaurav | India's Premier Open Access Educational Directory",
+    description: "Discover the most comprehensive open-access educational directory in India. Access verified free batches, premium study materials, structured lectures, and essential resources across JEE, NEET, and competitive exams.",
     url: "https://studywithgaurav.cc.cd",
     type: "website",
     locale: "en_IN",
-    siteName: "Study with Gaurav (Study-With-gaurav)",
+    siteName: "Study with Gaurav",
     images: [
       {
         url: "https://studywithgaurav.cc.cd/lionbg.png",
@@ -229,11 +262,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Study with Gaurav (Study-With-gaurav) | Free Batches & Mod Directory",
-    description: "PW hack website, RWA hack website, PW mod website, IIT School, Next Toppers, free batches, paid batches & lectures hub.",
+    title: "Study with Gaurav | Free Premium Batches & Educational Directory",
+    description: "Access verified free batches, premium study materials, structured lectures, and essential resources for Indian competitive exams completely free.",
     images: ["https://studywithgaurav.cc.cd/lionbg.png"],
   },
   other: {
+    "google-adsense-account": "ca-pub-3576643094354429",
     "geo.region": "IN",
     "geo.placename": "India",
     "geo.position": "20.5937;78.9629",
@@ -298,21 +332,72 @@ const jsonLdOrganization = {
   ]
 };
 
+const jsonLdFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Study with Gaurav?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Study with Gaurav (https://studywithgaurav.cc.cd) is India's premier open-access student resource directory. It provides free, instant access to 100+ verified coaching portals, batch links, lecture players, and PDF study materials for JEE, NEET, SSC, UPSC, and State Boards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Study with Gaurav free for all students?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Study with Gaurav is 100% free and non-profit. Students across India can access verified batch links, notes, formula sheets, and study materials without paywalls, subscriptions, or hidden fees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What batches and study materials are available on Study with Gaurav?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Study with Gaurav indexes materials from top institutes including Physics Wallah (Lakshya, Arjuna, Yakeen), Rojgar With Ankit, Next Toppers, IIT School, MissionJEET, Vibrant Academy, Unacademy, Khan Global Studies, and CDS Journey."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the official website and Telegram channel of Study with Gaurav?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The official website is https://studywithgaurav.cc.cd (with mirror at https://studywithgaurav-ten.vercel.app/) and official Telegram is https://t.me/studywithgaurav."
+      }
+    }
+  ]
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full scroll-smooth`}>
+    <html lang="en" className={`${inter.variable} ${archivo.variable} h-full scroll-smooth`}>
       <head>
+        {/* Google AdSense Account Verification & Script */}
+        <meta name="google-adsense-account" content="ca-pub-3576643094354429" />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3576643094354429"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+
         {/* Favicon & Tab Logo */}
         <link rel="icon" type="image/webp" href="/images/lionbg.webp?v=2" />
         <link rel="shortcut icon" type="image/webp" href="/images/lionbg.webp?v=2" />
         <link rel="apple-touch-icon" href="/images/lionbg.webp?v=2" />
 
-        {/* Alternate link for LLM discovery */}
+        {/* Alternate link for LLM discovery & Agent Discovery (RFC 8288 / RFC 9727) */}
         <link rel="alternate" type="text/markdown" href="https://studywithgaurav.cc.cd/llms.txt" title="LLM Context" />
+        <link rel="api-catalog" type="application/linkset+json" href="https://studywithgaurav.cc.cd/.well-known/api-catalog" />
+        <link rel="service-doc" type="text/markdown" href="https://studywithgaurav.cc.cd/llms.txt" title="LLM Documentation" />
+        <link rel="describedby" type="text/markdown" href="https://studywithgaurav.cc.cd/llms.txt" />
 
         {/* Google Analytics 4 (GA4) Tracking Script */}
         <Script
@@ -337,8 +422,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-100 selection:text-blue-900 pb-[calc(3.5rem+env(safe-area-inset-bottom,0px))] md:pb-0">
+        <DevToolsGuard />
         <VpnGuard>
           <SplashScreen />
           {children}

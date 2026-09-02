@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: [
           {
+            key: "Link",
+            value:
+              '</.well-known/api-catalog>; rel="api-catalog", </llms.txt>; rel="describedby"; type="text/markdown", </llms-full.txt>; rel="service-doc"; type="text/markdown"',
+          },
+          {
             key: "X-DNS-Prefetch-Control",
             value: "on",
           },

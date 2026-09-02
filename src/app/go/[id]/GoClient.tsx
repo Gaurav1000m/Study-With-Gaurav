@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Website } from "@/types/website";
 import { ArrowLeft, ExternalLink, ShieldCheck, Check, RefreshCw, Lock } from "lucide-react";
 import { CATEGORY_MAP } from "@/data/categories";
+import { AdBanner } from "@/components/AdBanner";
 
 interface GoClientProps {
   website: Website;
@@ -116,6 +117,11 @@ export function GoClient({ website }: GoClientProps) {
               <span>Enter {website.name}</span>
               <ExternalLink className="w-4 h-4" />
             </button>
+
+            {/* AdSense Unit on Gateway Free Space */}
+            <div className="w-full max-w-xl">
+              <AdBanner format="auto" minHeight="min-h-[100px]" label="SPONSORED GATEWAY PARTNER" />
+            </div>
           </div>
         ) : (
           /* Iframe Embedded Display */

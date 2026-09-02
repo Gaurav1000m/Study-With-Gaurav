@@ -23,7 +23,7 @@ export function ModernLearningSection() {
             </h2>
             
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-medium max-w-2xl mx-auto lg:mx-0">
-              Stop wasting hours looking for the right study material. We've curated the most advanced, high-quality educational resources so you can focus purely on mastering your skills.
+              Stop wasting hours looking for the right study material. We&apos;ve curated the most advanced, high-quality educational resources so you can focus purely on mastering your skills.
             </p>
             
             <div className="pt-2 flex justify-center lg:justify-start">

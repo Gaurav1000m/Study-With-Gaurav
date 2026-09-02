@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SuggestModal } from "@/components/SuggestModal";
 import { ResourceGrid } from "@/components/ResourceGrid";
+import { AdBanner } from "@/components/AdBanner";
 import { Category, Website } from "@/types/website";
 import { ArrowLeft } from "lucide-react";
 
@@ -106,6 +107,8 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
             </p>
           </div>
 
+          {/* AdSense Unit in Category Free Space */}
+          <AdBanner format="auto" minHeight="min-h-[100px]" label="SPONSORED PLATFORMS" />
 
           {/* Resource Cards Grid */}
           <ResourceGrid

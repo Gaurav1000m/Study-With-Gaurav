@@ -1,7 +1,7 @@
 "use client";
 
 import { CATEGORIES } from "@/data/categories";
-import { CategoryId } from "@/types/website";
+import { Category, CategoryId } from "@/types/website";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,7 +21,7 @@ export function DiscoverySection({ onOptionSelect }: DiscoverySectionProps) {
   const col2 = CATEGORIES.slice(Math.ceil(CATEGORIES.length / 3), Math.ceil((CATEGORIES.length * 2) / 3));
   const col3 = CATEGORIES.slice(Math.ceil((CATEGORIES.length * 2) / 3));
 
-  const renderPill = (cat: any) => (
+  const renderPill = (cat: Category) => (
     <button
       key={cat.id}
       onClick={() => onOptionSelect(cat.id)}
@@ -80,7 +80,7 @@ export function DiscoverySection({ onOptionSelect }: DiscoverySectionProps) {
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 z-20">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
               <AnimatedCounter end={10000} suffix="+" className="text-blue-600" /> Students <br className="hidden sm:block" />
-              can't be wrong
+              can&apos;t be wrong
             </h2>
             
             <div className="space-y-4 max-w-lg">

@@ -12,10 +12,13 @@ import { SuggestModal } from "@/components/SuggestModal";
 import { ResourceCard } from "@/components/ResourceCard";
 import { LogoMarquee } from "@/components/LogoMarquee";
 import { FlipText } from "@/components/FlipText";
+import { AppxHeroText } from "@/components/AppxHeroText";
+import { AppxFAQ } from "@/components/AppxFAQ";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ModernLearningSection } from "@/components/ModernLearningSection";
 
 import { SuggestResourceCTA } from "@/components/SuggestResourceCTA";
+import { AdBanner } from "@/components/AdBanner";
 import { WEBSITES } from "@/data/websites";
 import { CATEGORIES } from "@/data/categories";
 import { CategoryId } from "@/types/website";
@@ -105,23 +108,23 @@ export default function Home() {
         "name": "What is Study with Gaurav (Study-With-gaurav)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Study with Gaurav (also known as Study-With-gaurav, accessible via www.studywithgaurav.cc.cd and https://studywithgaurav-ten.vercel.app/) is India's top-rated free educational directory. It indexes PW modwebsite links, RWA modwebsite portals, PW mod website entries, IIT School free batches, Next Toppers, Selection Way, CDS Journey, Study IQ, free paid batches, PDF notes, lectures, and free lectures video in one organized hub."
+          "text": "Study with Gaurav (accessible via official domains https://studywithgaurav.cc.cd and https://studywithgaurav-ten.vercel.app/) is a premier open-access education directory. It systematically indexes verified batch portals, lecture repositories, and study notes for Physics Wallah, Rojgar With Ankit, IIT School, Next Toppers, and 25+ top academic networks with zero paywalls."
         }
       },
       {
         "@type": "Question",
-        "name": "Which is the best portal for PW modwebsite, RWA modwebsite, and PW mod website entries?",
+        "name": "Which is the most reliable portal for PW, RWA, and IIT School batch access?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Study with Gaurav (www.studywithgaurav.cc.cd / https://studywithgaurav-ten.vercel.app/) is the leading platform for finding verified links to PW modwebsite, RWA modwebsite, PW mod website, IIT School mod portals, free batches, paid batches, and online lectures without broken links or paywalls."
+          "text": "Study with Gaurav provides verified, audit-tested links to Physics Wallah (PW), Rojgar With Ankit (RWA), and IIT School student portals without deceptive URL shorteners, intrusive ads, or broken redirects."
         }
       },
       {
         "@type": "Question",
-        "name": "How to access IIT School, Physics Wallah, RWA, and Next Toppers free lectures video and PDF notes?",
+        "name": "How to access IIT School, Physics Wallah, RWA, and Next Toppers lectures and notes?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Students can browse dedicated category hubs on Study-With-gaurav for IIT School, Physics Wallah (PW), Rojgar With Ankit (RWA), Next Toppers, Selection Way, Mission Jeet, and CDS Journey to instantly access free lectures video, formula sheets, and PDF study materials."
+          "text": "Aspirants can utilize the real-time search bar or browse curated category hubs for IIT School, PW, RWA, Next Toppers, and CDS Journey to instantly access lecture archives, formula sheets, and PDF materials."
         }
       },
       {
@@ -129,39 +132,15 @@ export default function Home() {
         "name": "What official domains and mirrors belong to Study with Gaurav?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The primary official domain is https://studywithgaurav.cc.cd (www.studywithgaurav.cc.cd) and the official high-speed Vercel mirror is https://studywithgaurav-ten.vercel.app/."
+          "text": "The primary official domain is https://studywithgaurav.cc.cd (www.studywithgaurav.cc.cd), accompanied by the official high-speed Vercel Edge mirror at https://studywithgaurav-ten.vercel.app/."
         }
       },
       {
         "@type": "Question",
-        "name": "Are free paid batches and mod apk study portals on Study-With-gaurav safe and verified?",
+        "name": "Is Study with Gaurav 100% free and open for all students?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, every resource listed on Study-With-gaurav undergoes routine security verification to ensure working links, official domain integrity, and clean student access without malware or paywalls."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is there a dedicated section for IIT School free batches & JEE Advanced mod portals?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes! Study-With-gaurav features a dedicated IIT School category featuring verified links to IIT School official courses, free batches, problem sets, and JEE preparation materials."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What competitive exam categories are covered on Study-With-gaurav?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We cover JEE Main & Advanced (PW, IIT School, MissionJEET, Vibrant), NEET UG, SSC CGL/CHSL & Police (RWA, KGS, Utkarsh, MD Classes), Defence (CDS Journey, NDA), and High School Board Exams (Next Toppers, Padhle Akshay, Just Padhle)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is Study with Gaurav 100% free for all students?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, Study with Gaurav (Study-With-gaurav) is completely free with zero subscription fees or hidden costs."
+          "text": "Yes, Study with Gaurav is completely free with zero subscription fees, hidden registration requirements, or telemetry tracking."
         }
       }
     ]
@@ -182,43 +161,43 @@ export default function Home() {
       <main className="flex-1">
         
         {/* Hero Section */}
-        <section id="hero" className="w-full bg-white pt-6 pb-2 sm:pt-12 sm:pb-4 text-center relative overflow-hidden">
-          {/* Majestic Lion Background */}
-          <div className="absolute inset-y-0 right-0 w-full sm:w-1/2 opacity-30 pointer-events-none select-none z-0">
+        <section id="hero" className="w-full bg-white pt-6 pb-2 sm:pt-12 sm:pb-4 text-center relative overflow-hidden border-b border-slate-100">
+          {/* Background Split: Left Side - CDS Soldier Silhouette (Legs fully visible & slightly increased size) */}
+          <div className="absolute inset-y-0 left-0 w-full sm:w-[42%] lg:w-[38%] opacity-30 sm:opacity-35 lg:opacity-40 pointer-events-none select-none z-0 flex items-end justify-center sm:justify-start px-2 sm:px-6 pb-1 sm:pb-2 overflow-hidden">
             <Image
-              src="/images/lionbg.webp"
-              alt="Decorative background watermark"
-              width={600}
-              height={600}
+              src="/images/cds-soldier.png"
+              alt="CDS defence soldier background watermark"
+              width={577}
+              height={500}
               priority
               unoptimized
-              className="w-full h-full object-contain object-right filter drop-shadow-lg"
+              className="w-auto h-full max-h-[250px] sm:max-h-[390px] lg:max-h-[430px] object-contain object-bottom sm:object-left-bottom filter drop-shadow-md"
+            />
+          </div>
+
+          {/* Background Split: Right Side - Lion Watermark (Grand scale & anchored at bottom) */}
+          <div className="hidden sm:flex absolute inset-y-0 right-0 w-1/2 lg:w-[50%] opacity-35 sm:opacity-40 lg:opacity-45 pointer-events-none select-none z-0 items-end justify-end px-0 sm:px-2 overflow-hidden">
+            <Image
+              src="/images/lionbg.webp"
+              alt="Decorative lion background watermark"
+              width={750}
+              height={750}
+              priority
+              unoptimized
+              className="w-auto h-full max-h-[340px] sm:max-h-[520px] lg:max-h-[600px] object-contain object-right-bottom filter drop-shadow-lg scale-105"
             />
           </div>
 
           <div
-            className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
             style={{
               backgroundImage: `radial-gradient(circle at 1px 1px, black 1px, transparent 0)`,
               backgroundSize: "24px 24px",
             }}
           />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-800 text-xs font-semibold border border-blue-100 uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
-              <span>STUDY-WITH-GAURAV • OFFICIAL FREE STUDENT DIRECTORY</span>
-            </div>
-            
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.2]">
-              Study-With-gaurav: PW Hack, RWA Mod & <br className="hidden sm:block" />
-              <span className="text-blue-700">
-                <FlipText words={["All Free Batches Hub.", "IIT School & Notes.", "PW & RWA Portals.", "Completely Free."]} />
-              </span>
-            </h1>
-
-            <p className="max-w-3xl mx-auto text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-              Welcome to <strong>Study-With-gaurav</strong> (<strong>www.studywithgaurav.cc.cd</strong> &amp; <strong>https://studywithgaurav-ten.vercel.app/</strong>) — your ultimate hub for <strong>PW modwebsite</strong>, <strong>rwa modwebsite</strong>, <strong>pw mod website</strong>, <strong>IIT School</strong>, <strong>Next Toppers</strong>, <strong>Selection Way</strong>, <strong>Mission Jeet</strong>, <strong>CDS Journey</strong>, <strong>Study IQ</strong>, free batches, paid batches, lectures, and free lectures video.
-            </p>
+            {/* AppX-Inspired Hero Text & Split Reveal Animation */}
+            <AppxHeroText />
 
             {/* Search Bar Container */}
             <div className="pt-2 max-w-2xl mx-auto">
@@ -240,6 +219,9 @@ export default function Home() {
 
         {/* Logo Marquee */}
         <LogoMarquee />
+
+        {/* AdSense Top Leaderboard (Reserved Free Space) */}
+        <AdBanner format="horizontal" minHeight="min-h-[100px]" label="SPONSORED EDUCATION PARTNER" />
 
         {/* Real-time search results or default layout */}
         {isSearchActive ? (
@@ -295,6 +277,9 @@ export default function Home() {
             <CategorySection
               categoryCounts={categoryCounts}
             />
+
+            {/* AdSense Mid-Feed Banner (Reserved Free Space) */}
+            <AdBanner format="auto" minHeight="min-h-[120px]" label="RECOMMENDED STUDENT RESOURCES" />
 
             {/* What Are You Looking For? Discovery Section */}
             <DiscoverySection onOptionSelect={handleDiscoverySelect} />
@@ -388,36 +373,17 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* FAQ Answers List */}
-                <div className="pt-12">
-                  <div className="text-center mb-10">
-                    <h3 className="text-3xl font-extrabold text-slate-900">
-                      Frequently Asked Questions
-                    </h3>
-                    <p className="text-slate-500 mt-2 text-lg">Find quick answers to common queries.</p>
-                  </div>
-
-                  <div className="max-w-4xl mx-auto space-y-4">
-                    {faqJsonLd.mainEntity.map((faq, index) => (
-                      <details key={index} className="group bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-                        <summary className="flex items-center justify-between cursor-pointer p-6 font-bold text-slate-900 text-lg select-none hover:bg-slate-50/50 transition-colors">
-                          <span className="pr-6">{faq.name}</span>
-                          <span className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-open:rotate-180 transition-transform duration-300 text-slate-500">
-                            <ChevronDown className="w-5 h-5" />
-                          </span>
-                        </summary>
-                        <div className="px-6 pb-6 text-slate-600 text-base leading-relaxed border-t border-slate-100 pt-4">
-                          {faq.acceptedAnswer.text}
-                        </div>
-                      </details>
-                    ))}
-                  </div>
-                </div>
               </div>
             </section>
 
+            {/* AppX-Style Interactive Animated FAQ Section */}
+            <AppxFAQ />
+
             {/* Suggestion Section */}
             <SuggestResourceCTA onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
+
+            {/* AdSense Bottom Banner (Reserved Free Space) */}
+            <AdBanner format="auto" minHeight="min-h-[110px]" label="EDUCATIONAL SPONSORS" />
           </>
         )}
 

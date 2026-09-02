@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { Star, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
 
 const REVIEWS = [
   {
@@ -37,12 +36,6 @@ const REVIEWS = [
 ];
 
 export function TestimonialsSection() {
-  const [mounted, setMounted] = useState(false);
-  
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <section className="w-full py-16 sm:py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -117,7 +110,7 @@ export function TestimonialsSection() {
                       </div>
                     </div>
                     <p className="text-slate-600 text-base leading-relaxed font-medium relative z-10">
-                      "{review.text}"
+                      &ldquo;{review.text}&rdquo;
                     </p>
                   </div>
                 ))}
@@ -154,7 +147,7 @@ export function TestimonialsSection() {
                       </div>
                     </div>
                     <p className="text-slate-600 text-base leading-relaxed font-medium relative z-10">
-                      "{review.text}"
+                      &ldquo;{review.text}&rdquo;
                     </p>
                   </div>
                 ))}

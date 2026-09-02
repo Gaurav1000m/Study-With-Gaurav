@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Inter", var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Archivo", var(--font-archivo), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   
   --color-navy-50: #f0f4f9;
   --color-navy-100: #e2e8f0;
@@ -199,3 +200,143 @@ html, body {
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
+/* AppX-inspired Text Reveal Animations */
+@keyframes textRevealUp {
+  0% {
+    transform: translateY(115%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes textRevealWord {
+  0% {
+    transform: translateY(105%) rotate(1.5deg);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  100% {
+    transform: translateY(0%) rotate(0deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes pulseBorder {
+  0%, 100% {
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 15px -3px rgba(59, 130, 246, 0.15);
+  }
+  50% {
+    border-color: rgba(99, 102, 241, 0.6);
+    box-shadow: 0 0 25px -1px rgba(99, 102, 241, 0.35);
+  }
+}
+
+.animate-reveal-up {
+  animation: textRevealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-reveal-word {
+  display: inline-block;
+  animation: textRevealWord 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.appx-badge {
+  background: #090d16;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.appx-badge:hover {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 6px 25px -2px rgba(59, 130, 246, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.appx-pulse-border {
+  animation: pulseBorder 3s infinite ease-in-out;
+}
+
+/* Theme Blue Swoosh & Logo Aura Animations */
+@keyframes drawSwoosh {
+  0% {
+    stroke-dashoffset: 320;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.animate-swoosh {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 0;
+  animation: drawSwoosh 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes logoAura {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.5;
+  }
+}
+
+.animate-logo-aura {
+  animation: logoAura 3s ease-in-out infinite;
+}
+
+/* Shimmer sweep animation for badge */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* Clean Solid Black Underline Animation */
+@keyframes blackLineDraw {
+  0% {
+    stroke-dashoffset: 130;
+  }
+  20%, 80% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -130;
+  }
+}
+
+.animate-black-line {
+  stroke-dasharray: 130;
+  animation: blackLineDraw 3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes premiumLineDraw {
+  0% {
+    stroke-dashoffset: 160;
+  }
+  20%, 80% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -160;
+  }
+}
+
+.animate-premium-line {
+  stroke-dasharray: 160;
+  animation: premiumLineDraw 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+

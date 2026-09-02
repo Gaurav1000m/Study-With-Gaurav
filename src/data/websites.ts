@@ -408,6 +408,146 @@ export const WEBSITES: Website[] = [
     rating: 4.7
   },
   {
+    id: "pwx-pages-dev",
+    name: "PWX Study Portal ⚡",
+    url: "https://pwx.pages.dev/pw",
+    logo: PW_LOGO,
+    description: "PWX Pages Dev instant batch access and Physics Wallah lecture player.",
+    category: "physics-wallah",
+    subcategory: "Batches & Courses",
+    tags: [
+      "Physics Wallah",
+      "PWX",
+      "Batches",
+      "Free Batches"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.8
+  },
+  {
+    id: "pw-muftukmall",
+    name: "PW Muftukmall 🛒",
+    url: "https://pw.muftukmall.in/",
+    logo: PW_LOGO,
+    description: "PW Muftukmall open educational batch portal and test series resources.",
+    category: "physics-wallah",
+    subcategory: "Batches & Courses",
+    tags: [
+      "Physics Wallah",
+      "Muftukmall",
+      "Batches",
+      "PW"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.8
+  },
+  {
+    id: "pw-studybison",
+    name: "StudyBison PW 🦬",
+    url: "https://pw.studybison.in/",
+    logo: PW_LOGO,
+    description: "StudyBison Physics Wallah batches, notes, and lecture gateway.",
+    category: "physics-wallah",
+    subcategory: "Batches & Courses",
+    tags: [
+      "Physics Wallah",
+      "StudyBison",
+      "Batches",
+      "Lecture Gateway"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.9
+  },
+  {
+    id: "akki-studyx-batches",
+    name: "Akki StudyX Batches 🚀",
+    url: "https://akkistudyx.in/batches",
+    logo: PW_LOGO,
+    description: "Akki StudyX direct PW batch access portal with lecture streaming.",
+    category: "physics-wallah",
+    subcategory: "Batches & Courses",
+    tags: [
+      "Physics Wallah",
+      "Akki StudyX",
+      "Batches",
+      "Lectures"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.8
+  },
+  {
+    id: "edufreek-pw-generate",
+    name: "EduFreek PW Generator ⚡",
+    url: "https://edufreekpw.infinityfreeapp.com/generate.php",
+    logo: PW_LOGO,
+    description: "EduFreek PW stream link generator and batch lecture unlocking tool.",
+    category: "physics-wallah",
+    subcategory: "Batches & Courses",
+    tags: [
+      "Physics Wallah",
+      "EduFreek",
+      "Generator",
+      "Batches"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.7
+  },
+  {
+    id: "edufreek-main",
+    name: "EduFreek Portal 🌟",
+    url: "https://edufreek.infinityfreeapp.com/?i=1",
+    logo: PW_LOGO,
+    description: "EduFreek centralized free study portal and multi-platform batch directory.",
+    category: "physics-wallah",
+    subcategory: "Batches & Courses",
+    tags: [
+      "Physics Wallah",
+      "EduFreek",
+      "Free Batches",
+      "Portal"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.7
+  },
+  {
+    id: "studyratna-s2-cdn",
+    name: "StudyRatna CDN 💎",
+    url: "https://s2-cdn.studyratna.cc/",
+    logo: PW_LOGO,
+    description: "StudyRatna high-speed CDN streaming server for Physics Wallah lectures and resources.",
+    category: "physics-wallah",
+    subcategory: "Video Lectures",
+    tags: [
+      "Physics Wallah",
+      "StudyRatna",
+      "CDN",
+      "Lectures"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.9
+  },
+  {
     id: "official-pw-ott",
     name: "PW OTT OFFICIAL ✅",
     url: "https://pw.live",
@@ -856,6 +996,46 @@ export const WEBSITES: Website[] = [
     rating: 4.8
   },
   {
+    id: "nt-studybison",
+    name: "StudyBison Next Toppers 🦬",
+    url: "https://nt.studybison.in/",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1mUiY27Zw1lOwzgyGbwpdWlVgzDEZGmrfjfZqT0XGew&s",
+    description: "StudyBison Next Toppers 10th and 12th board batches and lecture portal.",
+    category: "next-toppers",
+    subcategory: "Board & Exam Prep",
+    tags: [
+      "Next Toppers",
+      "StudyBison",
+      "Boards",
+      "Batches"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.8
+  },
+  {
+    id: "edufreek-nt-pages",
+    name: "EduFreek Next Toppers 🎯",
+    url: "https://edufreeknt.pages.dev/",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1mUiY27Zw1lOwzgyGbwpdWlVgzDEZGmrfjfZqT0XGew&s",
+    description: "EduFreek Next Toppers Cloudflare portal with high-speed video lectures.",
+    category: "next-toppers",
+    subcategory: "Board & Exam Prep",
+    tags: [
+      "Next Toppers",
+      "EduFreek",
+      "Pages Dev",
+      "Board Prep"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.8
+  },
+  {
     id: "mj-1",
     name: "MissionJEET OFFICIAL ✅",
     url: "https://missionjeet.in/",
@@ -1120,6 +1300,46 @@ export const WEBSITES: Website[] = [
     rating: 4.8
   },
   {
+    id: "mj-studybison",
+    name: "StudyBison MissionJEET 🏆",
+    url: "https://mj.studybison.in/",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXhmAX6UC18CYhwU2a6f7gn9E5WE0g4hzSQK2zyH_nVA&s",
+    description: "StudyBison MissionJEET engineering entrance coaching portal and batch player.",
+    category: "missionjeet",
+    subcategory: "Batches & Courses",
+    tags: [
+      "MissionJEET",
+      "StudyBison",
+      "JEE Main",
+      "JEE Advanced"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.8
+  },
+  {
+    id: "edufreek-mj",
+    name: "EduFreek MissionJEET ⚡",
+    url: "https://edufreek.ct.ws/generate.php?platform=mj",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXhmAX6UC18CYhwU2a6f7gn9E5WE0g4hzSQK2zyH_nVA&s",
+    description: "EduFreek MissionJEET batch link generator and lecture access platform.",
+    category: "missionjeet",
+    subcategory: "Batches & Courses",
+    tags: [
+      "MissionJEET",
+      "EduFreek",
+      "Generator",
+      "Batches"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.7
+  },
+  {
     id: "official-vibrant",
     name: "Vibrant Academy OFFICIAL ✅",
     url: "https://vibrantacademy.com",
@@ -1251,6 +1471,46 @@ export const WEBSITES: Website[] = [
     isOfficial: false,
     dateAdded: "2026-08-20",
     rating: 4.8
+  },
+  {
+    id: "va-studybison",
+    name: "StudyBison Vibrant Academy 🏛️",
+    url: "https://va.studybison.in/",
+    logo: "https://nocache-appxdb-v2.classx.co.in/subject/2026-02-24-0.8461171343418096.png",
+    description: "StudyBison Vibrant Academy IIT-JEE and NEET Kota coaching portal.",
+    category: "vibrant-academy",
+    subcategory: "Batches & Courses",
+    tags: [
+      "Vibrant Academy",
+      "StudyBison",
+      "Kota Coaching",
+      "IIT-JEE"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.8
+  },
+  {
+    id: "edufreek-vibrant",
+    name: "EduFreek Vibrant 🌟",
+    url: "https://edufreek.ct.ws/generate.php?platform=vb",
+    logo: "https://nocache-appxdb-v2.classx.co.in/subject/2026-02-24-0.8461171343418096.png",
+    description: "EduFreek Vibrant Academy batch stream generator and test portal.",
+    category: "vibrant-academy",
+    subcategory: "Batches & Courses",
+    tags: [
+      "Vibrant Academy",
+      "EduFreek",
+      "Generator",
+      "Batches"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.7
   },
   {
     id: "official-munil-sir",
@@ -1996,6 +2256,66 @@ export const WEBSITES: Website[] = [
     rating: 4.8
   },
   {
+    id: "ua-studybison",
+    name: "StudyBison UnAcademy 🎓",
+    url: "https://ua.studybison.in/",
+    logo: "https://i.postimg.cc/PJj1bKn9/images-2026-07-02T231828-233.png",
+    description: "StudyBison UnAcademy online courses, recorded sessions, and batch gateway.",
+    category: "unacademy",
+    subcategory: "Batches & Courses",
+    tags: [
+      "UnAcademy",
+      "StudyBison",
+      "Courses",
+      "Live Sessions"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.8
+  },
+  {
+    id: "edufreek-unacademy",
+    name: "EduFreek UnAcademy ⚡",
+    url: "https://edufreek.ct.ws/generate.php?platform=unacademy",
+    logo: "https://i.postimg.cc/PJj1bKn9/images-2026-07-02T231828-233.png",
+    description: "EduFreek UnAcademy online batch link generator and resource player.",
+    category: "unacademy",
+    subcategory: "Batches & Courses",
+    tags: [
+      "UnAcademy",
+      "EduFreek",
+      "Generator",
+      "Online Batches"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.7
+  },
+  {
+    id: "edufreek-unacademy-offline",
+    name: "EduFreek UnAcademy Offline 🏢",
+    url: "https://edufreek.ct.ws/generate.php?platform=uncoffline",
+    logo: "https://i.postimg.cc/PJj1bKn9/images-2026-07-02T231828-233.png",
+    description: "EduFreek UnAcademy offline Kota center recorded lectures and Kota classroom portal.",
+    category: "unacademy",
+    subcategory: "Batches & Courses",
+    tags: [
+      "UnAcademy",
+      "EduFreek",
+      "Kota Center",
+      "Offline Batches"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.8
+  },
+  {
     id: "official-master-sahab",
     name: "Master Sahab OFFICIAL ✅",
     url: "https://mastersahab.in",
@@ -2069,6 +2389,26 @@ export const WEBSITES: Website[] = [
     popular: true,
     isOfficial: false,
     dateAdded: "2026-08-20",
+    rating: 4.8
+  },
+  {
+    id: "ms-studybison",
+    name: "StudyBison Master Sahab 🎓",
+    url: "https://ms.studybison.in/",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnIU9FCUpuoM2huY5k-ggVgZIB28M4VKpaS-1NOCixoA&s",
+    description: "StudyBison Master Sahab interactive educational portal and exam batches.",
+    category: "master-sahab",
+    subcategory: "Batches & Courses",
+    tags: [
+      "Master Sahab",
+      "StudyBison",
+      "Batches",
+      "Exam Guidance"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
     rating: 4.8
   },
   {
@@ -2505,6 +2845,26 @@ export const WEBSITES: Website[] = [
     popular: true,
     isOfficial: false,
     dateAdded: "2026-08-20",
+    rating: 4.8
+  },
+  {
+    id: "fl-studybison",
+    name: "StudyBison Futurekul 🚀",
+    url: "https://fl.studybison.in/",
+    logo: "https://i.postimg.cc/z3YX3H2x/images-(1).jpg",
+    description: "StudyBison Futurekul Dream Study courses, test series, and batch access.",
+    category: "futurekul",
+    subcategory: "Batches & Courses",
+    tags: [
+      "Futurekul",
+      "StudyBison",
+      "Dream Study",
+      "Batches"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
     rating: 4.8
   },
   {
@@ -3078,6 +3438,27 @@ export const WEBSITES: Website[] = [
     isOfficial: false,
     dateAdded: "2026-08-23",
     rating: 4.8
+  },
+  {
+    id: "books-studybison",
+    name: "StudyBison Books 📚",
+    url: "https://books.studybison.in/",
+    logo: "https://st2.depositphotos.com/3573725/6541/v/450/depositphotos_65413355-stock-illustration-book-logo.jpg",
+    description: "StudyBison digital textbook repository, module solutions, and e-library.",
+    category: "book",
+    subcategory: "Books & Study Materials",
+    tags: [
+      "BOOK",
+      "StudyBison",
+      "E-Books",
+      "PDF Notes",
+      "Modules"
+    ],
+    featured: true,
+    popular: true,
+    isOfficial: false,
+    dateAdded: "2026-09-03",
+    rating: 4.9
   },
   {
     id: "padhle-akshay-official",
