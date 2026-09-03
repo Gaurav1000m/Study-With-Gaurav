@@ -288,6 +288,15 @@ export const CATEGORIES: Category[] = [
     logo: "https://cdn-1.webcatalog.io/catalog/iit-school/iit-school-icon-filled-256.png?v=1717862732147",
     description: "Platform for IIT-JEE and competitive exam preparation.",
     featured: true
+  },
+  {
+    id: "english-speaking",
+    name: "English Speaking",
+    shortName: "English Speaking",
+    iconName: "MessageCircle",
+    logo: "/images/english_speaking_logo.jpg",
+    description: "Resources for English speaking and communication skills.",
+    featured: true
   }
 ];
 
