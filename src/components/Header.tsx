@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, Search, PlusCircle, Menu, X, ShieldCheck, ChevronRight, Heart } from "lucide-react";
+import { BookOpen, Search, PlusCircle, Menu, X, ShieldCheck, ChevronRight, Heart, Maximize, Minimize } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
 
@@ -20,7 +20,43 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const lastScrollY = useRef(0);
+  const isHomePage = pathname === "/";
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(Boolean(document.fullscreenElement || (document as any).webkitFullscreenElement));
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement && !(document as any).webkitFullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          await document.documentElement.requestFullscreen();
+        } else if ((document.documentElement as any).webkitRequestFullscreen) {
+          await (document.documentElement as any).webkitRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          await document.exitFullscreen();
+        } else if ((document as any).webkitExitFullscreen) {
+          await (document as any).webkitExitFullscreen();
+        }
+      }
+    } catch (err) {
+      console.warn("Fullscreen toggle error:", err);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -162,14 +198,34 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
 
           {/* Header Action Buttons */}
           <div className="flex items-center gap-1 sm:gap-2">
-            {/* Mobile / Tablet Quick Search Icon Button */}
-            <button
-              onClick={handleSearchClick}
-              aria-label="Search resources"
-              className="md:hidden min-w-[36px] min-h-[36px] rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 active:bg-slate-200 flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-            >
-              <Search className="w-4 h-4" />
-            </button>
+            {/* Mobile Action Button: Full Screen Toggle on Home page, Quick Search on other pages */}
+            {isHomePage ? (
+              <button
+                onClick={toggleFullscreen}
+                aria-label={isFullscreen ? "Exit full screen" : "Enter full screen mode"}
+                title={isFullscreen ? "Exit Full Screen" : "Full Screen Mode"}
+                className={cn(
+                  "md:hidden min-w-[36px] min-h-[36px] rounded-lg flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600",
+                  isFullscreen
+                    ? "bg-blue-50 text-blue-600 border border-blue-200"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100 active:bg-slate-200"
+                )}
+              >
+                {isFullscreen ? (
+                  <Minimize className="w-4 h-4" />
+                ) : (
+                  <Maximize className="w-4 h-4" />
+                )}
+              </button>
+            ) : (
+              <button
+                onClick={handleSearchClick}
+                aria-label="Search resources"
+                className="md:hidden min-w-[36px] min-h-[36px] rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 active:bg-slate-200 flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              >
+                <Search className="w-4 h-4" />
+              </button>
+            )}
 
             {/* Desktop Quick Search Input Trigger */}
             <button

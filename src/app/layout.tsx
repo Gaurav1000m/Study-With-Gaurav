@@ -118,6 +118,7 @@ export const metadata: Metadata = {
     images: ["https://studywithgaurav.cc.cd/lionbg.png"],
   },
   other: {
+    "monetag": "9d7a52d24153df35268a6a1f546a5f82",
     "google-adsense-account": "ca-pub-3576643094354429",
     "geo.region": "IN",
     "geo.placename": "India",
@@ -227,6 +228,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${archivo.variable} h-full scroll-smooth`}>
       <head>
+        {/* Monetag Ads Verification Tag */}
+        <meta name="monetag" content="9d7a52d24153df35268a6a1f546a5f82" />
+
         {/* Google AdSense Account Verification & Script */}
         <meta name="google-adsense-account" content="ca-pub-3576643094354429" />
         <Script
