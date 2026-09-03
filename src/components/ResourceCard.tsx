@@ -81,10 +81,15 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
 
           {/* Badges and Bookmark Button */}
           <div className="flex items-center gap-1.5 min-w-0">
-            {website.isOfficial && (
+          {website.isOfficial ? (
               <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 whitespace-nowrap">
                 <ShieldCheck className="w-2.5 h-2.5 text-emerald-600 shrink-0" />
                 <span>Official</span>
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold bg-slate-50 text-slate-500 border border-slate-200 whitespace-nowrap">
+                <Sparkles className="w-2.5 h-2.5 text-slate-400 shrink-0" />
+                <span>Community</span>
               </span>
             )}
 
@@ -94,6 +99,7 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
                 <span>Popular</span>
               </span>
             )}
+
 
             {/* Bookmark Button */}
             <button

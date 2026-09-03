@@ -35,12 +35,16 @@ export function AdBanner({
   responsive = true,
   className = "",
   minHeight = "min-h-[90px]",
-  label = "SPONSORED LINKS",
+  label,
   directLink = siteConfig.monetagDirectLink || "https://omg10.com/4/11717884",
   showSponsoredOffer = true,
 }: AdBannerProps) {
   const adRef = useRef<HTMLModElement | null>(null);
   const pushedRef = useRef(false);
+
+  // Auto-detect label based on what's shown:
+  // If sponsored offer is shown → "SPONSORED LINKS", else → "ADVERTISEMENT"
+  const resolvedLabel = label ?? (showSponsoredOffer ? "SPONSORED LINKS" : "ADVERTISEMENT");
 
   useEffect(() => {
     // Only push once per mounted ad unit to prevent duplicate push errors in React 19
@@ -69,7 +73,7 @@ export function AdBanner({
           <div className="flex items-center gap-1.5">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
             <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">
-              {label}
+              {resolvedLabel}
             </span>
           </div>
           <span className="text-[9px] text-slate-400 font-medium">Study with Gaurav Partner Hub</span>
@@ -113,20 +117,17 @@ export function AdBanner({
           </a>
         )}
 
-        {/* AdSense ins element */}
-        {slot && (
-          <div className="w-full flex items-center justify-center min-h-[50px] overflow-hidden">
-            <ins
-              ref={adRef}
-              className="adsbygoogle"
-              style={{ display: "block", width: "100%" }}
-              data-ad-client="ca-pub-3576643094354429"
-              data-ad-slot={slot}
-              data-ad-format={format}
-              data-full-width-responsive={responsive ? "true" : "false"}
-            />
-          </div>
-        )}
+        {/* AdSense ins element — renders for auto-ads even without a slot prop */}
+        <div className="w-full flex items-center justify-center min-h-[50px] overflow-hidden">
+          <ins
+            ref={adRef}
+            className="adsbygoogle"
+            style={{ display: "block", width: "100%" }}
+            data-ad-client="ca-pub-3576643094354429"
+            {...(slot ? { "data-ad-slot": slot } : { "data-ad-format": format })}
+            data-full-width-responsive={responsive ? "true" : "false"}
+          />
+        </div>
       </div>
     </aside>
   );

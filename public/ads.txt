@@ -1,1 +1,2 @@
 google.com, pub-3576643094354429, DIRECT, f08c47fec0942fa0
+monetag.com, 276097, DIRECT

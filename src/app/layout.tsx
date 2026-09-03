@@ -39,9 +39,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://studywithgaurav.cc.cd",
   },
-  verification: {
-    google: "GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE_TODO",
-  },
+  // Google Search Console: verify via DNS TXT record or GSC HTML file method
+  // verification: { google: "YOUR_ACTUAL_VERIFICATION_CODE_HERE" },
   keywords: [
     "Study-With-gaurav",
     "study with gaurav",
@@ -228,9 +227,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${archivo.variable} h-full scroll-smooth`}>
       <head>
-        {/* Monetag Ads Verification Tag & Multitag Script */}
+        {/* Monetag Ads Verification Tag */}
         <meta name="monetag" content="9d7a52d24153df35268a6a1f546a5f82" />
-        <script src="https://quge5.com/88/tag.min.js" data-zone="276097" async data-cfasync="false"></script>
 
         {/* Google AdSense Account Verification & Script */}
         <meta name="google-adsense-account" content="ca-pub-3576643094354429" />
@@ -239,6 +237,14 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3576643094354429"
           crossOrigin="anonymous"
           strategy="afterInteractive"
+        />
+
+        {/* Monetag Multitag Script — loaded after interactive to avoid blocking render */}
+        <Script
+          src="https://quge5.com/88/tag.min.js"
+          data-zone="276097"
+          strategy="afterInteractive"
+          data-cfasync="false"
         />
 
         {/* Favicon & Tab Logo */}
@@ -281,6 +287,13 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-white text-slate-900 font-sans antialiased selection:bg-blue-100 selection:text-blue-900 pb-[calc(3.5rem+env(safe-area-inset-bottom,0px))] md:pb-0">
+        {/* Skip to main content — accessibility for keyboard and screen reader users */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-white focus:bg-blue-700 focus:rounded-xl focus:shadow-xl focus:outline-none"
+        >
+          Skip to main content
+        </a>
         <AppProvider>
           <DevToolsGuard />
           <VpnGuard>

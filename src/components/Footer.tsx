@@ -195,7 +195,12 @@ export function Footer({ onOpenSuggestModal }: FooterProps) {
               </li>
               <li>
                 <Link href="/disclaimer" className="hover:text-blue-700 transition-colors">
-                  Disclaimer & DMCA
+                  Disclaimer &amp; DMCA
+                </Link>
+              </li>
+              <li>
+                <Link href="/advertising" className="hover:text-blue-700 transition-colors">
+                  Advertising Disclosure
                 </Link>
               </li>
             </ul>
@@ -214,6 +219,8 @@ export function Footer({ onOpenSuggestModal }: FooterProps) {
             <Link href="/terms" className="hover:underline">Terms</Link>
             <span>•</span>
             <Link href="/disclaimer" className="hover:underline">Disclaimer</Link>
+            <span>•</span>
+            <Link href="/advertising" className="hover:underline">Advertising</Link>
             <span>•</span>
             <Link href="/contact" className="hover:underline">Contact</Link>
           </div>

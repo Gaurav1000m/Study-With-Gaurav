@@ -158,7 +158,7 @@ export default function Home() {
       {/* Spacer for fixed header */}
       <div className="h-14 sm:h-16" />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         
         {/* Hero Section */}
         <section id="hero" className="w-full bg-white pt-6 pb-2 sm:pt-10 sm:pb-4 text-center relative overflow-hidden border-b border-slate-100">
