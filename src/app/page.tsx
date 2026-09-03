@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
+import { AppShell } from "@/components/AppShell";
 import { Header } from "@/components/Header";
 import { SearchBar } from "@/components/SearchBar";
 import { QuickCategories } from "@/components/QuickCategories";
@@ -16,13 +17,12 @@ import { AppxHeroText } from "@/components/AppxHeroText";
 import { AppxFAQ } from "@/components/AppxFAQ";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ModernLearningSection } from "@/components/ModernLearningSection";
-
-import { SuggestResourceCTA } from "@/components/SuggestResourceCTA";
+import { HeroSlider } from "@/components/HeroSlider";
 import { AdBanner } from "@/components/AdBanner";
 import { WEBSITES } from "@/data/websites";
 import { CATEGORIES } from "@/data/categories";
 import { CategoryId } from "@/types/website";
-import { Sparkles, Compass, BookOpen, CheckCircle2, ShieldCheck, GraduationCap, ChevronDown } from "lucide-react";
+import { Compass, BookOpen, CheckCircle2, ShieldCheck, GraduationCap } from "lucide-react";
 
 export default function Home() {
   const [isSuggestModalOpen, setIsSuggestModalOpen] = useState(false);
@@ -147,7 +147,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
+    <AppShell>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -161,9 +161,9 @@ export default function Home() {
       <main className="flex-1">
         
         {/* Hero Section */}
-        <section id="hero" className="w-full bg-white pt-6 pb-2 sm:pt-12 sm:pb-4 text-center relative overflow-hidden border-b border-slate-100">
-          {/* Background Split: Left Side - CDS Soldier Silhouette (Legs fully visible & slightly increased size) */}
-          <div className="absolute inset-y-0 left-0 w-full sm:w-[42%] lg:w-[38%] opacity-30 sm:opacity-35 lg:opacity-40 pointer-events-none select-none z-0 flex items-end justify-center sm:justify-start px-2 sm:px-6 pb-1 sm:pb-2 overflow-hidden">
+        <section id="hero" className="w-full bg-white pt-6 pb-2 sm:pt-10 sm:pb-4 text-center relative overflow-hidden border-b border-slate-100">
+          {/* Background Split: Left Side - CDS Soldier Silhouette (Hidden on mobile) */}
+          <div className="hidden sm:flex absolute inset-y-0 left-0 w-full sm:w-[42%] lg:w-[38%] opacity-30 sm:opacity-35 lg:opacity-40 pointer-events-none select-none z-0 items-end justify-start px-2 sm:px-6 pb-1 sm:pb-2 overflow-hidden">
             <Image
               src="/images/cds-soldier.png"
               alt="CDS defence soldier background watermark"
@@ -175,7 +175,7 @@ export default function Home() {
             />
           </div>
 
-          {/* Background Split: Right Side - Lion Watermark (Grand scale & anchored at bottom) */}
+          {/* Background Split: Right Side - Lion Watermark (Hidden on mobile) */}
           <div className="hidden sm:flex absolute inset-y-0 right-0 w-1/2 lg:w-[50%] opacity-35 sm:opacity-40 lg:opacity-45 pointer-events-none select-none z-0 items-end justify-end px-0 sm:px-2 overflow-hidden">
             <Image
               src="/images/lionbg.webp"
@@ -195,12 +195,19 @@ export default function Home() {
               backgroundSize: "24px 24px",
             }}
           />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 relative z-10">
-            {/* AppX-Inspired Hero Text & Split Reveal Animation */}
-            <AppxHeroText />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 relative z-10">
+            {/* Desktop Hero: Greeting & AppX Hero Text */}
+            <div className="hidden md:flex flex-col items-center space-y-5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 shadow-2xs mx-auto">
+                <span>Good day 👋</span>
+                <span className="text-slate-300">•</span>
+                <span>What are you studying today?</span>
+              </div>
+              <AppxHeroText />
+            </div>
 
-            {/* Search Bar Container */}
-            <div className="pt-2 max-w-2xl mx-auto">
+            {/* Search Bar Container (On mobile, positioned above the hero slider) */}
+            <div className="pt-1 sm:pt-2 max-w-2xl mx-auto w-full">
               <SearchBar
                 searchQuery={searchQuery}
                 onSearchChange={handleSearchChange}
@@ -209,11 +216,10 @@ export default function Home() {
               />
             </div>
 
-            {/* Quick Category Pills */}
-            <QuickCategories
-              onCategorySelect={handleCategorySelect}
-              activeCategory={activeCategory}
-            />
+            {/* Mobile Hero Slider (Mobile View Only, positioned directly below Search Bar) */}
+            <div className="block md:hidden w-full pt-2 pb-2 px-0">
+              <HeroSlider />
+            </div>
           </div>
         </section>
 
@@ -221,11 +227,21 @@ export default function Home() {
         <LogoMarquee />
 
         {/* AdSense Top Leaderboard (Reserved Free Space) */}
-        <AdBanner format="horizontal" minHeight="min-h-[100px]" label="SPONSORED EDUCATION PARTNER" />
+        <AdBanner format="horizontal" minHeight="min-h-[100px]" label="ADVERTISEMENT" />
+
+        {/* Quick Category Filter Pills (In between Advertising Section and Explore Category Section) */}
+        <section aria-label="Category Filters" className="w-full bg-white pt-2 pb-2 sm:pt-3 sm:pb-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <QuickCategories
+              onCategorySelect={handleCategorySelect}
+              activeCategory={activeCategory}
+            />
+          </div>
+        </section>
 
         {/* Real-time search results or default layout */}
         {isSearchActive ? (
-          <section id="explore-grid" className="w-full py-16 bg-slate-50 scroll-mt-20">
+          <section id="explore-grid" className="w-full py-16 bg-white scroll-mt-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
               <div className="flex items-center justify-between pb-4">
                 <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
@@ -279,7 +295,7 @@ export default function Home() {
             />
 
             {/* AdSense Mid-Feed Banner (Reserved Free Space) */}
-            <AdBanner format="auto" minHeight="min-h-[120px]" label="RECOMMENDED STUDENT RESOURCES" />
+            <AdBanner format="auto" minHeight="min-h-[120px]" label="ADVERTISEMENT" />
 
             {/* What Are You Looking For? Discovery Section */}
             <DiscoverySection onOptionSelect={handleDiscoverySelect} />
@@ -291,11 +307,11 @@ export default function Home() {
             <TestimonialsSection />
 
             {/* GEO / AEO Answer & FAQ Section for Search Engines & AI Engines */}
-            <section className="w-full py-20 sm:py-32 bg-slate-50 border-y border-slate-200/80 relative overflow-hidden">
+            <section className="w-full py-16 sm:py-24 bg-white relative overflow-hidden">
               {/* Soft abstract background elements */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-100/50 rounded-full blur-[100px] pointer-events-none" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-50/50 rounded-full blur-[100px] pointer-events-none" />
               
-              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 relative z-10">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 relative z-10">
                 {/* Section Header */}
                 <div className="text-center space-y-4 max-w-3xl mx-auto">
                   <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-widest text-blue-700 bg-blue-100/80 px-4 py-1.5 rounded-full border border-blue-200 shadow-sm">
@@ -379,11 +395,8 @@ export default function Home() {
             {/* AppX-Style Interactive Animated FAQ Section */}
             <AppxFAQ />
 
-            {/* Suggestion Section */}
-            <SuggestResourceCTA onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
-
             {/* AdSense Bottom Banner (Reserved Free Space) */}
-            <AdBanner format="auto" minHeight="min-h-[110px]" label="EDUCATIONAL SPONSORS" />
+            <AdBanner format="auto" minHeight="min-h-[110px]" label="ADVERTISEMENT" />
           </>
         )}
 
@@ -395,6 +408,6 @@ export default function Home() {
       {/* Suggest Modal */}
       <SuggestModal isOpen={isSuggestModalOpen} onClose={() => setIsSuggestModalOpen(false)} />
 
-    </div>
+    </AppShell>
   );
 }

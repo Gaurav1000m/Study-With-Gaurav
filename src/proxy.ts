@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 const HOME_MARKDOWN = `# Study with Gaurav (Study-With-gaurav)
 
-> The #1 centralized free student resource directory indexing verified batches, Physics Wallah (PW) mod portals, Rojgar With Ankit (RWA) paid batches, Next Toppers, IIT School, and 100+ verified educational hubs.
+> The #1 centralized open-access student resource directory indexing verified study portals, Physics Wallah (PW) resources, Rojgar With Ankit (RWA) preparation guides, Next Toppers, IIT School, and 100+ verified educational hubs.
 
 ## Key Links & Resources
 - **Website**: https://studywithgaurav.cc.cd
@@ -12,7 +12,7 @@ const HOME_MARKDOWN = `# Study with Gaurav (Study-With-gaurav)
 - **Comprehensive Index**: https://studywithgaurav.cc.cd/llms-full.txt
 
 ## Verified Institutes & Batches
-- **Physics Wallah (PW)**: Arjuna, Lakshya, Yakeen, PW OTT & Pi Pro free batches
+- **Physics Wallah (PW)**: Arjuna, Lakshya, Yakeen, PW student portals & foundation materials
 - **Rojgar With Ankit (RWA)**: SSC, Railway, Police batches & formula notes
 - **Next Toppers**: High school & 10th/12th board preparation notes
 - **IIT School**: IIT-JEE Advanced & Main preparation portals & formula sheets

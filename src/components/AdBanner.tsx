@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 interface AdBannerProps {
-  /** Google AdSense Ad Slot ID (optional, defaults to responsive) */
+  /** Google AdSense Ad Slot ID (optional) */
   slot?: string;
   /** Format of the ad unit */
   format?: "auto" | "horizontal" | "rectangle" | "vertical" | "fluid";
@@ -11,10 +11,10 @@ interface AdBannerProps {
   responsive?: boolean;
   /** Custom layout styles */
   className?: string;
-  /** Minimum container height to reserve space and prevent layout shift */
+  /** Minimum container height to reserve space and prevent Cumulative Layout Shift (CLS) */
   minHeight?: string;
-  /** Optional label, e.g. 'ADVERTISEMENT' (per Google AdSense policies) */
-  label?: string;
+  /** Label strictly compliant with Google AdSense policy ("ADVERTISEMENT" or "SPONSORED LINKS") */
+  label?: "ADVERTISEMENT" | "SPONSORED LINKS";
 }
 
 declare global {
@@ -24,12 +24,12 @@ declare global {
 }
 
 export function AdBanner({
-  slot = "1234567890", // default slot placeholder
+  slot,
   format = "auto",
   responsive = true,
   className = "",
   minHeight = "min-h-[100px]",
-  label = "SPONSORED",
+  label = "ADVERTISEMENT",
 }: AdBannerProps) {
   const adRef = useRef<HTMLModElement | null>(null);
   const pushedRef = useRef(false);
@@ -49,19 +49,19 @@ export function AdBanner({
   }, []);
 
   return (
-    <div
+    <aside
       className={`w-full max-w-6xl mx-auto my-6 px-4 ${className}`}
       aria-label="Advertisement container"
     >
       <div
-        className={`w-full bg-slate-50/70 border border-slate-200/70 rounded-2xl p-2 sm:p-3 text-center flex flex-col items-center justify-center transition-all ${minHeight} overflow-hidden shadow-xs`}
+        className={`w-full bg-white rounded-2xl p-2 sm:p-3 text-center flex flex-col items-center justify-center transition-all ${minHeight} overflow-hidden`}
       >
-        {/* Ad Label per AdSense Guidelines */}
-        <div className="w-full flex items-center justify-between px-2 pb-1.5 border-b border-slate-200/50 mb-1">
+        {/* Ad Label per Google AdSense Guidelines (Only 'Advertisement' or 'Sponsored Links' allowed) */}
+        <div className="w-full flex items-center justify-between px-2 pb-1.5 mb-1">
           <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">
             {label}
           </span>
-          <span className="text-[9px] text-slate-400">Study with Gaurav Free Tier</span>
+          <span className="text-[9px] text-slate-400">Study with Gaurav Open Directory</span>
         </div>
 
         {/* AdSense ins element */}
@@ -71,12 +71,12 @@ export function AdBanner({
             className="adsbygoogle"
             style={{ display: "block", width: "100%" }}
             data-ad-client="ca-pub-3576643094354429"
-            data-ad-slot={slot}
+            {...(slot ? { "data-ad-slot": slot } : {})}
             data-ad-format={format}
             data-full-width-responsive={responsive ? "true" : "false"}
           />
         </div>
       </div>
-    </div>
+    </aside>
   );
 }

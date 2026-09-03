@@ -9,6 +9,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { POPULAR_WEBSITES, RECENT_WEBSITES } from "@/data/websites";
 import { Flame, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { AdBanner } from "@/components/AdBanner";
 
 export function PopularClient() {
   const [isSuggestModalOpen, setIsSuggestModalOpen] = useState(false);
@@ -49,7 +50,7 @@ export function PopularClient() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -138,6 +139,9 @@ export function PopularClient() {
               </button>
             </div>
           )}
+
+          {/* AdSense Unit */}
+          <AdBanner format="auto" minHeight="min-h-[100px]" label="ADVERTISEMENT" />
         </div>
       </main>
 

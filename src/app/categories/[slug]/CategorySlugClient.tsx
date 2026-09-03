@@ -60,7 +60,7 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -108,7 +108,7 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
           </div>
 
           {/* AdSense Unit in Category Free Space */}
-          <AdBanner format="auto" minHeight="min-h-[100px]" label="SPONSORED PLATFORMS" />
+          <AdBanner format="auto" minHeight="min-h-[100px]" label="ADVERTISEMENT" />
 
           {/* Resource Cards Grid */}
           <ResourceGrid

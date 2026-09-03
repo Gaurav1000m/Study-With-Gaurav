@@ -6,13 +6,15 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { BookOpen, Search, PlusCircle, Menu, X, ShieldCheck, ChevronRight, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useApp } from "@/context/AppContext";
 
 interface HeaderProps {
-  onOpenSuggestModal: () => void;
+  onOpenSuggestModal?: () => void;
   onFocusSearch?: () => void;
 }
 
-export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps) {
+export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) {
+  const { bookmarks } = useApp();
   const pathname = usePathname();
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -67,10 +69,11 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps) {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Categories", href: "/categories" },
     { name: "Resources", href: "/resources" },
+    { name: "Categories", href: "/categories" },
+    { name: "Saved", href: "/saved", badge: bookmarks.length },
     { name: "Popular", href: "/popular" },
-    { name: "About", href: "/about" },
+    { name: "Profile", href: "/profile" },
   ];
 
   const handleSearchClick = () => {
@@ -113,7 +116,7 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps) {
               />
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="font-extrabold text-slate-900 text-sm sm:text-base tracking-tight group-hover:text-blue-700 transition-colors truncate">
+              <span className="font-extrabold text-slate-900 text-sm sm:text-base tracking-tight group-hover:text-blue-600 transition-colors truncate">
                 Study with Gaurav
               </span>
               <span className="text-[9px] sm:text-[10px] font-semibold text-slate-400 hidden xs:inline-block truncate uppercase tracking-wider">
@@ -122,9 +125,9 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps) {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links (Profile is mobile-only) */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-1.5">
-            {navLinks.map((link) => {
+            {navLinks.filter((link) => link.name !== "Profile").map((link) => {
               const isActive =
                 link.href === "/"
                   ? pathname === "/"
@@ -135,13 +138,23 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps) {
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    "px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors",
+                    "px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors flex items-center gap-1.5",
                     isActive
-                      ? "bg-navy-900 text-white font-semibold shadow-2xs"
-                      : "text-slate-600 hover:text-navy-900 hover:bg-slate-100/80"
+                      ? "bg-slate-900 text-white font-semibold shadow-2xs"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
                   )}
                 >
-                  {link.name}
+                  <span>{link.name}</span>
+                  {link.badge !== undefined && link.badge > 0 && (
+                    <span
+                      className={cn(
+                        "px-1.5 py-0.2 rounded-full text-[10px] font-bold",
+                        isActive ? "bg-blue-600 text-white" : "bg-blue-100 text-blue-700"
+                      )}
+                    >
+                      {link.badge}
+                    </span>
+                  )}
                 </Link>
               );
             })}
@@ -153,7 +166,7 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps) {
             <button
               onClick={handleSearchClick}
               aria-label="Search resources"
-              className="md:hidden min-w-[36px] min-h-[36px] rounded-lg text-slate-600 hover:text-navy-900 hover:bg-slate-100 active:bg-slate-200 flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              className="md:hidden min-w-[36px] min-h-[36px] rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 active:bg-slate-200 flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
             >
               <Search className="w-4 h-4" />
             </button>

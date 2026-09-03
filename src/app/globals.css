@@ -22,8 +22,12 @@
 }
 
 :root {
-  --background: #f8fafc;
+  --background: #ffffff;
   --foreground: #0f172a;
+  --card: #ffffff;
+  --card-border: #e2e8f0;
+  --muted: #64748b;
+  --muted-bg: #f1f5f9;
   --mobile-padding: 16px;
   --mobile-section-gap: 32px;
   --mobile-card-radius: 16px;
@@ -337,6 +341,31 @@ html, body {
 .animate-premium-line {
   stroke-dasharray: 160;
   animation: premiumLineDraw 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Suggest button glow & shimmer animation */
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.25), 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.55), 0 15px 40px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px);
+  }
+}
+
+.animate-glow-pulse {
+  animation: buttonGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes shimmerSlide {
+  0% { transform: translateX(-120%) skewX(-20deg); }
+  100% { transform: translateX(250%) skewX(-20deg); }
+}
+
+.animate-shimmer-slide {
+  animation: shimmerSlide 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 

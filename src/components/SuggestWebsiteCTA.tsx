@@ -17,7 +17,7 @@ export function SuggestWebsiteCTA({ onOpenSuggestModal }: SuggestWebsiteCTAProps
   };
 
   return (
-    <section className="w-full py-16 bg-slate-50 border-b border-slate-200/80">
+    <section className="w-full py-16 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
         
         <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">

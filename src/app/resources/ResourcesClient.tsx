@@ -9,6 +9,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { ResourceGrid } from "@/components/ResourceGrid";
 import { WEBSITES } from "@/data/websites";
 import { BookOpenCheck } from "lucide-react";
+import { AdBanner } from "@/components/AdBanner";
 
 function ResourcesContent() {
   const searchParams = useSearchParams();
@@ -76,7 +77,7 @@ function ResourcesContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -122,6 +123,9 @@ function ResourcesContent() {
             onResetFilters={handleResetFilters}
             onTagClick={(tag) => setSearchQuery(tag)}
           />
+
+          {/* AdSense Unit */}
+          <AdBanner format="auto" minHeight="min-h-[100px]" label="ADVERTISEMENT" />
         </div>
       </main>
 
@@ -133,7 +137,7 @@ function ResourcesContent() {
 
 export function ResourcesClient() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-50 flex items-center justify-center p-8 text-sm text-slate-500">Loading resources directory...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-white flex items-center justify-center p-8 text-sm text-slate-500">Loading resources directory...</div>}>
       <ResourcesContent />
     </Suspense>
   );

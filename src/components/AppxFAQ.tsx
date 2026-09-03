@@ -45,7 +45,7 @@ export function AppxFAQ() {
   };
 
   return (
-    <section id="faqs" className="w-full py-16 sm:py-24 bg-slate-50/60 border-t border-slate-200/80 scroll-mt-16">
+    <section id="faqs" className="w-full py-16 sm:py-24 bg-white scroll-mt-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* AppX 2-Column FAQ Layout */}
@@ -116,10 +116,10 @@ export function AppxFAQ() {
               return (
                 <div
                   key={item.id}
-                  className={`rounded-2xl bg-white border transition-all duration-200 overflow-hidden ${
+                  className={`rounded-2xl transition-all duration-200 overflow-hidden ${
                     isOpen
-                      ? "border-blue-500/80 shadow-md shadow-blue-500/5 ring-1 ring-blue-500/20"
-                      : "border-slate-200/90 hover:border-slate-300 shadow-2xs"
+                      ? "bg-slate-50 shadow-sm ring-1 ring-blue-500/20"
+                      : "bg-slate-50/70 hover:bg-slate-100/70 shadow-2xs"
                   }`}
                 >
                   <button
@@ -147,7 +147,7 @@ export function AppxFAQ() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1 text-slate-600 text-xs sm:text-sm sm:leading-relaxed border-t border-slate-100 mt-1">
+                      <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1 text-slate-600 text-xs sm:text-sm sm:leading-relaxed">
                         {item.answer}
                       </div>
                     </div>

@@ -22,7 +22,7 @@ export function StudentFirst() {
   ];
 
   return (
-    <section className="w-full bg-slate-50 py-16 sm:py-20 border-b border-slate-200/60">
+    <section className="w-full bg-white py-16 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Title */}

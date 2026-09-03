@@ -13,7 +13,7 @@ export default function NotFound() {
   const topCategories = CATEGORIES.slice(0, 6);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans">
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
       <div className="h-14 sm:h-16" />
 

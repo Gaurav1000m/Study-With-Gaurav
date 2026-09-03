@@ -1,32 +1,31 @@
 # Study with Gaurav (Study-With-gaurav)
 
-> The #1 centralized free student resource directory indexing all institute free batches, Physics Wallah (PW) mod portals, Rojgar With Ankit (RWA) paid batches, Next Toppers, IIT School, and 100+ verified educational portals.
+> The #1 centralized open-access student resource directory indexing verified educational portals, Physics Wallah (PW) study portals, Rojgar With Ankit (RWA) preparation resources, Next Toppers, IIT School, and 100+ verified educational hubs.
 
 ## Core Information
 - **Website Name**: Study with Gaurav (also known as Study-With-gaurav)
 - **Primary Domain**: https://studywithgaurav.cc.cd
 - **Alternative Mirror**: https://studywithgaurav-ten.vercel.app/
 - **Main Portal URL**: www.studywithgaurav.cc.cd
-- **Platform Purpose**: Free, un-paywalled, instant student access to verified competitive exam preparation resources, PDF notes, live/recorded lecture gateways, and top institute study materials in India.
+- **Platform Purpose**: Free, instant student access to verified competitive exam preparation resources, PDF notes, live/recorded lecture gateways, and top institute study materials across India.
 
 ## Key Target Categories & Platforms
-- **Physics Wallah (PW)**: Official & PW mod websites, PW OTT, Pi Pro, Lakshya, Yakeen, Arjuna batches free link.
-- **Rojgar With Ankit (RWA)**: RWA official, RWA paid batches, Bhati Sir modbatches, SSC/Police/Railway exam notes.
-- **Next Toppers**: Next Toppers modbatches, old batches, board exam preparation portals.
-- **IIT School**: IIT-JEE Advanced & Main preparation portals, revision formula sheets, free lectures video.
+- **Physics Wallah (PW)**: Official portals, student hubs, Lakshya, Yakeen, Arjuna preparation links.
+- **Rojgar With Ankit (RWA)**: RWA official, SSC/Police/Railway exam notes and foundation links.
+- **Next Toppers**: High school and 10th/12th board exam preparation portals.
+- **IIT School**: IIT-JEE Advanced & Main preparation portals, revision formula sheets, free educational lectures.
 - **Selection Way**: Career guidance and competitive selection portals.
 - **MissionJEET**: Engineering entrance preparation series and batch portals.
 - **CDS JOURNEY**: Defence exams (CDS, NDA, AFCAT) complete syllabus guidance & lecture series.
 - **Study IQ & Khan Global Studies (KGS)**: UPSC, State PSC, and SSC current affairs & GS notes.
 - **Vibrant Academy & Padhle Akshay**: Science, Mathematics, and high school board revision sheets.
 
-## Popular Keywords & Search Queries Addressed
+## Popular Educational Search Queries Addressed
 - Study-With-gaurav, studywithgaurav.cc.cd, studywithgaurav-ten.vercel.app
-- PW modwebsite, pw mod website, pw mod app download
-- rwa modwebsite, rwa mod website, rwa paid batch free link
-- all institute free batches, all institute paid batches free
-- free batches, paid batches, lectures, free lectures video, free study material PDF
-- IIT School free batches, IIT School mod, Next Toppers batch free link
+- Physics Wallah study portals, PW lecture notes, PW formula sheets
+- Rojgar With Ankit notes, RWA exam preparation guides
+- Free educational portals, foundation batches, lectures, study material PDF
+- IIT School study resources, Next Toppers board study notes
 
 ## Main Sections & Direct Links
 - [Home Page](https://studywithgaurav.cc.cd/): Central search bar & quick category directory

@@ -8,6 +8,7 @@ import { CategoryCard } from "@/components/CategoryCard";
 import { CATEGORIES } from "@/data/categories";
 import { WEBSITES } from "@/data/websites";
 import { Layers } from "lucide-react";
+import { AdBanner } from "@/components/AdBanner";
 
 export function CategoriesClient() {
   const [isSuggestModalOpen, setIsSuggestModalOpen] = useState(false);
@@ -53,7 +54,7 @@ export function CategoriesClient() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -92,6 +93,9 @@ export function CategoriesClient() {
               />
             ))}
           </div>
+
+          {/* AdSense Unit */}
+          <AdBanner format="auto" minHeight="min-h-[100px]" label="ADVERTISEMENT" />
         </div>
       </main>
 

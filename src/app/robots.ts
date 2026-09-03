@@ -4,8 +4,12 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
+        userAgent: ['Mediapartners-Google', 'Google-Display-Ads-Bot', 'Googlebot'],
+        allow: ['/', '/ads.txt', '/privacy', '/terms', '/about', '/contact', '/disclaimer'],
+      },
+      {
         userAgent: '*',
-        allow: '/',
+        allow: ['/', '/ads.txt'],
         disallow: ['/private/', '/go/'],
       },
       {

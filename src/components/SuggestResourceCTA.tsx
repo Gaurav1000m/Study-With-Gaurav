@@ -14,7 +14,7 @@ export function SuggestResourceCTA({ onOpenSuggestModal }: SuggestResourceCTAPro
   };
 
   return (
-    <section className="w-full bg-slate-50 py-6 sm:py-10 border-b border-slate-200/60 md:hidden">
+    <section className="w-full bg-white py-6 sm:py-10 md:hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Card 1: Suggest a Website */}
         <div className="bg-white border border-slate-200 p-5 sm:p-8 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-5 hover:border-blue-200 transition-all shadow-2xs">
