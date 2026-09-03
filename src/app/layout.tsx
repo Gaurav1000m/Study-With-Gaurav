@@ -228,8 +228,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${archivo.variable} h-full scroll-smooth`}>
       <head>
-        {/* Monetag Ads Verification Tag */}
+        {/* Monetag Ads Verification Tag & Multitag Script */}
         <meta name="monetag" content="9d7a52d24153df35268a6a1f546a5f82" />
+        <script src="https://quge5.com/88/tag.min.js" data-zone="276097" async data-cfasync="false"></script>
 
         {/* Google AdSense Account Verification & Script */}
         <meta name="google-adsense-account" content="ca-pub-3576643094354429" />
