@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, Search, PlusCircle, Menu, X, ShieldCheck, ChevronRight, Heart, Maximize, Minimize } from "lucide-react";
+import { BookOpen, Search, PlusCircle, Menu, X, ShieldCheck, ChevronRight, Heart, Maximize, Minimize, Smartphone, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
 
@@ -109,6 +109,7 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
     { name: "Categories", href: "/categories" },
     { name: "Saved", href: "/saved", badge: bookmarks.length },
     { name: "Popular", href: "/popular" },
+    { name: "About", href: "/about" },
     { name: "Profile", href: "/profile" },
   ];
 
@@ -240,6 +241,17 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
               </kbd>
             </button>
 
+            {/* Get App Button (Desktop & Mobile) */}
+            <Link
+              href="/download"
+              className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 active:scale-95 rounded-lg transition-all shadow-xs min-h-[36px] sm:min-h-[40px] border border-blue-400/20"
+              title="Download Study With Gaurav Android APK"
+            >
+              <Smartphone className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+              <span className="hidden xs:inline">Get App</span>
+              <span className="xs:hidden">App</span>
+            </Link>
+
             {/* Donate Button (Mobile & Desktop) */}
             <Link
               href="/donate"
@@ -343,6 +355,26 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
                 );
               })}
             </nav>
+
+            {/* Get Android App Banner in Mobile Drawer */}
+            <div className="p-4 pt-2 border-t border-slate-100 bg-gradient-to-br from-indigo-50/70 to-blue-50/50">
+              <Link
+                href="/download"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full flex items-center justify-between p-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 text-white rounded-xl shadow-md active:scale-98 transition-transform font-bold text-sm"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-white shrink-0">
+                    <Smartphone className="w-4 h-4" />
+                  </div>
+                  <div className="text-left">
+                    <p className="leading-none text-white text-xs font-extrabold">Download Android App</p>
+                    <p className="text-[10px] text-blue-100 font-medium mt-1">v1.0.0 (4.6 MB) • 100+ Free Batches</p>
+                  </div>
+                </div>
+                <Download className="w-4 h-4 text-white shrink-0" />
+              </Link>
+            </div>
 
             {/* Donate Action in Mobile Menu */}
             <div className="p-4 pt-2 space-y-3 border-t border-slate-100 bg-slate-50/50">

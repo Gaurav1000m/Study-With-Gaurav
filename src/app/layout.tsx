@@ -5,6 +5,7 @@ import "./globals.css";
 import { SplashScreen } from "@/components/SplashScreen";
 import { TelegramFloat } from "@/components/TelegramFloat";
 import { BottomNav } from "@/components/BottomNav";
+import { GetAppBanner } from "@/components/GetAppBanner";
 import { VpnGuard } from "@/components/VpnGuard";
 import { DevToolsGuard } from "@/components/DevToolsGuard";
 import { AppProvider } from "@/context/AppContext";
@@ -442,6 +443,7 @@ export default function RootLayout({
             <SplashScreen />
             {children}
             <TelegramFloat />
+            <GetAppBanner />
             <BottomNav />
           </VpnGuard>
         </AppProvider>
