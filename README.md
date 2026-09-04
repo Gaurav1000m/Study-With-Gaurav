@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="public/images/swg-brand-gold.png" alt="Study With Gaurav Logo" width="120" style="border-radius: 50%; box-shadow: 0 0 25px rgba(79, 70, 229, 0.4);" />
+  <img src="public/black-and-white-portrait-of-a-lion.webp" alt="Study With Gaurav Official App Logo" width="130" style="border-radius: 28px; box-shadow: 0 0 30px rgba(79, 70, 229, 0.45); border: 2px solid rgba(99, 102, 241, 0.4);" />
 
   # 🎓 Study With Gaurav
   ### *The Ultimate Educational Super-Hub & Secure Mobile Android Application*
@@ -10,14 +10,14 @@
   </p>
 
   [![Website](https://img.shields.io/badge/Live_Portal-studywithgaurav.cc.cd-4F46E5?style=for-the-badge&logo=googlechrome&logoColor=white)](https://studywithgaurav.cc.cd)
-  [![Download APK](https://img.shields.io/badge/Download_APK-v1.0.0_(4.3_MB)-06B6D4?style=for-the-badge&logo=android&logoColor=white)](release/StudyWithGaurav.apk)
+  [![Download APK](https://img.shields.io/badge/Download_APK-v1.0.0_(4.6_MB)-06B6D4?style=for-the-badge&logo=android&logoColor=white)](https://studywithgaurav.cc.cd/download)
   [![Android Version](https://img.shields.io/badge/Android-7.0+_to_14+-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com)
   [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](#)
   [![Security Guard](https://img.shields.io/badge/Security-VPN_%26_DNS_Shielded-EF4444?style=for-the-badge&logo=looker&logoColor=white)](#-advanced-security--anti-leak-architecture)
 
   <br />
 
-  <a href="release/StudyWithGaurav.apk">
+  <a href="https://studywithgaurav.cc.cd/download">
     <img src="https://img.shields.io/badge/⚡_DOWNLOAD_DIRECT_APK-CLICK_HERE-4F46E5?style=for-the-badge&logo=android&logoColor=white" height="42" alt="Download APK" />
   </a>
 
@@ -109,8 +109,9 @@ graph TD
 ## 📥 How to Install the APK
 
 1. **Download the APK file**:
-   - Download directly from this repository: [`release/StudyWithGaurav.apk`](release/StudyWithGaurav.apk)
-   - Or download via website: `https://studywithgaurav.cc.cd/downloads/StudyWithGaurav.apk`
+   - 🌐 **Web Download Portal**: [`https://studywithgaurav.cc.cd/download`](https://studywithgaurav.cc.cd/download)
+   - ⚡ **Direct APK Link**: [`https://studywithgaurav.cc.cd/downloads/StudyWithGaurav.apk`](https://studywithgaurav.cc.cd/downloads/StudyWithGaurav.apk)
+   - 📦 **GitHub Raw Mirror**: [`release/StudyWithGaurav.apk`](release/StudyWithGaurav.apk)
 2. **Enable Unknown Sources**:
    - When prompted on Android: *Settings → Security → Allow Installation from Unknown Sources* (or tap "Allow" in Chrome/File Manager).
 3. **Install & Launch**:

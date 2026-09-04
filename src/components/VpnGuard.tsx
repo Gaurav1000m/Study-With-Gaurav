@@ -48,56 +48,67 @@ export function VpnGuard({ children }: VpnGuardProps) {
       }
     }
 
-    // 3. Ad-Blocker & Private DNS Detection Routine
-    const checkSecurity = async () => {
+    // 3. Robust Ad-Blocker & Private DNS Detection Routine
+    const checkSecurity = () => {
       // Skip check during SSR or if user is offline
       if (typeof window === "undefined" || !navigator.onLine) {
         setIsChecking(false);
         return;
       }
 
-      let blocked = false;
-
       // Check A: DOM Element Bait check (detects Adblock Plus, uBlock, Brave Shields)
       const bait = document.createElement("div");
-      bait.className = "adsbox ad-banner pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links";
-      bait.style.cssText = "position:absolute!important;top:-9999px!important;left:-9999px!important;width:1px!important;height:1px!important;";
+      bait.className = "adsbygoogle pub_300x250 ad-banner banner-ad";
+      bait.setAttribute("aria-hidden", "true");
+      bait.style.setProperty("width", "300px", "important");
+      bait.style.setProperty("height", "250px", "important");
+      bait.style.setProperty("position", "absolute", "important");
+      bait.style.setProperty("left", "-9999px", "important");
+      bait.style.setProperty("top", "-9999px", "important");
+      bait.innerHTML = "&nbsp;";
       document.body.appendChild(bait);
 
-      // Check B: Private DNS & Network Ad Blocker Check (NextDNS, AdGuard DNS, Pi-hole)
-      try {
-        const adUrl = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-        const res = await fetch(adUrl, {
-          method: "HEAD",
-          mode: "no-cors",
-          cache: "no-store",
-        });
-      } catch (e) {
-        // If network fetch fails while navigator is online, Private DNS or Ad Blocker blocked the request
-        if (navigator.onLine) {
-          blocked = true;
+      // Check if ad blocker extension injected display:none on ad classes
+      setTimeout(() => {
+        try {
+          const computed = window.getComputedStyle(bait);
+          const isCssBlocked =
+            computed.getPropertyValue("display") === "none" ||
+            computed.getPropertyValue("visibility") === "hidden";
+
+          if (isCssBlocked) {
+            setAdBlockDetected(true);
+          }
+        } catch (e) {
+          // ignore
+        } finally {
+          bait.remove();
         }
-      }
+      }, 300);
 
-      // Re-evaluate bait element visibility
-      if (
-        bait.offsetParent === null ||
-        bait.offsetHeight === 0 ||
-        bait.offsetWidth === 0 ||
-        bait.clientHeight === 0 ||
-        window.getComputedStyle(bait).display === "none" ||
-        window.getComputedStyle(bait).visibility === "hidden"
-      ) {
-        blocked = true;
-      }
+      // Check B: Private DNS & Script-Level Ad Blocker Check (NextDNS, AdGuard DNS)
+      const testScript = document.createElement("script");
+      testScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-test";
+      testScript.async = true;
+      testScript.crossOrigin = "anonymous";
 
-      bait.remove();
+      testScript.onerror = () => {
+        // Only flag if online
+        if (typeof navigator !== "undefined" && navigator.onLine) {
+          setAdBlockDetected(true);
+        }
+        testScript.remove();
+      };
 
-      if (blocked) {
-        setAdBlockDetected(true);
-      }
+      testScript.onload = () => {
+        // Script loaded successfully -> No AdBlock or DNS sinkhole!
+        setAdBlockDetected(false);
+        testScript.remove();
+      };
 
-      // Check C: WebRTC VPN / Proxy Interface Leak Detection
+      document.head.appendChild(testScript);
+
+      // Check C: WebRTC VPN / Proxy Tunnel Check
       try {
         const RTCPC = (window as any).RTCPeerConnection || (window as any).webkitRTCPeerConnection;
         if (RTCPC) {
@@ -108,16 +119,17 @@ export function VpnGuard({ children }: VpnGuardProps) {
             if (ice && ice.candidate && ice.candidate.candidate) {
               const candidate = ice.candidate.candidate.toLowerCase();
               if (
-                candidate.includes("tun") ||
-                candidate.includes("tap") ||
-                candidate.includes("ppp") ||
-                candidate.includes("wireguard")
+                candidate.includes("tun0") ||
+                candidate.includes("tun1") ||
+                candidate.includes("tap0") ||
+                candidate.includes("ppp0") ||
+                candidate.includes("wg0")
               ) {
                 setVpnDetected(true);
               }
             }
           };
-          setTimeout(() => pc.close(), 2500);
+          setTimeout(() => pc.close(), 3000);
         }
       } catch (err) {
         // Ignore RTCPC errors
@@ -126,8 +138,8 @@ export function VpnGuard({ children }: VpnGuardProps) {
       setIsChecking(false);
     };
 
-    // Run security check after slight delay to allow scripts & network to settle
-    const timer = setTimeout(checkSecurity, 1200);
+    // Run security check after page elements mount
+    const timer = setTimeout(checkSecurity, 1500);
 
     return () => {
       document.removeEventListener("contextmenu", handleContextMenu);
@@ -137,6 +149,8 @@ export function VpnGuard({ children }: VpnGuardProps) {
   }, []);
 
   const handleRefresh = () => {
+    setAdBlockDetected(false);
+    setVpnDetected(false);
     window.location.reload();
   };
 
