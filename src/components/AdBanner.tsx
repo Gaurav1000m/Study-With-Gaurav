@@ -36,8 +36,8 @@ export function AdBanner({
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // In-built Ad Blocker for APK: If inside Android app bridge, hide all ads
-      if ((window as any).AndroidSecurityBridge) {
+      // If inside APK or on mobile display (< 768px), do not load or push ads
+      if ((window as any).AndroidSecurityBridge || window.innerWidth < 768) {
         setIsApp(true);
         return;
       }
@@ -53,14 +53,14 @@ export function AdBanner({
     }
   }, []);
 
-  // 100% Ad-Free experience inside the APK
+  // 100% Ad-Free experience inside APK
   if (isApp) {
     return null;
   }
 
   return (
     <aside
-      className={`w-full max-w-6xl mx-auto my-6 px-3 sm:px-4 ${className}`}
+      className={`hidden md:block w-full max-w-6xl mx-auto my-6 px-3 sm:px-4 ${className}`}
       aria-label="Advertisement container"
     >
       <div
