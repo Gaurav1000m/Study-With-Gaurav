@@ -1,25 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { ExternalLink, Sparkles, ShieldCheck } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Sparkles, ShieldCheck } from "lucide-react";
 import { siteConfig } from "@/data/config";
 
-interface AdBannerProps {
-  /** Google AdSense Ad Slot ID (optional) */
+export interface AdBannerProps {
   slot?: string;
-  /** Format of the ad unit */
   format?: "auto" | "horizontal" | "rectangle" | "vertical" | "fluid";
-  /** Whether the ad is full-width responsive */
   responsive?: boolean;
-  /** Custom layout styles */
   className?: string;
-  /** Minimum container height to reserve space and prevent Cumulative Layout Shift (CLS) */
   minHeight?: string;
-  /** Label compliant with ad policies ("ADVERTISEMENT" or "SPONSORED LINKS") */
   label?: "ADVERTISEMENT" | "SPONSORED LINKS";
-  /** Direct link URL for sponsored offers */
   directLink?: string;
-  /** Whether to show the clickable sponsored offer banner (default: false so only real ads show) */
   showSponsoredOffer?: boolean;
 }
 
@@ -39,22 +31,32 @@ export function AdBanner({
   directLink = siteConfig.monetagDirectLink || "https://omg10.com/4/11717884",
   showSponsoredOffer = false,
 }: AdBannerProps) {
-  const adRef = useRef<HTMLModElement | null>(null);
+  const [isApp, setIsApp] = useState(false);
   const pushedRef = useRef(false);
 
   useEffect(() => {
-    // Only push once per mounted ad unit to prevent duplicate push errors in React 19
-    if (pushedRef.current) return;
-
-    try {
-      if (typeof window !== "undefined") {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-        pushedRef.current = true;
+    if (typeof window !== "undefined") {
+      // In-built Ad Blocker for APK: If inside Android app bridge, hide all ads
+      if ((window as any).AndroidSecurityBridge) {
+        setIsApp(true);
+        return;
       }
-    } catch {
-      // Ignore push errors
+
+      if (!pushedRef.current) {
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+          pushedRef.current = true;
+        } catch {
+          // Ignore push errors
+        }
+      }
     }
   }, []);
+
+  // 100% Ad-Free experience inside the APK
+  if (isApp) {
+    return null;
+  }
 
   return (
     <aside
@@ -75,7 +77,7 @@ export function AdBanner({
           <span className="text-[10px] text-slate-400 font-medium">Study with Gaurav Partner Network</span>
         </div>
 
-        {/* Optional Sponsored Offer (Redesigned to 100% match website light UI if enabled) */}
+        {/* Optional Sponsored Offer */}
         {showSponsoredOffer && (
           <a
             href={directLink}
@@ -98,29 +100,22 @@ export function AdBanner({
                   </span>
                 </div>
                 <p className="text-[11px] sm:text-xs text-slate-500 truncate max-w-xl mt-0.5 font-medium">
-                  Access recommended learning portals, exam preparation guides, and exclusive partner tools.
+                  Exclusive student tools, study packages, and premium exam preparation resources.
                 </p>
               </div>
-            </div>
-
-            <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shrink-0 shadow-xs group-hover:translate-x-0.5 transition-all z-10 self-stretch sm:self-auto justify-center">
-              <span>Access Now</span>
-              <ExternalLink className="w-3.5 h-3.5" />
             </div>
           </a>
         )}
 
-        {/* Real Google AdSense Unit (Primary ad component) */}
-        <div className="w-full flex items-center justify-center min-h-[90px] overflow-hidden">
-          <ins
-            ref={adRef}
-            className="adsbygoogle"
-            style={{ display: "block", width: "100%", textAlign: "center" }}
-            data-ad-client="ca-pub-3576643094354429"
-            {...(slot ? { "data-ad-slot": slot } : { "data-ad-format": format })}
-            data-full-width-responsive={responsive ? "true" : "false"}
-          />
-        </div>
+        {/* Google AdSense Unit (Loaded for website visitors) */}
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block", minWidth: "250px" }}
+          data-ad-client="ca-pub-3576643094354429"
+          data-ad-slot={slot || "1234567890"}
+          data-ad-format={format}
+          data-full-width-responsive={responsive ? "true" : "false"}
+        />
       </div>
     </aside>
   );

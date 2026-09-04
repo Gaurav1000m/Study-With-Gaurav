@@ -372,7 +372,7 @@ export default function RootLayout({
         {/* Monetag Ads Verification Tag */}
         <meta name="monetag" content="9d7a52d24153df35268a6a1f546a5f82" />
 
-        {/* Google AdSense Account Verification & Script */}
+        {/* Google AdSense Account Verification & Script (Shown on website) */}
         <meta name="google-adsense-account" content="ca-pub-3576643094354429" />
         <Script
           async
@@ -381,7 +381,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
 
-        {/* Monetag Multitag Script — loaded after interactive to avoid blocking render */}
+        {/* Monetag Multitag Script (Shown on website) */}
         <Script
           src="https://quge5.com/88/tag.min.js"
           data-zone="276097"

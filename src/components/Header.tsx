@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, Search, PlusCircle, Menu, X, ShieldCheck, ChevronRight, Heart, Maximize, Minimize, Smartphone, Download, User } from "lucide-react";
+import { Search, X, Heart, Smartphone, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
 
@@ -19,7 +19,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [isAppBannerVisible, setIsAppBannerVisible] = useState(false);
   const lastScrollY = useRef(0);
   const isHomePage = pathname === "/";
@@ -45,40 +44,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
   };
 
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(Boolean(document.fullscreenElement || (document as any).webkitFullscreenElement));
-    };
-
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
-      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
-    };
-  }, []);
-
-  const toggleFullscreen = async () => {
-    try {
-      if (!document.fullscreenElement && !(document as any).webkitFullscreenElement) {
-        if (document.documentElement.requestFullscreen) {
-          await document.documentElement.requestFullscreen();
-        } else if ((document.documentElement as any).webkitRequestFullscreen) {
-          await (document.documentElement as any).webkitRequestFullscreen();
-        }
-      } else {
-        if (document.exitFullscreen) {
-          await document.exitFullscreen();
-        } else if ((document as any).webkitExitFullscreen) {
-          await (document as any).webkitExitFullscreen();
-        }
-      }
-    } catch (err) {
-      console.warn("Fullscreen toggle error:", err);
-    }
-  };
-
-  useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
       const prev = lastScrollY.current;
@@ -100,14 +65,21 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
+  interface HeaderNavLink {
+    name: string;
+    href: string;
+    icon?: React.ComponentType<{ className?: string }>;
+    badge?: number;
+  }
+
+  const navLinks: HeaderNavLink[] = [
     { name: "Home", href: "/" },
     { name: "Resources", href: "/resources" },
     { name: "Categories", href: "/categories" },
     { name: "Saved", href: "/saved", badge: bookmarks.length },
     { name: "Popular", href: "/popular" },
     { name: "About", href: "/about" },
-    { name: "Profile", href: "/profile" },
+    { name: "Profile", href: "/profile", icon: User },
   ];
 
   const handleSearchClick = () => {
@@ -209,13 +181,14 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
             </div>
           </Link>
 
-          {/* Desktop Navigation Links (Profile is mobile-only) */}
+          {/* Desktop Navigation Links (Includes Profile with User icon) */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-1.5">
-            {navLinks.filter((link) => link.name !== "Profile").map((link) => {
+            {navLinks.map((link) => {
               const isActive =
                 link.href === "/"
                   ? pathname === "/"
                   : pathname.startsWith(link.href);
+              const Icon = link.icon;
 
               return (
                 <Link
@@ -228,6 +201,7 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
                       : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
                   )}
                 >
+                  {Icon && <Icon className="w-3.5 h-3.5 shrink-0" />}
                   <span>{link.name}</span>
                   {link.badge !== undefined && link.badge > 0 && (
                     <span
@@ -246,7 +220,7 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
 
           {/* Header Action Buttons */}
           <div className="flex items-center gap-1.5 sm:gap-2">
-            {/* Mobile Action 1: Quick Search Icon */}
+            {/* Mobile Action: Quick Search Icon Only */}
             <button
               onClick={handleSearchClick}
               aria-label="Search resources"
@@ -254,25 +228,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
               className="md:hidden w-9 h-9 rounded-full flex items-center justify-center text-slate-700 hover:text-blue-600 bg-slate-100 hover:bg-slate-200/80 active:bg-slate-200 transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 shrink-0"
             >
               <Search className="w-4 h-4" />
-            </button>
-
-            {/* Mobile Action 2 (Smart Choice): Distraction-Free Focus / Fullscreen Mode */}
-            <button
-              onClick={toggleFullscreen}
-              aria-label={isFullscreen ? "Exit focus mode" : "Distraction-free focus mode"}
-              title={isFullscreen ? "Exit Fullscreen" : "Distraction-Free Focus Mode"}
-              className={cn(
-                "md:hidden w-9 h-9 rounded-full flex items-center justify-center transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 shrink-0",
-                isFullscreen
-                  ? "bg-blue-600 text-white shadow-xs"
-                  : "text-slate-700 hover:text-blue-600 bg-slate-100 hover:bg-slate-200/80 active:bg-slate-200"
-              )}
-            >
-              {isFullscreen ? (
-                <Minimize className="w-4 h-4" />
-              ) : (
-                <Maximize className="w-4 h-4" />
-              )}
             </button>
 
             {/* Desktop Quick Search Input Trigger */}
@@ -288,35 +243,13 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
               </kbd>
             </button>
 
-            {/* Donate Button (Desktop Only to keep Mobile Header uncluttered) */}
+            {/* Donate Button (Desktop) */}
             <Link
               href="/donate"
               className="hidden md:inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white bg-rose-600 hover:bg-rose-700 active:bg-rose-800 rounded-lg transition-colors shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-600 min-h-[36px] sm:min-h-[40px]"
             >
               <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white shrink-0" />
               <span>Donate</span>
-            </Link>
-
-            {/* Profile Icon in Upper Header (Only circular avatar icon, no blue button, no text) */}
-            <Link
-              href="/profile"
-              className={cn(
-                "relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 transition-all duration-200 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 active:scale-95 group shadow-2xs",
-                pathname === "/profile"
-                  ? "border-blue-600 ring-2 ring-blue-500/30"
-                  : "border-slate-200 hover:border-blue-500 hover:ring-2 hover:ring-blue-100"
-              )}
-              title="Student Profile & Settings"
-              aria-label="Student Profile"
-            >
-              <Image
-                src={userProfile?.avatar || "/images/profile-avatar.jpg"}
-                alt="Student Profile"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform"
-                priority
-                unoptimized={Boolean(userProfile?.avatar?.startsWith("data:") || userProfile?.avatar?.startsWith("http"))}
-              />
             </Link>
           </div>
         </div>
