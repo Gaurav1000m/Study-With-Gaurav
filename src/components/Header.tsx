@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, Search, PlusCircle, Menu, X, ShieldCheck, ChevronRight, Heart, Maximize, Minimize, Smartphone, Download } from "lucide-react";
+import { BookOpen, Search, PlusCircle, Menu, X, ShieldCheck, ChevronRight, Heart, Maximize, Minimize, Smartphone, Download, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
 
@@ -14,7 +14,7 @@ interface HeaderProps {
 }
 
 export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) {
-  const { bookmarks } = useApp();
+  const { bookmarks, userProfile } = useApp();
   const pathname = usePathname();
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -320,6 +320,41 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
               <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white shrink-0" />
               <span>Donate</span>
             </Link>
+
+            {/* Profile Icon Button in Upper Header */}
+            <Link
+              href="/profile"
+              className={cn(
+                "inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[36px] sm:min-h-[40px] border shadow-2xs",
+                pathname === "/profile"
+                  ? "bg-blue-600 text-white border-blue-600 shadow-sm"
+                  : "bg-slate-100 hover:bg-slate-200/90 text-slate-700 hover:text-slate-900 border-slate-200"
+              )}
+              title="Student Profile & Settings"
+              aria-label="Student Profile"
+            >
+              <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-slate-900 via-blue-900 to-indigo-700 text-white flex items-center justify-center font-extrabold text-[10px] shrink-0 shadow-2xs">
+                {userProfile?.name && userProfile.name.trim().length > 0 ? (
+                  userProfile.name.trim().charAt(0).toUpperCase()
+                ) : (
+                  <User className="w-3 h-3" />
+                )}
+              </div>
+              <span className="hidden sm:inline font-bold">
+                {userProfile?.name && userProfile.name !== "Student"
+                  ? userProfile.name.split(" ")[0]
+                  : "Profile"}
+              </span>
+            </Link>
+
+            {/* Mobile Navigation Drawer Toggle */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              className="md:hidden min-w-[36px] min-h-[36px] rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 active:bg-slate-200 flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 border border-slate-200"
+            >
+              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
           </div>
         </div>
       </header>

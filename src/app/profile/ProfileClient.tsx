@@ -76,50 +76,8 @@ export function ProfileClient() {
       <div className="h-14 sm:h-16" />
 
       <main className="flex-1 py-4 sm:py-10 pb-24 md:pb-12">
-        {/* ============================================================ */}
-        {/* DESKTOP / WEB VIEW: Clean card indicating Mobile Exclusivity  */}
-        {/* ============================================================ */}
-        <div className="hidden md:flex flex-col items-center justify-center min-h-[60vh] max-w-xl mx-auto px-4 text-center">
-          <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200/90 shadow-sm space-y-6 w-full">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-slate-900 to-blue-700 text-white flex items-center justify-center mx-auto shadow-md shadow-blue-500/15">
-              <Smartphone className="w-8 h-8 text-white" />
-            </div>
-
-            <div className="space-y-2">
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200/60">
-                Mobile View Exclusive
-              </span>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">
-                Student Profile Dashboard
-              </h1>
-              <p className="text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
-                The personalized learning profile and study target tracker are designed exclusively for mobile view. Please open Study with Gaurav on your phone or mobile browser.
-              </p>
-            </div>
-
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link
-                href="/resources"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-all shadow-sm active:scale-95"
-              >
-                <Compass className="w-4 h-4" />
-                <span>Explore Resources</span>
-              </Link>
-              <Link
-                href="/saved"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all"
-              >
-                <Bookmark className="w-4 h-4" />
-                <span>Saved Bookmarks ({bookmarks.length})</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* ============================================================ */}
-        {/* MOBILE VIEW: UI/UX PRO MAX Mobile Profile Experience         */}
-        {/* ============================================================ */}
-        <div className="block md:hidden max-w-md mx-auto px-4 space-y-4">
+        {/* Responsive Student Profile Dashboard (Desktop & Mobile) */}
+        <div className="w-full max-w-2xl mx-auto px-3 sm:px-6 space-y-4 sm:space-y-6">
 
           {/* Success Toast */}
           {savedSuccess && (
