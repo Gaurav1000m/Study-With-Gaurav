@@ -245,35 +245,35 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
           </nav>
 
           {/* Header Action Buttons */}
-          <div className="flex items-center gap-1 sm:gap-2">
-            {/* Mobile Action Button: Full Screen Toggle on Home page, Quick Search on other pages */}
-            {isHomePage ? (
-              <button
-                onClick={toggleFullscreen}
-                aria-label={isFullscreen ? "Exit full screen" : "Enter full screen mode"}
-                title={isFullscreen ? "Exit Full Screen" : "Full Screen Mode"}
-                className={cn(
-                  "md:hidden min-w-[36px] min-h-[36px] rounded-lg flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600",
-                  isFullscreen
-                    ? "bg-blue-50 text-blue-600 border border-blue-200"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100 active:bg-slate-200"
-                )}
-              >
-                {isFullscreen ? (
-                  <Minimize className="w-4 h-4" />
-                ) : (
-                  <Maximize className="w-4 h-4" />
-                )}
-              </button>
-            ) : (
-              <button
-                onClick={handleSearchClick}
-                aria-label="Search resources"
-                className="md:hidden min-w-[36px] min-h-[36px] rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 active:bg-slate-200 flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-              >
-                <Search className="w-4 h-4" />
-              </button>
-            )}
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            {/* Mobile Action 1: Quick Search Icon */}
+            <button
+              onClick={handleSearchClick}
+              aria-label="Search resources"
+              title="Search resources"
+              className="md:hidden w-9 h-9 rounded-full flex items-center justify-center text-slate-700 hover:text-blue-600 bg-slate-100 hover:bg-slate-200/80 active:bg-slate-200 transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 shrink-0"
+            >
+              <Search className="w-4 h-4" />
+            </button>
+
+            {/* Mobile Action 2 (Smart Choice): Distraction-Free Focus / Fullscreen Mode */}
+            <button
+              onClick={toggleFullscreen}
+              aria-label={isFullscreen ? "Exit focus mode" : "Distraction-free focus mode"}
+              title={isFullscreen ? "Exit Fullscreen" : "Distraction-Free Focus Mode"}
+              className={cn(
+                "md:hidden w-9 h-9 rounded-full flex items-center justify-center transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 shrink-0",
+                isFullscreen
+                  ? "bg-blue-600 text-white shadow-xs"
+                  : "text-slate-700 hover:text-blue-600 bg-slate-100 hover:bg-slate-200/80 active:bg-slate-200"
+              )}
+            >
+              {isFullscreen ? (
+                <Minimize className="w-4 h-4" />
+              ) : (
+                <Maximize className="w-4 h-4" />
+              )}
+            </button>
 
             {/* Desktop Quick Search Input Trigger */}
             <button
@@ -288,42 +288,35 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
               </kbd>
             </button>
 
-            {/* Donate Button (Mobile & Desktop) */}
+            {/* Donate Button (Desktop Only to keep Mobile Header uncluttered) */}
             <Link
               href="/donate"
-              className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white bg-rose-600 hover:bg-rose-700 active:bg-rose-800 rounded-lg transition-colors shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-600 min-h-[36px] sm:min-h-[40px]"
+              className="hidden md:inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white bg-rose-600 hover:bg-rose-700 active:bg-rose-800 rounded-lg transition-colors shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-600 min-h-[36px] sm:min-h-[40px]"
             >
               <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white shrink-0" />
               <span>Donate</span>
             </Link>
 
-            {/* Profile Icon Button in Upper Header with User Avatar */}
+            {/* Profile Icon in Upper Header (Only circular avatar icon, no blue button, no text) */}
             <Link
               href="/profile"
               className={cn(
-                "inline-flex items-center gap-1.5 p-1 sm:px-2.5 sm:py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[36px] sm:min-h-[40px] border shadow-2xs group",
+                "relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 transition-all duration-200 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 active:scale-95 group shadow-2xs",
                 pathname === "/profile"
-                  ? "bg-blue-600 text-white border-blue-600 shadow-sm"
-                  : "bg-slate-100 hover:bg-slate-200/90 text-slate-700 hover:text-slate-900 border-slate-200"
+                  ? "border-blue-600 ring-2 ring-blue-500/30"
+                  : "border-slate-200 hover:border-blue-500 hover:ring-2 hover:ring-blue-100"
               )}
               title="Student Profile & Settings"
               aria-label="Student Profile"
             >
-              <div className="w-7 h-7 sm:w-7 sm:h-7 rounded-full overflow-hidden shrink-0 border border-slate-300 shadow-xs relative bg-white">
-                <Image
-                  src="/images/profile-avatar.jpg"
-                  alt="Student Profile"
-                  width={28}
-                  height={28}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                  priority
-                />
-              </div>
-              <span className="hidden sm:inline font-bold">
-                {userProfile?.name && userProfile.name !== "Student"
-                  ? userProfile.name.split(" ")[0]
-                  : "Profile"}
-              </span>
+              <Image
+                src={userProfile?.avatar || "/images/profile-avatar.jpg"}
+                alt="Student Profile"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform"
+                priority
+                unoptimized={Boolean(userProfile?.avatar?.startsWith("data:") || userProfile?.avatar?.startsWith("http"))}
+              />
             </Link>
           </div>
         </div>

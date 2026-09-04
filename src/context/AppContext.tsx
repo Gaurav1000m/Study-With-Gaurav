@@ -5,6 +5,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 export interface UserProfile {
   name: string;
   examGoal: string;
+  avatar?: string;
 }
 
 interface AppContextType {
@@ -27,6 +28,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [userProfile, setUserProfile] = useState<UserProfile>({
     name: "Student",
     examGoal: "JEE / NEET / Competitive Exams",
+    avatar: "/images/profile-avatar.jpg",
   });
 
   // Ensure DOM never has .dark class (Pure light mode)
@@ -57,7 +59,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
       const savedProfile = localStorage.getItem("swg_profile");
       if (savedProfile) {
-        setUserProfile(JSON.parse(savedProfile));
+        const parsed = JSON.parse(savedProfile);
+        setUserProfile({
+          name: parsed.name || "Student",
+          examGoal: parsed.examGoal || "JEE / NEET / Competitive Exams",
+          avatar: parsed.avatar || "/images/profile-avatar.jpg",
+        });
       }
     } catch {
       // Fallback
