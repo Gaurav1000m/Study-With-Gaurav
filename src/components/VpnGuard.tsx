@@ -40,8 +40,11 @@ export function VpnGuard({ children }: VpnGuardProps) {
     // 2. Check Native Android Bridge if in APK
     if (typeof window !== "undefined" && (window as any).AndroidSecurityBridge) {
       try {
-        if ((window as any).AndroidSecurityBridge.isVpnActive()) {
+        if ((window as any).AndroidSecurityBridge.isVpnActive?.()) {
           setVpnDetected(true);
+        }
+        if ((window as any).AndroidSecurityBridge.isAdBlockOrDnsActive?.()) {
+          setAdBlockDetected(true);
         }
       } catch (err) {
         console.error("Bridge check error:", err);
@@ -49,20 +52,69 @@ export function VpnGuard({ children }: VpnGuardProps) {
     }
 
     // 3. Robust Ad-Blocker & Private DNS Detection Routine
-    const checkSecurity = () => {
+    const checkSecurity = async () => {
       // Skip check during SSR or if user is offline
       if (typeof window === "undefined" || !navigator.onLine) {
         setIsChecking(false);
         return;
       }
 
-      // Ad blocker / Private DNS checks:
-      // Do not inject fake ad scripts that fail and falsely trap legitimate students
+      // Check Native Android Bridge again if loaded asynchronously
+      if ((window as any).AndroidSecurityBridge?.isAdBlockOrDnsActive?.()) {
+        setAdBlockDetected(true);
+        setIsChecking(false);
+        return;
+      }
+
+      // DOM Bait Detection for browser Ad-Blockers (uBlock, AdBlock Plus, Brave Shields)
+      try {
+        const bait = document.createElement("div");
+        bait.className = "pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links ad-banner adsbox ad-placement";
+        bait.style.position = "absolute";
+        bait.style.left = "-9999px";
+        bait.style.top = "-9999px";
+        bait.style.width = "1px";
+        bait.style.height = "1px";
+        bait.setAttribute("aria-hidden", "true");
+        document.body.appendChild(bait);
+
+        const computed = window.getComputedStyle(bait);
+        if (
+          computed.display === "none" ||
+          computed.visibility === "hidden" ||
+          bait.offsetParent === null ||
+          bait.offsetHeight === 0
+        ) {
+          setAdBlockDetected(true);
+        }
+        document.body.removeChild(bait);
+      } catch (e) {
+        // Ignore DOM bait error
+      }
+
+      // Network probe for AdGuard / NextDNS / DNS sinkhole
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        await fetch("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", {
+          method: "HEAD",
+          mode: "no-cors",
+          cache: "no-store",
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+      } catch (err: any) {
+        // If network request to Google Ads is blocked while client is confirmed online
+        if (navigator.onLine && err?.name !== "AbortError") {
+          setAdBlockDetected(true);
+        }
+      }
+
       setIsChecking(false);
     };
 
     // Run check gracefully
-    const timer = setTimeout(checkSecurity, 1000);
+    const timer = setTimeout(checkSecurity, 1200);
 
     return () => {
       document.removeEventListener("contextmenu", handleContextMenu);

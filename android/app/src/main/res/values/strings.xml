@@ -5,4 +5,7 @@
     <string name="dns_detected_title">Ad Blocker or Private DNS Detected</string>
     <string name="dns_detected_desc">Please disable your Ad Blocker or set Private DNS to Off/Automatic in Android Settings to continue using Study With Gaurav.</string>
     <string name="btn_retry">Retry Connection</string>
+    <string name="btn_open_settings">Open Android Settings</string>
+    <string name="ad_blocker_notification_title">⚠️ Ad Blocker / Private DNS Detected</string>
+    <string name="ad_blocker_notification_desc">Please turn off Private DNS or Ad Blocker to support Study With Gaurav and access study material.</string>
 </resources>

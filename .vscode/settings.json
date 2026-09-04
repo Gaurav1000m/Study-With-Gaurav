@@ -1,4 +1,13 @@
 {
-  "css.lint.unknownAtRules": "ignore",
-  "scss.lint.unknownAtRules": "ignore"
+    "java.jdt.ls.java.home": "/home/gaurav/study/tools/jdk17",
+    "java.import.gradle.java.home": "/home/gaurav/study/tools/jdk17",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-17",
+            "path": "/home/gaurav/study/tools/jdk17",
+            "default": true
+        }
+    ],
+    "css.lint.unknownAtRules": "ignore"
 }

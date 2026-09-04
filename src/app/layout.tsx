@@ -389,6 +389,18 @@ export default function RootLayout({
           data-cfasync="false"
         />
 
+        {/* Adsterra Popunder Script */}
+        <Script
+          src="https://pl31181516.profitableratecpmnetwork.com/72/94/d4/7294d4d00ad04dbcdeb821323928580d.js"
+          strategy="afterInteractive"
+        />
+
+        {/* Adsterra Social Bar Script */}
+        <Script
+          src="https://pl31181517.profitableratecpmnetwork.com/4e/61/5f/4e615fed220697e7243807ef41b2a5c1.js"
+          strategy="afterInteractive"
+        />
+
         {/* Favicon & Tab Logo */}
         <link rel="icon" type="image/webp" href="/images/lionbg.webp?v=2" />
         <link rel="shortcut icon" type="image/webp" href="/images/lionbg.webp?v=2" />

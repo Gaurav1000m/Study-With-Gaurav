@@ -26,6 +26,7 @@ import {
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SuggestModal } from "@/components/SuggestModal";
+import { AdsterraBanner, AdsterraSmartLinkButton, ADSTERRA_SMART_LINK } from "@/components/AdsterraBanner";
 
 interface FaqItem {
   question: string;
@@ -112,7 +113,7 @@ export function DownloadClient() {
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] sm:text-[11px] font-semibold border border-emerald-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  v1.0.3 Stable
+                  v1.0.4 Stable
                 </span>
                 <button
                   onClick={handleShare}
@@ -177,7 +178,7 @@ export function DownloadClient() {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-0.5">
                   <div className="bg-white p-2 sm:p-2.5 rounded-xl border border-slate-200/80 shadow-2xs text-left">
                     <span className="block text-[10px] sm:text-[11px] text-slate-500 font-medium">Version</span>
-                    <span className="block text-xs font-bold text-slate-800">v1.0.3 Stable</span>
+                    <span className="block text-xs font-bold text-slate-800">v1.0.4 Stable</span>
                   </div>
                   <div className="bg-white p-2 sm:p-2.5 rounded-xl border border-slate-200/80 shadow-2xs text-left">
                     <span className="block text-[10px] sm:text-[11px] text-slate-500 font-medium">Size</span>
@@ -218,6 +219,18 @@ export function DownloadClient() {
                       <Globe className="w-4 h-4 text-slate-600 shrink-0" />
                       <span>Direct Mirror</span>
                       <Download className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                    </a>
+
+                    {/* Adsterra Smart Link - Fast Bonus Materials & Mirror */}
+                    <a
+                      href={ADSTERRA_SMART_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer sponsored"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 sm:py-3.5 rounded-xl bg-amber-50 hover:bg-amber-100/80 text-amber-900 font-semibold text-xs sm:text-sm border border-amber-200/90 shadow-2xs active:scale-[0.98] transition-all min-h-[44px]"
+                    >
+                      <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
+                      <span>Bonus Materials</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                     </a>
                   </div>
 
@@ -329,6 +342,23 @@ export function DownloadClient() {
               </div>
 
             </div>
+          </div>
+        </section>
+
+        {/* Adsterra Sponsored Bonus Offers & High-Converting Banner */}
+        <section className="w-full py-4 bg-slate-50/80 border-b border-slate-200/60">
+          <div className="max-w-4xl mx-auto px-3 sm:px-6 space-y-4">
+            <AdsterraSmartLinkButton
+              title="Bonus Study Material & Practice Test Series"
+              subtitle="High-speed premium batch pass and practice worksheets provided by our partner network."
+              buttonText="Access Bonus Free"
+            />
+            <AdsterraBanner
+              format="responsive"
+              label="SPONSORED RESOURCES"
+              showSmartLink={true}
+              smartLinkText="Featured Exam Portals & Notes"
+            />
           </div>
         </section>
 
@@ -555,7 +585,7 @@ export function DownloadClient() {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 active:scale-95 transition-all min-h-[44px]"
               >
                 <Download className="w-4 h-4" />
-                <span>Start Download (v1.0.3 APK)</span>
+                <span>Start Download (v1.0.4 APK)</span>
               </a>
             </div>
           </div>
@@ -586,7 +616,7 @@ export function DownloadClient() {
                 </div>
                 <div className="flex flex-col sm:grid sm:grid-cols-3 p-3 sm:p-4 gap-0.5 sm:gap-4 hover:bg-slate-50/60 transition-colors">
                   <span className="font-semibold text-slate-500 text-[11px] sm:text-xs">Latest Release</span>
-                  <span className="sm:col-span-2 font-semibold text-slate-800 text-xs sm:text-sm">Version 1.0.0 (Build 1)</span>
+                  <span className="sm:col-span-2 font-semibold text-slate-800 text-xs sm:text-sm">Version 1.0.4 (Build 5)</span>
                 </div>
                 <div className="flex flex-col sm:grid sm:grid-cols-3 p-3 sm:p-4 gap-0.5 sm:gap-4 hover:bg-slate-50/60 transition-colors">
                   <span className="font-semibold text-slate-500 text-[11px] sm:text-xs">File Size</span>

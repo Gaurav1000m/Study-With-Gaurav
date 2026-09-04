@@ -19,6 +19,7 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ModernLearningSection } from "@/components/ModernLearningSection";
 import { HeroSlider } from "@/components/HeroSlider";
 import { AdBanner } from "@/components/AdBanner";
+import { AdsterraBanner } from "@/components/AdsterraBanner";
 import { WEBSITES } from "@/data/websites";
 import { CATEGORIES } from "@/data/categories";
 import { CategoryId } from "@/types/website";
@@ -299,6 +300,9 @@ export default function Home() {
 
             {/* What Are You Looking For? Discovery Section */}
             <DiscoverySection onOptionSelect={handleDiscoverySelect} />
+
+            {/* Adsterra Native Sponsored Recommendations */}
+            <AdsterraBanner format="native" label="RECOMMENDED FOR STUDENTS" className="my-4 sm:my-6" />
 
             {/* Modern Learning Section (Image + Copy) */}
             <ModernLearningSection />
