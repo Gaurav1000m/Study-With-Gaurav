@@ -211,14 +211,13 @@ export function DownloadClient() {
 
                     {/* Secondary Mirror Button */}
                     <a
-                      href="https://github.com/Gaurav1000m/Study-With-Gaurav/raw/main/release/StudyWithGaurav.apk"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="/StudyWithGaurav.apk"
+                      download="StudyWithGaurav.apk"
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 sm:py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs sm:text-sm border border-slate-300/90 shadow-2xs hover:border-slate-400 active:scale-[0.98] transition-all min-h-[44px]"
                     >
                       <Globe className="w-4 h-4 text-slate-600 shrink-0" />
-                      <span>GitHub Mirror</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <span>Direct Mirror</span>
+                      <Download className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                     </a>
                   </div>
 
