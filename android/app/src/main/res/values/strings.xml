@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Study With Gaurav</string>
+    <string name="vpn_detected_title">VPN Detected!</string>
+    <string name="vpn_detected_desc">VPN connections are strictly prohibited on Study With Gaurav. Please disconnect your VPN or proxy to access study batches.</string>
+    <string name="dns_detected_title">Ad Blocker or Private DNS Detected</string>
+    <string name="dns_detected_desc">Please disable your Ad Blocker or set Private DNS to Off/Automatic in Android Settings to continue using Study With Gaurav.</string>
+    <string name="btn_retry">Retry Connection</string>
+</resources>
