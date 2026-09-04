@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="public/images/tradition.webp" alt="Study With Gaurav Logo" width="120" style="border-radius: 50%; box-shadow: 0 0 25px rgba(79, 70, 229, 0.4);" />
+  <img src="public/images/swg-brand-gold.png" alt="Study With Gaurav Logo" width="120" style="border-radius: 50%; box-shadow: 0 0 25px rgba(79, 70, 229, 0.4);" />
 
   # 🎓 Study With Gaurav
   ### *The Ultimate Educational Super-Hub & Secure Mobile Android Application*
