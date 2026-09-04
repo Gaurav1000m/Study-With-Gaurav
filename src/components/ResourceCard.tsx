@@ -130,8 +130,6 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
           <h3 className="text-sm sm:text-base font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug break-words">
             <Link
               href={targetUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               onClick={handleResourceClick}
               className="focus:outline-none after:absolute after:inset-0"
             >
@@ -189,8 +187,6 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
 
         <Link
           href={targetUrl}
-          target="_blank"
-          rel="noopener noreferrer"
           onClick={handleResourceClick}
           className="inline-flex items-center gap-1 font-bold text-blue-600 group-hover:text-blue-700 hover:underline transition-colors min-h-[32px] px-1"
         >

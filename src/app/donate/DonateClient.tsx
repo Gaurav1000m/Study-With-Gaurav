@@ -52,7 +52,7 @@ export function DonateClient() {
       />
 
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
-      <div className="header-spacer" />
+      <div className="h-14 sm:h-16" />
 
       <main className="flex-1 py-6 sm:py-16 pb-20 md:pb-12 relative overflow-hidden">
         {/* Subtle background pattern */}

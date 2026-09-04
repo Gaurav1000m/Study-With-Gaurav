@@ -93,7 +93,7 @@ export function DownloadClient() {
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
       {/* Website Header */}
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
-      <div className="header-spacer" />
+      <div className="h-14 sm:h-16" />
 
       {/* Main Content: ample bottom padding for mobile bottom nav */}
       <main className="flex-1 pb-24 md:pb-12">
@@ -112,7 +112,7 @@ export function DownloadClient() {
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] sm:text-[11px] font-semibold border border-emerald-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  v1.0.0 Stable
+                  v1.0.3 Stable
                 </span>
                 <button
                   onClick={handleShare}
@@ -152,7 +152,7 @@ export function DownloadClient() {
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 text-[10px] sm:text-xs font-semibold border border-purple-200">
                     <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-purple-600 shrink-0" />
-                    4.6 MB
+                    4.5 MB
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] sm:text-xs font-semibold border border-emerald-200">
                     <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600 shrink-0" />
@@ -177,11 +177,11 @@ export function DownloadClient() {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-0.5">
                   <div className="bg-white p-2 sm:p-2.5 rounded-xl border border-slate-200/80 shadow-2xs text-left">
                     <span className="block text-[10px] sm:text-[11px] text-slate-500 font-medium">Version</span>
-                    <span className="block text-xs font-bold text-slate-800">v1.0.0 Stable</span>
+                    <span className="block text-xs font-bold text-slate-800">v1.0.3 Stable</span>
                   </div>
                   <div className="bg-white p-2 sm:p-2.5 rounded-xl border border-slate-200/80 shadow-2xs text-left">
                     <span className="block text-[10px] sm:text-[11px] text-slate-500 font-medium">Size</span>
-                    <span className="block text-xs font-bold text-slate-800">4.6 MB (Light)</span>
+                    <span className="block text-xs font-bold text-slate-800">4.5 MB (Light)</span>
                   </div>
                   <div className="bg-white p-2 sm:p-2.5 rounded-xl border border-slate-200/80 shadow-2xs text-left">
                     <span className="block text-[10px] sm:text-[11px] text-slate-500 font-medium">Requirement</span>
@@ -555,7 +555,7 @@ export function DownloadClient() {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 active:scale-95 transition-all min-h-[44px]"
               >
                 <Download className="w-4 h-4" />
-                <span>Start Download (v1.0.0 APK)</span>
+                <span>Start Download (v1.0.3 APK)</span>
               </a>
             </div>
           </div>

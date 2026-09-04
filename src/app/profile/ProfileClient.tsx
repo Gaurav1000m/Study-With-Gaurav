@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SuggestModal } from "@/components/SuggestModal";
@@ -32,19 +31,37 @@ import {
   Send,
   CheckCircle2,
   BookOpen,
-  Camera,
-  Upload,
-  Link as LinkIcon,
 } from "lucide-react";
 
-const PRESET_AVATARS = [
-  { id: "custom-provided", name: "User Avatar", url: "/images/profile-avatar.jpg" },
-  { id: "swg-lion", name: "Lion Portrait", url: "/black-and-white-portrait-of-a-lion.webp" },
-  { id: "lion-gold", name: "Lion Crest", url: "/images/lionbg.webp" },
-  { id: "cds-warrior", name: "Defence CDS", url: "/images/cds-soldier.png" },
-  { id: "swg-tradition", name: "Emblem", url: "/images/tradition.webp" },
-  { id: "swg-gold", name: "Gold Shield", url: "/images/swg-brand-gold.png" },
+export function getNameInitials(name: string): string {
+  const trimmed = (name || "").trim();
+  if (!trimmed) return "S";
+  const parts = trimmed.split(/\s+/).filter(Boolean);
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+  return parts[0].slice(0, 1).toUpperCase();
+}
+
+const AVATAR_GRADIENTS = [
+  "from-blue-600 via-indigo-600 to-violet-600",
+  "from-indigo-600 via-purple-600 to-pink-600",
+  "from-violet-600 to-indigo-700",
+  "from-emerald-500 via-teal-600 to-cyan-700",
+  "from-cyan-600 via-blue-600 to-indigo-700",
+  "from-amber-500 via-orange-600 to-rose-600",
+  "from-rose-500 via-pink-600 to-purple-600",
 ];
+
+export function getAvatarGradient(name: string): string {
+  const trimmed = (name || "").trim();
+  if (!trimmed) return AVATAR_GRADIENTS[0];
+  let hash = 0;
+  for (let i = 0; i < trimmed.length; i++) {
+    hash = trimmed.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return AVATAR_GRADIENTS[Math.abs(hash) % AVATAR_GRADIENTS.length];
+}
 
 export function ProfileClient() {
   const {
@@ -58,55 +75,13 @@ export function ProfileClient() {
   const [isEditing, setIsEditing] = useState(false);
   const [nameInput, setNameInput] = useState(userProfile.name);
   const [goalInput, setGoalInput] = useState(userProfile.examGoal);
-  const [avatarInput, setAvatarInput] = useState(userProfile.avatar || "/images/profile-avatar.jpg");
-  const [isCustomUrlOpen, setIsCustomUrlOpen] = useState(false);
-  const [customUrlInput, setCustomUrlInput] = useState("");
   const [isSuggestModalOpen, setIsSuggestModalOpen] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   useEffect(() => {
     setNameInput(userProfile.name);
     setGoalInput(userProfile.examGoal);
-    setAvatarInput(userProfile.avatar || "/images/profile-avatar.jpg");
   }, [userProfile]);
-
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (file.size > 5 * 1024 * 1024) {
-      alert("Please select an image smaller than 5 MB");
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      const dataUrl = reader.result as string;
-      setAvatarInput(dataUrl);
-      updateProfile({ avatar: dataUrl });
-      setSavedSuccess(true);
-      setTimeout(() => setSavedSuccess(false), 3000);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleSelectPreset = (url: string) => {
-    setAvatarInput(url);
-    updateProfile({ avatar: url });
-    setSavedSuccess(true);
-    setTimeout(() => setSavedSuccess(false), 3000);
-  };
-
-  const handleApplyCustomUrl = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!customUrlInput.trim()) return;
-    setAvatarInput(customUrlInput.trim());
-    updateProfile({ avatar: customUrlInput.trim() });
-    setCustomUrlInput("");
-    setIsCustomUrlOpen(false);
-    setSavedSuccess(true);
-    setTimeout(() => setSavedSuccess(false), 3000);
-  };
 
   // Map recently viewed IDs to website objects
   const recentWebsites = WEBSITES.filter((w) => recentlyViewed.includes(w.id));
@@ -115,7 +90,6 @@ export function ProfileClient() {
     updateProfile({
       name: nameInput.trim() || "Student",
       examGoal: goalInput.trim() || "Competitive Exams",
-      avatar: avatarInput,
     });
     setIsEditing(false);
     setSavedSuccess(true);
@@ -134,7 +108,7 @@ export function ProfileClient() {
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans">
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
-      <div className="header-spacer" />
+      <div className="h-14 sm:h-16" />
 
       <main className="flex-1 py-4 sm:py-10 pb-24 md:pb-12">
         {/* Responsive Student Profile Dashboard (Desktop & Mobile) */}
@@ -162,46 +136,38 @@ export function ProfileClient() {
                 onClick={() => {
                   setNameInput(userProfile.name);
                   setGoalInput(userProfile.examGoal);
-                  setAvatarInput(userProfile.avatar || "/images/profile-avatar.jpg");
                   setIsEditing(!isEditing);
                 }}
                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-xs text-xs font-semibold text-white transition-all cursor-pointer"
               >
                 <Edit3 className="w-3 h-3 text-white" />
-                <span>{isEditing ? "Close" : "Edit Profile"}</span>
+                <span>{isEditing ? "Close" : "Edit Name"}</span>
               </button>
             </div>
 
             {/* Avatar & User Details */}
             <div className="px-4 pb-4 pt-0 relative">
-              {/* Floating Avatar with Direct Custom Icon Trigger */}
-              <div className="relative -mt-10 mb-2.5 inline-block group">
-                <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-lg ring-4 ring-white border border-slate-100 relative bg-white">
-                  <Image
-                    src={avatarInput || userProfile.avatar || "/images/profile-avatar.jpg"}
-                    alt={userProfile.name}
-                    fill
-                    className="object-cover"
-                    priority
-                    unoptimized={Boolean((avatarInput || userProfile.avatar)?.startsWith("data:") || (avatarInput || userProfile.avatar)?.startsWith("http"))}
-                  />
-                </div>
-                {/* Direct change icon trigger */}
-                <label
-                  htmlFor="avatar-file-upload-direct"
-                  className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md flex items-center justify-center border-2 border-white transition-transform hover:scale-110 cursor-pointer"
-                  title="Change custom icon"
-                  aria-label="Change custom icon"
+              {/* Dynamic Name Avatar with Tick Lottie Animation in Corner */}
+              <div className="relative -mt-10 mb-2.5 inline-block select-none">
+                <div
+                  className={cn(
+                    "w-20 h-20 sm:w-22 sm:h-22 rounded-2xl shadow-lg ring-4 ring-white border border-slate-100 flex items-center justify-center bg-gradient-to-br transition-all duration-300",
+                    getAvatarGradient(isEditing ? nameInput : userProfile.name)
+                  )}
                 >
-                  <Camera className="w-3.5 h-3.5" />
-                </label>
-                <input
-                  id="avatar-file-upload-direct"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileUpload}
-                  className="hidden"
-                />
+                  <span className="text-2xl sm:text-3xl font-black text-white tracking-wider drop-shadow-sm font-sans uppercase">
+                    {getNameInitials(isEditing ? nameInput : userProfile.name)}
+                  </span>
+                </div>
+
+                {/* Tick Lottie Animation in Corner of Avatar */}
+                <div
+                  className="absolute -bottom-1 -right-1 sm:-bottom-1.5 sm:-right-1.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center p-0.5 z-10 pointer-events-none"
+                  title="Verified Student"
+                  aria-label="Verified Student"
+                >
+                  <LottieVerified size={24} className="w-full h-full" />
+                </div>
               </div>
 
               {/* Name and Target */}
@@ -210,7 +176,7 @@ export function ProfileClient() {
                   <h1 className="text-xl font-extrabold text-slate-900 tracking-tight">
                     {userProfile.name}
                   </h1>
-                  <span className="text-[10px] font-extrabold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200/60">
+                  <span className="text-[10px] font-extrabold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200/60 inline-flex items-center gap-1">
                     Active Student
                   </span>
                 </div>
@@ -223,125 +189,33 @@ export function ProfileClient() {
                 </div>
               </div>
 
-              {/* Inline Edit Form */}
+              {/* Inline Edit Form - Student Name Only */}
               {isEditing && (
                 <div className="mt-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4 animate-fade-in">
-                  <div className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                    Personalize Study Profile
+                  <div className="flex items-center justify-between">
+                    <div className="text-xs font-bold uppercase tracking-wider text-slate-600">
+                      Student Details
+                    </div>
+                    <span className="text-[10px] text-slate-500">
+                      Name Avatar generated automatically
+                    </span>
                   </div>
 
-                  {/* Choose Custom Profile Icon Section */}
-                  <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 space-y-2.5">
-                    <div className="flex items-center justify-between">
-                      <label className="block text-[11px] font-bold text-slate-800">
-                        Choose Profile Icon
-                      </label>
-                      <span className="text-[10px] text-slate-400">Tap to select</span>
-                    </div>
-
-                    {/* Presets and Upload */}
-                    <div className="flex flex-wrap items-center gap-2">
-                      {PRESET_AVATARS.map((preset) => {
-                        const isSelected = (avatarInput || userProfile.avatar) === preset.url;
-                        return (
-                          <button
-                            key={preset.id}
-                            type="button"
-                            onClick={() => handleSelectPreset(preset.url)}
-                            className={cn(
-                              "relative w-11 h-11 rounded-xl overflow-hidden border-2 transition-all p-0.5 bg-white shrink-0",
-                              isSelected
-                                ? "border-blue-600 ring-2 ring-blue-500/30 scale-105"
-                                : "border-slate-200 hover:border-slate-300 opacity-80 hover:opacity-100"
-                            )}
-                            title={preset.name}
-                          >
-                            <div className="relative w-full h-full rounded-lg overflow-hidden">
-                              <Image
-                                src={preset.url}
-                                alt={preset.name}
-                                fill
-                                className="object-cover"
-                              />
-                            </div>
-                            {isSelected && (
-                              <div className="absolute top-0 right-0 w-3.5 h-3.5 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-xs">
-                                <Check className="w-2.5 h-2.5" />
-                              </div>
-                            )}
-                          </button>
-                        );
-                      })}
-
-                      {/* Upload from device button */}
-                      <label
-                        htmlFor="avatar-upload-file-form"
-                        className="w-11 h-11 rounded-xl border-2 border-dashed border-slate-300 hover:border-blue-500 hover:bg-blue-50/50 flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition-colors cursor-pointer shrink-0"
-                        title="Upload Custom Image"
-                      >
-                        <Upload className="w-4 h-4" />
-                        <span className="text-[8px] font-bold mt-0.5">Upload</span>
-                      </label>
-                      <input
-                        id="avatar-upload-file-form"
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileUpload}
-                        className="hidden"
-                      />
-                    </div>
-
-                    {/* Custom URL Option Toggle */}
-                    <div className="pt-1 border-t border-slate-100">
-                      {!isCustomUrlOpen ? (
-                        <button
-                          type="button"
-                          onClick={() => setIsCustomUrlOpen(true)}
-                          className="text-[11px] font-semibold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 cursor-pointer"
-                        >
-                          <LinkIcon className="w-3 h-3" />
-                          <span>Or paste custom image link</span>
-                        </button>
-                      ) : (
-                        <form onSubmit={handleApplyCustomUrl} className="flex gap-2 items-center">
-                          <input
-                            type="url"
-                            value={customUrlInput}
-                            onChange={(e) => setCustomUrlInput(e.target.value)}
-                            placeholder="https://example.com/avatar.png"
-                            className="flex-1 px-3 py-1.5 text-xs bg-white text-slate-900 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                          />
-                          <button
-                            type="submit"
-                            className="px-3 py-1.5 bg-blue-600 text-white font-bold text-xs rounded-lg hover:bg-blue-700 cursor-pointer shrink-0"
-                          >
-                            Apply
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setIsCustomUrlOpen(false)}
-                            className="text-xs text-slate-500 hover:text-slate-700 cursor-pointer"
-                          >
-                            Cancel
-                          </button>
-                        </form>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="space-y-2.5">
+                  <div className="space-y-3">
                     <div>
                       <label className="block text-[11px] font-bold text-slate-700 mb-1">
-                        Your Name
+                        Student Name
                       </label>
                       <input
                         type="text"
                         value={nameInput}
                         onChange={(e) => setNameInput(e.target.value)}
-                        placeholder="Enter your name"
-                        className="w-full px-3.5 py-2 text-xs bg-white text-slate-900 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600 font-medium"
+                        placeholder="Enter student name (e.g. Gaurav Sharma)"
+                        className="w-full px-3.5 py-2.5 text-sm bg-white text-slate-900 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600 font-bold placeholder:font-normal placeholder:text-slate-400"
+                        autoFocus
                       />
                     </div>
+
                     <div>
                       <label className="block text-[11px] font-bold text-slate-700 mb-1">
                         Exam Focus / Target
@@ -351,7 +225,7 @@ export function ProfileClient() {
                         value={goalInput}
                         onChange={(e) => setGoalInput(e.target.value)}
                         placeholder="e.g. JEE Main, NEET UG, SSC"
-                        className="w-full px-3.5 py-2 text-xs bg-white text-slate-900 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600 font-medium"
+                        className="w-full px-3.5 py-2 text-xs bg-white text-slate-900 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600 font-medium placeholder:font-normal placeholder:text-slate-400"
                       />
                     </div>
                   </div>
@@ -391,6 +265,7 @@ export function ProfileClient() {
               )}
             </div>
           </div>
+
 
           {/* 2. STATS & PRODUCTIVITY METRICS STRIP */}
           <div className="grid grid-cols-3 gap-2.5">

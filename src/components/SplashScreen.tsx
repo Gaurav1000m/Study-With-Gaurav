@@ -5,32 +5,15 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export function SplashScreen() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // 1. Never show inside native Android APK
-    if (typeof window !== "undefined" && (window as any).AndroidSecurityBridge) {
-      return;
-    }
-
-    // 2. Show only once per browser session
-    try {
-      if (sessionStorage.getItem("swg_splash_shown")) {
-        return;
-      }
-      sessionStorage.setItem("swg_splash_shown", "true");
-    } catch {
-      // Ignore if cookies/storage disabled
-    }
-
-    // Trigger splash for first-time session visitors
-    setIsVisible(true);
-
+    // Start the fade out sequence after 2 seconds
     const timer = setTimeout(() => {
       setIsMounted(true);
       setTimeout(() => setIsVisible(false), 500); // 500ms duration for fade out
-    }, 1800);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);

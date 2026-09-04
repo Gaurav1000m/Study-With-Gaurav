@@ -130,7 +130,7 @@ export default function AdvertisingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Header />
-      <div className="header-spacer" />
+      <div className="h-14 sm:h-16" />
 
       {/* Decorative Background Elements */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">

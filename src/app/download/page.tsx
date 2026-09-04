@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { DownloadClient } from "./DownloadClient";
 
 export const metadata: Metadata = {
-  title: "Download Official Android App (APK v1.0.0) | Study With Gaurav",
+  title: "Download Official Android App (APK v1.0.3) | Study With Gaurav",
   description:
-    "Download official Study With Gaurav Android APK v1.0.0 (4.6 MB). Free JEE, NEET, SSC batch portals, verified lecture archives, and notes with zero ads.",
+    "Download official Study With Gaurav Android APK v1.0.3 (4.5 MB). Free JEE, NEET, SSC batch portals, verified lecture archives, and notes with zero ads.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/download",
   },
   openGraph: {
-    title: "Download Official Android App (APK v1.0.0) | Study With Gaurav",
+    title: "Download Official Android App (APK v1.0.3) | Study With Gaurav",
     description:
       "Official Android App for Study With Gaurav. Fast, zero-distraction access to 100+ verified batches, notes, and study portals. 100% Free & Clean.",
     url: "https://studywithgaurav.cc.cd/download",
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Download Official Android App (APK v1.0.0) | Study With Gaurav",
+    title: "Download Official Android App (APK v1.0.3) | Study With Gaurav",
     description:
-      "Free JEE, NEET, SSC batch portals & lecture notes directly on your Android phone. Fast, safe, 4.6 MB download.",
+      "Free JEE, NEET, SSC batch portals & lecture notes directly on your Android phone. Fast, safe, 4.5 MB download.",
     images: ["https://studywithgaurav.cc.cd/black-and-white-portrait-of-a-lion.webp"],
   },
 };
@@ -41,8 +41,8 @@ export default function DownloadPage() {
     "name": "Study With Gaurav",
     "operatingSystem": "ANDROID 7.0 and up",
     "applicationCategory": "EducationalApplication",
-    "fileSize": "4.6 MB",
-    "softwareVersion": "1.0.0",
+    "fileSize": "4.5 MB",
+    "softwareVersion": "1.0.3",
     "downloadUrl": "https://studywithgaurav.cc.cd/downloads/StudyWithGaurav.apk",
     "author": {
       "@type": "EducationalOrganization",

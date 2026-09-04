@@ -37,7 +37,7 @@ export function GetAppBanner() {
   return (
     <aside 
       aria-label="Download Android App"
-      className="fixed bottom-[calc(4.2rem+env(safe-area-inset-bottom,0px))] md:bottom-5 left-3 right-3 sm:left-auto sm:right-5 sm:max-w-md z-40 animate-slide-up"
+      className="fixed bottom-[4.2rem] md:bottom-5 left-3 right-3 sm:left-auto sm:right-5 sm:max-w-md z-40 animate-slide-up"
     >
       <div className="bg-slate-900/95 backdrop-blur-xl border border-indigo-500/30 rounded-2xl p-3 sm:p-3.5 shadow-2xl shadow-indigo-950/60 flex items-center justify-between gap-3 text-white">
         {/* App Icon & Details */}
