@@ -17,7 +17,6 @@ import { AppxHeroText } from "@/components/AppxHeroText";
 import { AppxFAQ } from "@/components/AppxFAQ";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ModernLearningSection } from "@/components/ModernLearningSection";
-import { AboutSection } from "@/components/AboutSection";
 import { HeroSlider } from "@/components/HeroSlider";
 import { AdBanner } from "@/components/AdBanner";
 import { WEBSITES } from "@/data/websites";
@@ -392,9 +391,6 @@ export default function Home() {
 
               </div>
             </section>
-
-            {/* About Section */}
-            <AboutSection />
 
             {/* AppX-Style Interactive Animated FAQ Section */}
             <AppxFAQ />

@@ -65,21 +65,13 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  interface HeaderNavLink {
-    name: string;
-    href: string;
-    icon?: React.ComponentType<{ className?: string }>;
-    badge?: number;
-  }
-
-  const navLinks: HeaderNavLink[] = [
+  const navLinks = [
     { name: "Home", href: "/" },
     { name: "Resources", href: "/resources" },
     { name: "Categories", href: "/categories" },
     { name: "Saved", href: "/saved", badge: bookmarks.length },
     { name: "Popular", href: "/popular" },
     { name: "About", href: "/about" },
-    { name: "Profile", href: "/profile", icon: User },
   ];
 
   const handleSearchClick = () => {
@@ -188,7 +180,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
                 link.href === "/"
                   ? pathname === "/"
                   : pathname.startsWith(link.href);
-              const Icon = link.icon;
 
               return (
                 <Link
@@ -201,7 +192,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
                       : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
                   )}
                 >
-                  {Icon && <Icon className="w-3.5 h-3.5 shrink-0" />}
                   <span>{link.name}</span>
                   {link.badge !== undefined && link.badge > 0 && (
                     <span
@@ -250,6 +240,21 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
             >
               <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white shrink-0" />
               <span>Donate</span>
+            </Link>
+
+            {/* Profile User Icon beside Donate Button (Web View Only) */}
+            <Link
+              href="/profile"
+              className={cn(
+                "hidden md:inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-lg transition-colors border shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 active:scale-95 group shrink-0",
+                pathname === "/profile"
+                  ? "bg-slate-900 text-white border-slate-900 shadow-xs"
+                  : "bg-slate-100 hover:bg-slate-200/90 text-slate-700 hover:text-slate-900 border-slate-200"
+              )}
+              title="Student Profile & Settings"
+              aria-label="Student Profile"
+            >
+              <User className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform group-hover:scale-110" />
             </Link>
           </div>
         </div>
