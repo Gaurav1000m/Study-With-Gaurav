@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Sparkles, ExternalLink, ShieldCheck } from "lucide-react";
 
 export type AdsterraFormat =
   | "728x90"
@@ -34,17 +33,11 @@ export const ADSTERRA_SMART_LINK =
 export interface AdsterraBannerProps {
   format?: AdsterraFormat;
   className?: string;
-  label?: string;
-  showSmartLink?: boolean;
-  smartLinkText?: string;
 }
 
 export function AdsterraBanner({
   format = "responsive",
   className = "",
-  label = "SPONSORED PARTNER",
-  showSmartLink = false,
-  smartLinkText = "Recommended Student Tools & Exam Offers",
 }: AdsterraBannerProps) {
   const [mounted, setMounted] = useState(false);
   const [resolvedFormat, setResolvedFormat] = useState<Exclude<AdsterraFormat, "responsive">>("300x250");
@@ -56,9 +49,9 @@ export function AdsterraBanner({
     if (format === "responsive") {
       const updateFormat = () => {
         const w = window.innerWidth;
-        if (w >= 1024) {
+        if (w >= 768) {
           setResolvedFormat("728x90");
-        } else if (w >= 640) {
+        } else if (w >= 480) {
           setResolvedFormat("468x60");
         } else if (w >= 360) {
           setResolvedFormat("300x250");
@@ -95,66 +88,20 @@ export function AdsterraBanner({
     return null;
   }
 
-  return (
-    <aside
-      className={`w-full max-w-5xl mx-auto my-4 px-2 sm:px-4 ${className}`}
-      aria-label="Advertisement container"
-    >
-      <div className="w-full bg-white border border-slate-200/90 hover:border-slate-300 rounded-2xl p-2.5 sm:p-4 text-center flex flex-col items-center justify-center transition-all shadow-2xs overflow-hidden">
-        {/* Header Label */}
-        <div className="w-full flex items-center justify-between pb-1.5 mb-2 border-b border-slate-100">
-          <div className="flex items-center gap-1.5">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-            <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">
-              {label}
-            </span>
-          </div>
-          <span className="text-[10px] text-slate-400 font-medium">Verified Partner</span>
-        </div>
+  // Native banner format: clean container, no boxes or labels
+  if (resolvedFormat === "native") {
+    return (
+      <div className={`w-full flex justify-center items-center my-3 overflow-hidden ${className}`} ref={nativeRef}>
+        <div id="container-a6bac149b9b5065d9c39dd39421f6de6" className="w-full max-w-4xl" />
+      </div>
+    );
+  }
 
-        {/* Optional Smart Link Offer Bar */}
-        {showSmartLink && (
-          <a
-            href={ADSTERRA_SMART_LINK}
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            className="group w-full mb-3 bg-gradient-to-r from-amber-500/10 via-blue-500/10 to-indigo-500/10 hover:from-amber-500/20 hover:to-indigo-500/20 text-slate-900 rounded-xl p-2.5 sm:p-3 flex items-center justify-between gap-2.5 border border-amber-200/70 hover:border-amber-400 shadow-2xs transition-all cursor-pointer"
-          >
-            <div className="flex items-center gap-2 min-w-0 text-left">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 text-white flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
-                <Sparkles className="w-4 h-4 text-white" />
-              </div>
-              <div className="flex flex-col min-w-0">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-blue-700 transition-colors truncate">
-                    {smartLinkText}
-                  </span>
-                  <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
-                    <ShieldCheck className="w-2.5 h-2.5 text-amber-700" />
-                    Hot
-                  </span>
-                </div>
-                <span className="text-[10px] sm:text-xs text-slate-500 truncate">
-                  Click to explore exclusive batch resources, mock tests & bonus offers
-                </span>
-              </div>
-            </div>
-            <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-blue-600 shrink-0 group-hover:translate-x-0.5 transition-all" />
-          </a>
-        )}
+  // Display banner format: clean centered iframe, zero borders, zero boxes, zero text labels
+  const config = ADSTERRA_CONFIGS[resolvedFormat];
+  if (!config) return null;
 
-        {/* Adsterra Native Banner */}
-        {resolvedFormat === "native" ? (
-          <div className="w-full flex justify-center items-center min-h-[90px]" ref={nativeRef}>
-            <div id="container-a6bac149b9b5065d9c39dd39421f6de6" className="w-full max-w-3xl" />
-          </div>
-        ) : (
-          /* Adsterra Iframe Display Banner with Isolated Context */
-          (() => {
-            const config = ADSTERRA_CONFIGS[resolvedFormat];
-            if (!config) return null;
-
-            const iframeHtml = `<!DOCTYPE html>
+  const iframeHtml = `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -185,74 +132,21 @@ export function AdsterraBanner({
 </body>
 </html>`;
 
-            return (
-              <div
-                className="w-full flex items-center justify-center overflow-hidden py-1"
-                style={{ minHeight: `${config.height}px` }}
-              >
-                <iframe
-                  key={`${resolvedFormat}-${config.key}`}
-                  title={`Adsterra Ad ${resolvedFormat}`}
-                  srcDoc={iframeHtml}
-                  width={config.width}
-                  height={config.height}
-                  className="border-0 overflow-hidden max-w-full"
-                  scrolling="no"
-                  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
-                />
-              </div>
-            );
-          })()
-        )}
-      </div>
-    </aside>
-  );
-}
-
-/**
- * High-Converting Adsterra Smart Link Call-To-Action Button / Banner
- */
-export function AdsterraSmartLinkButton({
-  className = "",
-  title = "Unlock Student Bonus Materials & Batch Passes",
-  subtitle = "High-speed verified educational resources provided by our partner network.",
-  buttonText = "Access Bonus Offers",
-}: {
-  className?: string;
-  title?: string;
-  subtitle?: string;
-  buttonText?: string;
-}) {
   return (
     <div
-      className={`w-full rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 p-4 sm:p-5 text-white shadow-md shadow-blue-500/15 ${className}`}
+      className={`w-full flex items-center justify-center my-3 overflow-hidden ${className}`}
+      style={{ minHeight: `${config.height}px` }}
     >
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-        <div className="flex items-center gap-3 text-left w-full sm:w-auto">
-          <div className="w-10 h-10 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center shrink-0 border border-white/20">
-            <Sparkles className="w-5 h-5 text-amber-300" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h4 className="text-sm sm:text-base font-bold text-white">{title}</h4>
-              <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-amber-400 text-slate-900 uppercase">
-                Free
-              </span>
-            </div>
-            <p className="text-xs text-blue-100 mt-0.5">{subtitle}</p>
-          </div>
-        </div>
-
-        <a
-          href={ADSTERRA_SMART_LINK}
-          target="_blank"
-          rel="noopener noreferrer sponsored"
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-blue-700 hover:bg-blue-50 font-bold text-xs sm:text-sm shadow-sm transition-all hover:scale-[1.02] active:scale-98 shrink-0"
-        >
-          <span>{buttonText}</span>
-          <ExternalLink className="w-3.5 h-3.5" />
-        </a>
-      </div>
+      <iframe
+        key={`${resolvedFormat}-${config.key}`}
+        title={`Ad ${resolvedFormat}`}
+        srcDoc={iframeHtml}
+        width={config.width}
+        height={config.height}
+        className="border-0 overflow-hidden max-w-full"
+        scrolling="no"
+        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+      />
     </div>
   );
 }

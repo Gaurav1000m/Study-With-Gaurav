@@ -227,8 +227,8 @@ export default function Home() {
         {/* Logo Marquee */}
         <LogoMarquee />
 
-        {/* AdSense Top Leaderboard (Reserved Free Space) */}
-        <AdBanner format="horizontal" minHeight="min-h-[100px]" label="ADVERTISEMENT" />
+        {/* Top Leaderboard Ad */}
+        <AdBanner className="my-2 sm:my-3" />
 
         {/* Quick Category Filter Pills (In between Advertising Section and Explore Category Section) */}
         <section aria-label="Category Filters" className="w-full bg-white pt-2 pb-2 sm:pt-3 sm:pb-4">
@@ -295,14 +295,14 @@ export default function Home() {
               categoryCounts={categoryCounts}
             />
 
-            {/* AdSense Mid-Feed Banner (Reserved Free Space) */}
-            <AdBanner format="auto" minHeight="min-h-[120px]" label="ADVERTISEMENT" />
+            {/* Mid-Feed Banner */}
+            <AdBanner className="my-2 sm:my-3" />
 
             {/* What Are You Looking For? Discovery Section */}
             <DiscoverySection onOptionSelect={handleDiscoverySelect} />
 
-            {/* Adsterra Native Sponsored Recommendations */}
-            <AdsterraBanner format="native" label="RECOMMENDED FOR STUDENTS" className="my-4 sm:my-6" />
+            {/* Native Banner */}
+            <AdsterraBanner format="native" className="my-3 sm:my-4" />
 
             {/* Modern Learning Section (Image + Copy) */}
             <ModernLearningSection />
@@ -399,8 +399,8 @@ export default function Home() {
             {/* AppX-Style Interactive Animated FAQ Section */}
             <AppxFAQ />
 
-            {/* AdSense Bottom Banner (Reserved Free Space) */}
-            <AdBanner format="auto" minHeight="min-h-[110px]" label="ADVERTISEMENT" />
+            {/* Bottom Banner */}
+            <AdBanner className="my-2 sm:my-3" />
           </>
         )}
 
