@@ -19,7 +19,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isAppBannerVisible, setIsAppBannerVisible] = useState(false);
   const lastScrollY = useRef(0);
@@ -100,29 +99,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Lock body scroll when mobile drawer is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isMobileMenuOpen]);
-
-  // Handle ESC key to close mobile menu
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isMobileMenuOpen]);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -321,11 +297,11 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
               <span>Donate</span>
             </Link>
 
-            {/* Profile Icon Button in Upper Header */}
+            {/* Profile Icon Button in Upper Header with User Avatar */}
             <Link
               href="/profile"
               className={cn(
-                "inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[36px] sm:min-h-[40px] border shadow-2xs",
+                "inline-flex items-center gap-1.5 p-1 sm:px-2.5 sm:py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[36px] sm:min-h-[40px] border shadow-2xs group",
                 pathname === "/profile"
                   ? "bg-blue-600 text-white border-blue-600 shadow-sm"
                   : "bg-slate-100 hover:bg-slate-200/90 text-slate-700 hover:text-slate-900 border-slate-200"
@@ -333,12 +309,15 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
               title="Student Profile & Settings"
               aria-label="Student Profile"
             >
-              <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-slate-900 via-blue-900 to-indigo-700 text-white flex items-center justify-center font-extrabold text-[10px] shrink-0 shadow-2xs">
-                {userProfile?.name && userProfile.name.trim().length > 0 ? (
-                  userProfile.name.trim().charAt(0).toUpperCase()
-                ) : (
-                  <User className="w-3 h-3" />
-                )}
+              <div className="w-7 h-7 sm:w-7 sm:h-7 rounded-full overflow-hidden shrink-0 border border-slate-300 shadow-xs relative bg-white">
+                <Image
+                  src="/images/profile-avatar.jpg"
+                  alt="Student Profile"
+                  width={28}
+                  height={28}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                  priority
+                />
               </div>
               <span className="hidden sm:inline font-bold">
                 {userProfile?.name && userProfile.name !== "Student"
@@ -346,15 +325,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
                   : "Profile"}
               </span>
             </Link>
-
-            {/* Mobile Navigation Drawer Toggle */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-              className="md:hidden min-w-[36px] min-h-[36px] rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 active:bg-slate-200 flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 border border-slate-200"
-            >
-              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-            </button>
           </div>
         </div>
       </header>
@@ -363,119 +333,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
       {isAppBannerVisible && pathname !== "/download" && (
         <div className="h-8 sm:h-9" aria-hidden="true" />
       )}
-
-      {/* Mobile Drawer Menu & Overlay Backdrop */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden flex flex-col justify-start">
-          {/* Backdrop Overlay */}
-          <div
-            className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs animate-fade-in"
-            onClick={() => setIsMobileMenuOpen(false)}
-            aria-hidden="true"
-          />
-
-          {/* Drawer Container */}
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile Navigation Menu"
-            className="relative z-10 w-full bg-white border-b border-slate-200 shadow-2xl animate-slide-up flex flex-col max-h-[85vh] overflow-y-auto pt-safe pb-safe"
-          >
-            {/* Drawer Top Header */}
-            <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center overflow-hidden border border-slate-800 shrink-0 relative">
-                  <Image
-                    src="/images/lionbg.webp"
-                    alt="Study with Gaurav logo"
-                    width={32}
-                    height={32}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <span className="font-bold text-navy-900 text-sm">Navigation</span>
-              </div>
-
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                aria-label="Close menu"
-                className="min-w-[44px] min-h-[44px] rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-200/60 flex items-center justify-center transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Quick Mobile Search Input Trigger */}
-            <div className="p-4 border-b border-slate-100">
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  handleSearchClick();
-                }}
-                className="w-full min-h-[48px] flex items-center justify-between px-3.5 py-2.5 text-sm text-slate-600 bg-slate-100 hover:bg-slate-200/70 rounded-xl border border-slate-200 transition-colors"
-              >
-                <span className="flex items-center gap-2">
-                  <Search className="w-4 h-4 text-slate-400" />
-                  <span>Search resources...</span>
-                </span>
-                <kbd className="px-2 py-0.5 text-[10px] bg-white border border-slate-200 rounded font-semibold text-slate-500">
-                  /
-                </kbd>
-              </button>
-            </div>
-
-            {/* Navigation Links */}
-            <nav className="p-4 space-y-1.5">
-              {navLinks.map((link) => {
-                const isActive =
-                  link.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(link.href);
-
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={cn(
-                      "min-h-[48px] px-4 py-3 text-base font-semibold rounded-xl flex items-center justify-between transition-colors",
-                      isActive
-                        ? "bg-navy-900 text-white shadow-xs"
-                        : "text-slate-700 hover:bg-slate-100 hover:text-navy-900 active:bg-slate-100"
-                    )}
-                  >
-                    <span>{link.name}</span>
-                    <ChevronRight
-                      className={cn(
-                        "w-4 h-4",
-                        isActive ? "text-white" : "text-slate-400"
-                      )}
-                    />
-                  </Link>
-                );
-              })}
-            </nav>
-
-            {/* Donate Action in Mobile Menu */}
-            <div className="p-4 pt-2 space-y-3 border-t border-slate-100 bg-slate-50/50">
-              <Link
-                href="/donate"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold text-white bg-rose-600 hover:bg-rose-700 active:bg-rose-800 rounded-xl transition-colors shadow-xs"
-              >
-                <Heart className="w-4 h-4" />
-                <span>Support Us</span>
-              </Link>
-
-              <div className="flex items-center justify-center gap-2 text-xs font-medium text-slate-500 pt-1">
-                <ShieldCheck className="w-4 h-4 text-rose-600 shrink-0" />
-                <span>Help keep the directory free</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
-

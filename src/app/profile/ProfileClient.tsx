@@ -114,8 +114,14 @@ export function ProfileClient() {
             <div className="px-4 pb-4 pt-0 relative">
               {/* Floating Avatar */}
               <div className="relative -mt-10 mb-2.5 inline-block">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-slate-900 via-blue-900 to-indigo-700 text-white flex items-center justify-center font-black text-3xl shadow-lg ring-4 ring-white border border-slate-100">
-                  {userProfile.name.charAt(0).toUpperCase() || "S"}
+                <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-lg ring-4 ring-white border border-slate-100 relative bg-white">
+                  <Image
+                    src="/images/profile-avatar.jpg"
+                    alt={userProfile.name}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white shadow flex items-center justify-center">
                   <LottieVerified size={20} />
