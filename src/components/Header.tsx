@@ -21,8 +21,29 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
   const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isAppBannerVisible, setIsAppBannerVisible] = useState(false);
   const lastScrollY = useRef(0);
   const isHomePage = pathname === "/";
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Do not show inside Android app wrapper or on download page
+      if ((window as any).AndroidSecurityBridge) return;
+      const dismissed = sessionStorage.getItem("swg_top_app_banner_dismissed");
+      if (!dismissed && pathname !== "/download") {
+        setIsAppBannerVisible(true);
+      } else {
+        setIsAppBannerVisible(false);
+      }
+    }
+  }, [pathname]);
+
+  const handleDismissBanner = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsAppBannerVisible(false);
+    sessionStorage.setItem("swg_top_app_banner_dismissed", "true");
+  };
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -132,10 +153,60 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-40 w-full bg-white/95 backdrop-blur-md transition-transform duration-300 ease-in-out border-b border-slate-100 pt-[env(safe-area-inset-top,0px)] pl-safe pr-safe",
-          isScrolled ? "shadow-xs py-1" : "py-1.5 sm:py-3",
+          isScrolled ? "shadow-xs py-0.5" : "py-1 sm:py-2",
           isHidden ? "-translate-y-full" : "translate-y-0"
         )}
       >
+        {/* Top App Banner upon Header */}
+        {isAppBannerVisible && pathname !== "/download" && (
+          <div className="w-full bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 text-white px-3 sm:px-6 py-1.5 sm:py-2 flex items-center justify-between gap-2 sm:gap-3 border-b border-white/15 text-xs shadow-xs relative z-50">
+            <Link
+              href="/download"
+              className="flex items-center gap-2 min-w-0 flex-1 hover:opacity-95 transition-opacity"
+            >
+              <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-md overflow-hidden bg-white/20 shrink-0 border border-white/30 relative">
+                <Image
+                  src="/black-and-white-portrait-of-a-lion.webp"
+                  alt="Study With Gaurav App"
+                  width={24}
+                  height={24}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex items-center gap-1.5 min-w-0 truncate">
+                <span className="font-extrabold text-white text-[11px] sm:text-xs tracking-tight truncate">
+                  Study With Gaurav App
+                </span>
+                <span className="hidden sm:inline text-[11px] text-blue-100 truncate">
+                  • 100+ Free Batches, Zero Ads (4.6 MB)
+                </span>
+                <span className="sm:hidden text-[10px] text-blue-100 truncate">
+                  • Free (4.6 MB)
+                </span>
+              </div>
+            </Link>
+
+            <div className="flex items-center gap-1.5 shrink-0">
+              <Link
+                href="/download"
+                className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1 rounded-lg bg-white text-blue-800 hover:bg-blue-50 font-bold text-[11px] sm:text-xs shadow-xs active:scale-95 transition-transform"
+              >
+                <Smartphone className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <span>Get App</span>
+              </Link>
+
+              {/* Cross Button */}
+              <button
+                onClick={handleDismissBanner}
+                aria-label="Dismiss app banner"
+                className="min-w-[26px] min-h-[26px] p-1 rounded-md text-white/80 hover:text-white hover:bg-white/20 flex items-center justify-center transition-colors"
+              >
+                <X className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="w-full mx-auto px-3 sm:px-6 lg:px-8 xl:px-12 h-12 sm:h-14 flex items-center justify-between">
           {/* Brand Logo & Name */}
           <Link
@@ -241,17 +312,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
               </kbd>
             </button>
 
-            {/* Get App Button (Desktop & Mobile) */}
-            <Link
-              href="/download"
-              className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 active:scale-95 rounded-lg transition-all shadow-xs min-h-[36px] sm:min-h-[40px] border border-blue-400/20"
-              title="Download Study With Gaurav Android APK"
-            >
-              <Smartphone className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-              <span className="hidden xs:inline">Get App</span>
-              <span className="xs:hidden">App</span>
-            </Link>
-
             {/* Donate Button (Mobile & Desktop) */}
             <Link
               href="/donate"
@@ -263,6 +323,11 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
           </div>
         </div>
       </header>
+
+      {/* Dynamic spacer to push page content when top banner is visible */}
+      {isAppBannerVisible && pathname !== "/download" && (
+        <div className="h-8 sm:h-9" aria-hidden="true" />
+      )}
 
       {/* Mobile Drawer Menu & Overlay Backdrop */}
       {isMobileMenuOpen && (
@@ -355,26 +420,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
                 );
               })}
             </nav>
-
-            {/* Get Android App Banner in Mobile Drawer */}
-            <div className="p-4 pt-2 border-t border-slate-100 bg-gradient-to-br from-indigo-50/70 to-blue-50/50">
-              <Link
-                href="/download"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full flex items-center justify-between p-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 text-white rounded-xl shadow-md active:scale-98 transition-transform font-bold text-sm"
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-white shrink-0">
-                    <Smartphone className="w-4 h-4" />
-                  </div>
-                  <div className="text-left">
-                    <p className="leading-none text-white text-xs font-extrabold">Download Android App</p>
-                    <p className="text-[10px] text-blue-100 font-medium mt-1">v1.0.0 (4.6 MB) • 100+ Free Batches</p>
-                  </div>
-                </div>
-                <Download className="w-4 h-4 text-white shrink-0" />
-              </Link>
-            </div>
 
             {/* Donate Action in Mobile Menu */}
             <div className="p-4 pt-2 space-y-3 border-t border-slate-100 bg-slate-50/50">
