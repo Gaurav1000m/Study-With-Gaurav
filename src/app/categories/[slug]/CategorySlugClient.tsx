@@ -71,7 +71,7 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
       />
 
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
-      <div className="h-14 sm:h-16" />
+      <div className="header-spacer" />
 
       <main className="flex-1 py-4 sm:py-10 pb-20 md:pb-12">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-4 sm:space-y-8">

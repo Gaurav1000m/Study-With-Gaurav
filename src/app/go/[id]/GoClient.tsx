@@ -36,8 +36,8 @@ export function GoClient({ website }: GoClientProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-slate-950 text-white font-sans overflow-hidden">
-      {/* Top Header Bar */}
-      <header className="h-14 sm:h-16 bg-slate-900 border-b border-slate-800 px-3 sm:px-6 flex items-center justify-between shrink-0 shadow-md">
+      {/* Top Header Bar with Safe Area support */}
+      <header className="h-[calc(3.5rem+env(safe-area-inset-top,0px))] sm:h-[calc(4rem+env(safe-area-inset-top,0px))] pt-[env(safe-area-inset-top,0px)] pl-safe pr-safe bg-slate-900 border-b border-slate-800 px-3 sm:px-6 flex items-center justify-between shrink-0 shadow-md">
         {/* Left: Back button & Portal Info */}
         <div className="flex items-center gap-2 sm:gap-4 min-w-0">
           <Link

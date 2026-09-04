@@ -65,6 +65,17 @@ html, body {
   padding-right: env(safe-area-inset-right, 0px);
 }
 
+/* Header safe area spacer to prevent content overlap under notch/cutout displays */
+.header-spacer {
+  width: 100%;
+  height: calc(3.5rem + env(safe-area-inset-top, 0px));
+}
+@media (min-width: 640px) {
+  .header-spacer {
+    height: calc(4rem + env(safe-area-inset-top, 0px));
+  }
+}
+
 /* Mobile Content Container */
 .mobile-container {
   width: 100%;

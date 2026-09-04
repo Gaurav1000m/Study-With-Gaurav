@@ -134,7 +134,7 @@ export function ProfileClient() {
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans">
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
-      <div className="h-14 sm:h-16" />
+      <div className="header-spacer" />
 
       <main className="flex-1 py-4 sm:py-10 pb-24 md:pb-12">
         {/* Responsive Student Profile Dashboard (Desktop & Mobile) */}

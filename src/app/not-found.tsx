@@ -15,7 +15,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans">
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
-      <div className="h-14 sm:h-16" />
+      <div className="header-spacer" />
 
       <main className="flex-1 py-12 sm:py-20 flex items-center justify-center">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center space-y-8">

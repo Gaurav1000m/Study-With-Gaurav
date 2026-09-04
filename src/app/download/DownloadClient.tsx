@@ -93,7 +93,7 @@ export function DownloadClient() {
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
       {/* Website Header */}
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
-      <div className="h-14 sm:h-16" />
+      <div className="header-spacer" />
 
       {/* Main Content: ample bottom padding for mobile bottom nav */}
       <main className="flex-1 pb-24 md:pb-12">

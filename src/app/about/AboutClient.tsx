@@ -62,7 +62,7 @@ export function AboutClient() {
 
       {/* Header */}
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
-      <div className="h-14 sm:h-16" />
+      <div className="header-spacer" />
 
       {/* Main Page Layout */}
       <main className="flex-1 pb-20 md:pb-0">

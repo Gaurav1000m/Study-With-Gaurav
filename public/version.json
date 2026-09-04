@@ -1,8 +1,8 @@
 {
-  "versionCode": 3,
-  "versionName": "1.0.2",
+  "versionCode": 4,
+  "versionName": "1.0.3",
   "apkUrl": "https://studywithgaurav.cc.cd/downloads/StudyWithGaurav.apk",
-  "releaseNotes": "• 100% Ad-Free APK with In-Built Ad Blocker\n• High Speed Loading & Smooth 120Hz Scrolling\n• All Study Batches & Links Open in Same Tab\n• Safe Area View for all Notches & Punch-Holes\n• Profile Integration in Mobile Navigation",
+  "releaseNotes": "• In-App Website Tab: External portals open smoothly without reloading Study with Gaurav\n• 1-Step Instant Back Navigation: Zero reload, zero waiting, scroll position 100% preserved\n• Full Safe Area View across all mobile notches, punch-holes, and gesture bars\n• In-Built Ad Blocker active across all external and internal portals\n• Faster performance and reduced memory consumption",
   "minSupportedVersion": 1,
   "forceUpdate": false
 }

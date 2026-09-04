@@ -155,8 +155,8 @@ export default function Home() {
       
       {/* Header */}
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} onFocusSearch={handleFocusSearch} />
-      {/* Spacer for fixed header */}
-      <div className="h-14 sm:h-16" />
+      {/* Spacer for fixed header with Safe Area support */}
+      <div className="header-spacer" />
 
       <main id="main-content" className="flex-1">
         

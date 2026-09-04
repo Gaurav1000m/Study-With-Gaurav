@@ -47,7 +47,7 @@ export default function DisclaimerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Header />
-      <div className="h-14 sm:h-16" />
+      <div className="header-spacer" />
 
       <main className="flex-1 py-8 sm:py-12 pb-20 md:pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
