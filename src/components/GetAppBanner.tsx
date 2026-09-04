@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Download, X, Sparkles } from "lucide-react";
 
 export function GetAppBanner() {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export function GetAppBanner() {
     sessionStorage.setItem("swg_app_banner_dismissed", "true");
   };
 
-  if (!isVisible) return null;
+  if (pathname === "/download" || !isVisible) return null;
 
   return (
     <aside 
