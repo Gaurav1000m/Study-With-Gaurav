@@ -304,27 +304,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 super.onReceivedError(view, request, error);
-                if (request != null && request.getUrl() != null) {
-                    String host = request.getUrl().getHost();
-                    if (host != null) {
-                        host = host.toLowerCase();
-                        if (host.contains("pagead2.googlesyndication.com") ||
-                                host.contains("googleads") ||
-                                host.contains("quge5.com") ||
-                                host.contains("monetag.com") ||
-                                host.contains("profitableratecpmnetwork.com") ||
-                                host.contains("highrevenueformat.com") ||
-                                host.contains("doubleclick.net")) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                int errorCode = error.getErrorCode();
-                                if (errorCode == WebViewClient.ERROR_HOST_LOOKUP ||
-                                        errorCode == WebViewClient.ERROR_CONNECT ||
-                                        errorCode == WebViewClient.ERROR_FAILED_SSL_HANDSHAKE) {
-                                    // Ad domain failed to resolve or connect while other requests work
-                                    onAdBlockOrDnsDetected();
-                                }
-                            }
-                        }
+                if (request == null || request.getUrl() == null || request.getUrl().getHost() == null) return;
+                
+                String host = request.getUrl().getHost().toLowerCase();
+                boolean isAdDomain = host.contains("pagead2.googlesyndication.com") ||
+                        host.contains("googleads") ||
+                        host.contains("profitableratecpmnetwork.com") ||
+                        host.contains("highrevenueformat.com") ||
+                        host.contains("doubleclick.net");
+
+                if (isAdDomain && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    int code = error.getErrorCode();
+                    if (code == WebViewClient.ERROR_HOST_LOOKUP ||
+                            code == WebViewClient.ERROR_CONNECT ||
+                            code == WebViewClient.ERROR_FAILED_SSL_HANDSHAKE) {
+                        onAdBlockOrDnsDetected();
                     }
                 }
             }

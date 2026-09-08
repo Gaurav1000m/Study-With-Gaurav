@@ -6,13 +6,13 @@ import { Megaphone, Info, ShieldCheck, ExternalLink, ArrowLeft, DollarSign, Eye,
 
 export const metadata: Metadata = {
   title: "Advertising Disclosure | Study with Gaurav",
-  description: "Full transparency on how Study with Gaurav uses advertising (Google AdSense, Monetag) and sponsored content. We are committed to honest disclosure.",
+  description: "Full transparency on how Study with Gaurav uses advertising (Google AdSense) and sponsored content. We are committed to honest disclosure.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/advertising",
   },
   openGraph: {
     title: "Advertising Disclosure | Study with Gaurav",
-    description: "Full transparency on how Study with Gaurav uses advertising (Google AdSense, Monetag) and sponsored content.",
+    description: "Full transparency on how Study with Gaurav uses advertising (Google AdSense) and sponsored content.",
     url: "https://studywithgaurav.cc.cd/advertising",
     type: "website",
   },
@@ -61,16 +61,6 @@ export default function AdvertisingPage() {
       ],
     },
     {
-      icon: <Megaphone className="w-7 h-7" />,
-      color: "purple",
-      title: "Monetag",
-      content: [
-        "We also use Monetag, a third-party ad network, for additional advertising revenue. Monetag may serve display ads, interstitial ads, and push notification ads to support the site's operational costs.",
-        "Monetag sponsored banners and links are labeled as 'SPONSORED LINKS' on our site. These may include links to external educational resources, tools, and services.",
-        "Monetag uses cookies and tracking technologies. You can review Monetag's privacy practices at their official website.",
-      ],
-    },
-    {
       icon: <ExternalLink className="w-7 h-7" />,
       color: "amber",
       title: "Sponsored & Partner Links",
@@ -107,7 +97,7 @@ export default function AdvertisingPage() {
       content: [
         "We will always clearly label advertisements and sponsored content so you can distinguish them from editorial content.",
         "We will never misrepresent the source of any content — all advertising relationships are disclosed on this page.",
-        "We comply with Google AdSense policies, Monetag terms, and applicable FTC (Federal Trade Commission) disclosure guidelines for online advertising.",
+        "We comply with Google AdSense policies and applicable FTC (Federal Trade Commission) disclosure guidelines for online advertising.",
         "If you have questions about our advertising practices, please contact us at our Contact page.",
       ],
     },
@@ -186,7 +176,7 @@ export default function AdvertisingPage() {
               </h2>
               <ul className="grid sm:grid-cols-2 gap-4 relative z-10">
                 {[
-                  "We display ads from Google AdSense and Monetag",
+                  "We display ads from Google AdSense",
                   "All ads are clearly labeled as ADVERTISEMENT or SPONSORED",
                   "Directory listings are never paid or influenced by advertisers",
                   "We use Google Analytics for anonymous usage insights"
