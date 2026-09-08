@@ -1,5 +1,5 @@
+import type React from "react";
 import type { Metadata, Viewport } from "next";
-import { Inter, Archivo } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { SplashScreen } from "@/components/SplashScreen";
@@ -9,18 +9,6 @@ import { VpnGuard } from "@/components/VpnGuard";
 import { DevToolsGuard } from "@/components/DevToolsGuard";
 import { AppProvider } from "@/context/AppContext";
 import { WEBSITES } from "@/data/websites";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const archivo = Archivo({
-  subsets: ["latin"],
-  variable: "--font-archivo",
-  display: "swap",
-});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -366,8 +354,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${archivo.variable} h-full scroll-smooth`}>
+    <html lang="en" className="h-full scroll-smooth">
       <head>
+        {/* Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+          rel="stylesheet"
+        />
+
         {/* Google AdSense Account Verification & Script (Shown on website) */}
         <meta name="google-adsense-account" content="ca-pub-3576643094354429" />
         <Script

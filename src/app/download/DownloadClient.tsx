@@ -535,7 +535,7 @@ export function DownloadClient() {
                   Allow Unknown Sources
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  If prompted by Android, tap <strong>Settings</strong> and toggle on <em>"Allow from this source"</em> for Chrome or your browser.
+                  If prompted by Android, tap <strong>Settings</strong> and toggle on <em>&ldquo;Allow from this source&rdquo;</em> for Chrome or your browser.
                 </p>
               </div>
 
