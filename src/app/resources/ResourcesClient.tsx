@@ -116,6 +116,9 @@ function ResourcesContent() {
             </div>
           </div>
 
+          {/* Top Leaderboard Adsterra Banner */}
+          <AdBanner className="my-3 sm:my-4" />
+
           {/* Grid */}
           <ResourceGrid
             websites={filteredWebsites}

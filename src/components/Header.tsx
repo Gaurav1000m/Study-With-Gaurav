@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Search, Heart, User, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
+import { downloadStudyWithGauravApk } from "@/lib/downloadApk";
 
 interface HeaderProps {
   onOpenSuggestModal?: () => void;
@@ -139,7 +140,7 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
 
           {/* Header Action Buttons */}
           <div className="flex items-center gap-1.5 sm:gap-2">
-            {/* Mobile Action: Quick Search Icon Only */}
+            {/* Mobile Action: Quick Search Icon */}
             <button
               onClick={handleSearchClick}
               aria-label="Search resources"
@@ -149,16 +150,26 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
               <Search className="w-4 h-4" />
             </button>
 
-            {/* Download APK Button (Website View Only - beside Donate) */}
-            <a
-              href="/downloads/StudyWithGaurav.apk"
-              download="StudyWithGaurav.apk"
-              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-colors shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[36px] sm:min-h-[40px]"
+            {/* Mobile Action: Download APK Button */}
+            <button
+              onClick={downloadStudyWithGauravApk}
+              aria-label="Download Android App"
+              title="Download Android APK (4.6 MB)"
+              className="md:hidden flex items-center gap-1 px-2.5 py-1.5 text-xs font-extrabold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-colors shadow-2xs shrink-0 cursor-pointer"
+            >
+              <Download className="w-3.5 h-3.5 shrink-0" />
+              <span>APK</span>
+            </button>
+
+            {/* Download APK Button (Website View - beside Donate) */}
+            <button
+              onClick={downloadStudyWithGauravApk}
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-colors shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[36px] sm:min-h-[40px] cursor-pointer"
               title="Download Android APK (v1.0.4 - 4.6 MB)"
             >
               <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>Download APK</span>
-            </a>
+            </button>
 
             {/* Donate Button (Desktop) */}
             <Link

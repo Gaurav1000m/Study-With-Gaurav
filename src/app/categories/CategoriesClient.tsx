@@ -83,6 +83,9 @@ export function CategoriesClient() {
             </p>
           </div>
 
+          {/* Top Leaderboard Adsterra Banner */}
+          <AdBanner className="my-3 sm:my-4" />
+
           {/* Categories Grid (2 cols on mobile) */}
           <div className="grid grid-cols-2 xs:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5">
             {CATEGORIES.map((category) => (

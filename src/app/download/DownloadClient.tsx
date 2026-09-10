@@ -27,6 +27,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SuggestModal } from "@/components/SuggestModal";
 import { AdsterraBanner } from "@/components/AdsterraBanner";
+import { downloadStudyWithGauravApk } from "@/lib/downloadApk";
 
 interface FaqItem {
   question: string;
@@ -198,28 +199,26 @@ export function DownloadClient() {
                 <div className="space-y-2.5 pt-1">
                   <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                     {/* Primary Direct APK Button */}
-                    <a
-                      href="/downloads/StudyWithGaurav.apk"
-                      download="StudyWithGaurav.apk"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base shadow-md shadow-blue-500/25 hover:shadow-lg hover:shadow-blue-500/35 active:scale-[0.98] transition-all group min-h-[48px]"
+                    <button
+                      onClick={downloadStudyWithGauravApk}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base shadow-md shadow-blue-500/25 hover:shadow-lg hover:shadow-blue-500/35 active:scale-[0.98] transition-all group min-h-[48px] cursor-pointer"
                     >
                       <Download className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
                       <span>Download APK Directly</span>
                       <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-blue-500/40 text-white ml-0.5">
                         4.6 MB
                       </span>
-                    </a>
+                    </button>
 
                     {/* Secondary Mirror Button */}
-                    <a
-                      href="/StudyWithGaurav.apk"
-                      download="StudyWithGaurav.apk"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 sm:py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs sm:text-sm border border-slate-300/90 shadow-2xs hover:border-slate-400 active:scale-[0.98] transition-all min-h-[44px]"
+                    <button
+                      onClick={downloadStudyWithGauravApk}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 sm:py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs sm:text-sm border border-slate-300/90 shadow-2xs hover:border-slate-400 active:scale-[0.98] transition-all min-h-[44px] cursor-pointer"
                     >
                       <Globe className="w-4 h-4 text-slate-600 shrink-0" />
                       <span>Direct Mirror</span>
                       <Download className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                    </a>
+                    </button>
                   </div>
 
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] sm:text-xs text-slate-500 pt-0.5">
@@ -314,14 +313,13 @@ export function DownloadClient() {
                   </div>
 
                   {/* Download Trigger inside Card */}
-                  <a
-                    href="/downloads/StudyWithGaurav.apk"
-                    download="StudyWithGaurav.apk"
-                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-[0.98] min-h-[44px]"
+                  <button
+                    onClick={downloadStudyWithGauravApk}
+                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-[0.98] min-h-[44px] cursor-pointer"
                   >
                     <Download className="w-4 h-4" />
                     <span>Download APK (4.6 MB)</span>
-                  </a>
+                  </button>
 
                   <p className="text-[10px] sm:text-[11px] text-slate-400 mt-2 sm:mt-2.5">
                     Compatible with Samsung, Xiaomi, OnePlus, Realme & Pixel devices.
@@ -555,14 +553,13 @@ export function DownloadClient() {
 
             {/* Quick Action Button */}
             <div className="mt-6 sm:mt-8 text-center">
-              <a
-                href="/downloads/StudyWithGaurav.apk"
-                download="StudyWithGaurav.apk"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 active:scale-95 transition-all min-h-[44px]"
+              <button
+                onClick={downloadStudyWithGauravApk}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 active:scale-95 transition-all min-h-[44px] cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 <span>Start Download (v1.0.4 APK)</span>
-              </a>
+              </button>
             </div>
           </div>
         </section>
@@ -617,6 +614,11 @@ export function DownloadClient() {
                   <span className="sm:col-span-2 text-slate-700 text-xs sm:text-sm">100% Free Educational Software</span>
                 </div>
               </div>
+            </div>
+
+            {/* In-feed High-CPM Adsterra Banner */}
+            <div className="mt-8 flex justify-center overflow-hidden">
+              <AdsterraBanner format="responsive" />
             </div>
           </div>
         </section>
@@ -699,14 +701,13 @@ export function DownloadClient() {
             </p>
 
             <div className="pt-1 sm:pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3">
-              <a
-                href="/downloads/StudyWithGaurav.apk"
-                download="StudyWithGaurav.apk"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white text-blue-900 hover:bg-slate-100 font-extrabold text-sm sm:text-base shadow-xl shadow-slate-950/20 active:scale-95 transition-all min-h-[48px]"
+              <button
+                onClick={downloadStudyWithGauravApk}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white text-blue-900 hover:bg-slate-100 font-extrabold text-sm sm:text-base shadow-xl shadow-slate-950/20 active:scale-95 transition-all min-h-[48px] cursor-pointer"
               >
                 <Download className="w-4 h-4 sm:w-5 sm:h-5 text-blue-700 shrink-0" />
                 <span>Download APK (4.6 MB)</span>
-              </a>
+              </button>
 
               <Link
                 href="/"

@@ -3,6 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/data/config";
+import { ADSTERRA_SMART_LINK } from "@/components/AdsterraBanner";
+import { downloadStudyWithGauravApk } from "@/lib/downloadApk";
+import { AdBanner } from "@/components/AdBanner";
 
 interface FooterProps {
   onOpenSuggestModal?: () => void;
@@ -164,6 +167,26 @@ export function Footer({ onOpenSuggestModal }: FooterProps) {
                   Suggest Resource
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={downloadStudyWithGauravApk}
+                  className="hover:text-blue-700 transition-colors font-semibold text-blue-600 cursor-pointer flex items-center gap-1.5 text-left"
+                >
+                  <span>Download Android APK</span>
+                  <span className="text-[9px] px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded-md font-bold">4.6MB</span>
+                </button>
+              </li>
+              <li>
+                <a
+                  href={ADSTERRA_SMART_LINK}
+                  target="_blank"
+                  rel="sponsored noopener noreferrer"
+                  className="hover:text-emerald-700 transition-colors font-semibold text-emerald-600 flex items-center gap-1.5"
+                >
+                  <span>Sponsored Study Deals & Offers</span>
+                  <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded-md font-bold">HOT</span>
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -207,6 +230,11 @@ export function Footer({ onOpenSuggestModal }: FooterProps) {
           </div>
 
         </div>
+      </div>
+
+      {/* Footer Responsive Ad Banner */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 flex items-center justify-center overflow-hidden">
+        <AdBanner format="auto" className="my-0" />
       </div>
 
       {/* 3. Bottom Copyright */}
