@@ -213,7 +213,7 @@ export function AppxHeroText() {
         </span>
         <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
           <BookOpen className="w-3.5 h-3.5 text-blue-600" />
-          <span>PW • RWA • IIT School & 25+ Hubs</span>
+          <span>PW • RWA • Next Toppers • Vidhakul • Gyan Bindu • Vidhyagram</span>
         </span>
       </div>
 

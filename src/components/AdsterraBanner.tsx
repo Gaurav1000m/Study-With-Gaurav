@@ -145,7 +145,7 @@ export function AdsterraBanner({
         height={config.height}
         className="border-0 overflow-hidden max-w-full"
         scrolling="no"
-        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-forms allow-modals"
       />
     </div>
   );

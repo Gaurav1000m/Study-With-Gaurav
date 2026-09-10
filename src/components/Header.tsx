@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { Search, X, Heart, Smartphone, User } from "lucide-react";
+import { Search, Heart, User, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
 
@@ -19,29 +19,8 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const [isAppBannerVisible, setIsAppBannerVisible] = useState(false);
   const lastScrollY = useRef(0);
   const isHomePage = pathname === "/";
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Do not show inside Android app wrapper or on download page
-      if ((window as any).AndroidSecurityBridge) return;
-      const dismissed = sessionStorage.getItem("swg_top_app_banner_dismissed");
-      if (!dismissed && pathname !== "/download") {
-        setIsAppBannerVisible(true);
-      } else {
-        setIsAppBannerVisible(false);
-      }
-    }
-  }, [pathname]);
-
-  const handleDismissBanner = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsAppBannerVisible(false);
-    sessionStorage.setItem("swg_top_app_banner_dismissed", "true");
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,56 +76,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
           isHidden ? "-translate-y-full" : "translate-y-0"
         )}
       >
-        {/* Top App Banner upon Header */}
-        {isAppBannerVisible && pathname !== "/download" && (
-          <div className="w-full bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 text-white px-3 sm:px-6 py-1.5 sm:py-2 flex items-center justify-between gap-2 sm:gap-3 border-b border-white/15 text-xs shadow-xs relative z-50">
-            <Link
-              href="/download"
-              className="flex items-center gap-2 min-w-0 flex-1 hover:opacity-95 transition-opacity"
-            >
-              <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-md overflow-hidden bg-white/20 shrink-0 border border-white/30 relative">
-                <Image
-                  src="/black-and-white-portrait-of-a-lion.webp"
-                  alt="Study With Gaurav App"
-                  width={24}
-                  height={24}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex items-center gap-1.5 min-w-0 truncate">
-                <span className="font-extrabold text-white text-[11px] sm:text-xs tracking-tight truncate">
-                  Study With Gaurav App
-                </span>
-                <span className="hidden sm:inline text-[11px] text-blue-100 truncate">
-                  • 100+ Free Batches, Zero Ads (4.6 MB)
-                </span>
-                <span className="sm:hidden text-[10px] text-blue-100 truncate">
-                  • Free (4.6 MB)
-                </span>
-              </div>
-            </Link>
-
-            <div className="flex items-center gap-1.5 shrink-0">
-              <Link
-                href="/download"
-                className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1 rounded-lg bg-white text-blue-800 hover:bg-blue-50 font-bold text-[11px] sm:text-xs shadow-xs active:scale-95 transition-transform"
-              >
-                <Smartphone className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                <span>Get App</span>
-              </Link>
-
-              {/* Cross Button */}
-              <button
-                onClick={handleDismissBanner}
-                aria-label="Dismiss app banner"
-                className="min-w-[26px] min-h-[26px] p-1 rounded-md text-white/80 hover:text-white hover:bg-white/20 flex items-center justify-center transition-colors"
-              >
-                <X className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </button>
-            </div>
-          </div>
-        )}
-
         <div className="w-full mx-auto px-3 sm:px-6 lg:px-8 xl:px-12 h-12 sm:h-14 flex items-center justify-between">
           {/* Brand Logo & Name */}
           <Link
@@ -220,18 +149,16 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
               <Search className="w-4 h-4" />
             </button>
 
-            {/* Desktop Quick Search Input Trigger */}
-            <button
-              onClick={handleSearchClick}
-              className="hidden md:inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-slate-500 bg-slate-100 hover:bg-slate-200/80 hover:text-slate-900 rounded-lg border border-slate-200 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-              title="Search resources (Press /)"
+            {/* Download APK Button (Website View Only - beside Donate) */}
+            <a
+              href="/downloads/StudyWithGaurav.apk"
+              download="StudyWithGaurav.apk"
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-colors shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[36px] sm:min-h-[40px]"
+              title="Download Android APK (v1.0.4 - 4.6 MB)"
             >
-              <Search className="w-3.5 h-3.5" />
-              <span>Search resources...</span>
-              <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-[10px] font-semibold bg-white border border-slate-200 rounded text-slate-500">
-                /
-              </kbd>
-            </button>
+              <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+              <span>Download APK</span>
+            </a>
 
             {/* Donate Button (Desktop) */}
             <Link
@@ -259,11 +186,6 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
           </div>
         </div>
       </header>
-
-      {/* Dynamic spacer to push page content when top banner is visible */}
-      {isAppBannerVisible && pathname !== "/download" && (
-        <div className="h-8 sm:h-9" aria-hidden="true" />
-      )}
     </>
   );
 }

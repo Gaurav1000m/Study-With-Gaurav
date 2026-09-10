@@ -57,7 +57,7 @@ export function GetAppBanner() {
                 Study With Gaurav App
               </span>
               <span className="px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-400 text-[9px] font-black tracking-wider uppercase border border-emerald-500/30 shrink-0">
-                v1.0
+                v1.0.4
               </span>
             </div>
             <p className="text-[10px] sm:text-[11px] text-slate-400 truncate mt-0.5">

@@ -192,11 +192,20 @@ export const CATEGORIES: Category[] = [
   },
   {
     id: "vidhyakul",
-    name: "Vidhyakul",
-    shortName: "Vidhyakul",
+    name: "Vidhyakul & Vidyagram (Vidhakul)",
+    shortName: "Vidhakul / Vidyagram",
     iconName: "Library",
     logo: "https://cdn-1.webcatalog.io/catalog/vidyakul/vidyakul-icon-filled-256.webp?v=1714780458007",
-    description: "Vernacular learning platform providing local language e-learning courses.",
+    description: "Vernacular learning platform providing local language e-learning courses, Vidhakul, and Vidyagram free batches.",
+    featured: true
+  },
+  {
+    id: "gyan-bindu",
+    name: "Gyan Bindu GS Academy",
+    shortName: "Gyan Bindu",
+    iconName: "Compass",
+    logo: "https://appx-wsb-gcp.akamai.net.in/subject/2022-06-13-0.6832003604181192.webp",
+    description: "Premier GS Academy Patna for Bihar Daroga, BPSC, SSC, and state competitive exam free batches by Roshan Sir & Bittu Jha Sir.",
     featured: true
   },
   {

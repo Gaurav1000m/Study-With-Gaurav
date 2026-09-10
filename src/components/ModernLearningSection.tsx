@@ -40,10 +40,11 @@ export function ModernLearningSection() {
           {/* Image Side */}
           <div className="relative w-full flex items-center justify-center order-1 lg:order-2">
             <div className="relative w-full max-w-lg mx-auto">
-              {/* Using standard img for external domain without needing next.config.js changes if any */}
-              <img 
-                src="https://px.pixxo.io/sheryians/nyc/learnfrom/tradition.png" 
+              <Image 
+                src="/images/tradition_transparent.webp" 
                 alt="Traditional vs Modern Learning workflow diagram" 
+                width={550}
+                height={450}
                 className="w-full h-auto object-contain filter drop-shadow-2xl transition-transform hover:scale-105 duration-500"
               />
             </div>
