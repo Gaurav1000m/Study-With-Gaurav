@@ -49,14 +49,14 @@ export default function TermsPage() {
       <Header />
       <div className="h-14 sm:h-16" />
 
-      <main className="flex-1 py-8 sm:py-12 pb-20 md:pb-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <main id="main-content" className="flex-1 py-4 sm:py-12 pb-24 md:pb-16">
+        <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 space-y-4 sm:space-y-8">
           
           {/* Breadcrumb Back */}
           <div>
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-blue-700 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-blue-700 transition-colors min-h-[44px] px-1"
             >
               <ArrowLeft className="w-4 h-4 text-blue-600" />
               <span>Back to Directory</span>
@@ -64,12 +64,12 @@ export default function TermsPage() {
           </div>
 
           {/* Page Header */}
-          <div className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200/80 shadow-xs space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+          <div className="bg-white p-4 sm:p-8 rounded-2xl border border-slate-200/90 shadow-2xs space-y-2 sm:space-y-3">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
               <Scale className="w-3.5 h-3.5" />
               <span>User Agreement & Directory Guidelines</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
               Terms & Conditions
             </h1>
             <p className="text-xs sm:text-sm text-slate-500">
@@ -78,7 +78,7 @@ export default function TermsPage() {
           </div>
 
           {/* Terms Content */}
-          <div className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200/80 shadow-xs space-y-8 leading-relaxed text-slate-700 text-sm sm:text-base">
+          <div className="bg-white p-4 sm:p-10 rounded-2xl border border-slate-200/90 shadow-2xs space-y-6 sm:space-y-8 leading-relaxed text-slate-700 text-xs sm:text-base">
             
             {/* 1. Introduction */}
             <section className="space-y-3">

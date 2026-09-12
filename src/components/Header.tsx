@@ -14,26 +14,25 @@ interface HeaderProps {
   onFocusSearch?: () => void;
 }
 
-export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) {
-  const { bookmarks, userProfile } = useApp();
+export function Header({ onFocusSearch }: HeaderProps = {}) {
+  const { bookmarks } = useApp();
   const pathname = usePathname();
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollY = useRef(0);
-  const isHomePage = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
       const prev = lastScrollY.current;
 
-      // Hide when scrolling down past 80px threshold
-      if (currentY > prev && currentY > 80) {
+      // Hide when scrolling down past 120px threshold
+      if (currentY > prev && currentY > 120) {
         setIsHidden(true);
       }
-      // Show when scrolling up by at least 5px
-      else if (prev - currentY > 5) {
+      // Show immediately when scrolling up by at least 3px
+      else if (prev - currentY > 3) {
         setIsHidden(false);
       }
 
@@ -45,12 +44,19 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
+  interface NavLink {
+    name: string;
+    href: string;
+    badge?: number;
+  }
+
+  const navLinks: NavLink[] = [
     { name: "Home", href: "/" },
     { name: "Resources", href: "/resources" },
     { name: "Categories", href: "/categories" },
+    { name: "Articles", href: "/articles" },
+    { name: "Roadmaps", href: "/roadmaps" },
     { name: "Saved", href: "/saved", badge: bookmarks.length },
-    { name: "Popular", href: "/popular" },
     { name: "About", href: "/about" },
   ];
 
@@ -77,13 +83,13 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
           isHidden ? "-translate-y-full" : "translate-y-0"
         )}
       >
-        <div className="w-full mx-auto px-3 sm:px-6 lg:px-8 xl:px-12 h-12 sm:h-14 flex items-center justify-between">
+        <div className="w-full mx-auto px-2.5 sm:px-6 lg:px-8 xl:px-12 h-12 sm:h-14 flex items-center justify-between gap-1.5 sm:gap-3">
           {/* Brand Logo & Name */}
           <Link
             href="/"
-            className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg py-1 pr-1.5"
+            className="flex items-center gap-1.5 sm:gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg py-1 min-w-0 shrink"
           >
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 overflow-hidden flex items-center justify-center text-white shadow-2xs group-hover:scale-105 transition-transform duration-200 shrink-0 border border-slate-800 relative">
+            <div className="w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 overflow-hidden flex items-center justify-center text-white shadow-2xs group-hover:scale-105 transition-transform duration-200 shrink-0 border border-slate-800 relative">
               <Image
                 src="/images/lionbg.webp"
                 alt="Study with Gaurav logo"
@@ -93,8 +99,8 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="flex flex-col min-w-0">
-              <span className="font-extrabold text-slate-900 text-sm sm:text-base tracking-tight group-hover:text-blue-600 transition-colors truncate">
+            <div className="flex flex-col min-w-0 max-w-[125px] xs:max-w-[170px] sm:max-w-none">
+              <span className="font-extrabold text-slate-900 text-xs xs:text-sm sm:text-base tracking-tight group-hover:text-blue-600 transition-colors truncate">
                 Study with Gaurav
               </span>
               <span className="text-[9px] sm:text-[10px] font-semibold text-slate-400 hidden xs:inline-block truncate uppercase tracking-wider">
@@ -139,36 +145,37 @@ export function Header({ onOpenSuggestModal, onFocusSearch }: HeaderProps = {}) 
           </nav>
 
           {/* Header Action Buttons */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* Mobile Action: Donate Button (Mobile header bar only) */}
+            <Link
+              href="/donate"
+              className="inline-flex md:hidden items-center gap-1 px-2.5 py-1 rounded-full text-xs font-extrabold text-white bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-95 transition-all shadow-xs border border-rose-400 min-h-[30px]"
+              title="Support & Donate"
+              aria-label="Donate to Study with Gaurav"
+            >
+              <Heart className="w-3.5 h-3.5 fill-white text-white animate-pulse" />
+              <span>Donate</span>
+            </Link>
+
             {/* Mobile Action: Quick Search Icon */}
             <button
               onClick={handleSearchClick}
               aria-label="Search resources"
               title="Search resources"
-              className="md:hidden w-9 h-9 rounded-full flex items-center justify-center text-slate-700 hover:text-blue-600 bg-slate-100 hover:bg-slate-200/80 active:bg-slate-200 transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 shrink-0"
+              className="md:hidden w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-slate-700 hover:text-blue-600 bg-slate-100 hover:bg-slate-200/80 active:bg-slate-200 transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 shrink-0 cursor-pointer"
             >
-              <Search className="w-4 h-4" />
+              <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
 
-            {/* Mobile Action: Download APK Button */}
+            {/* Download APK Button (Desktop Only) */}
             <button
               onClick={downloadStudyWithGauravApk}
-              aria-label="Download Android App"
-              title="Download Android APK (4.6 MB)"
-              className="md:hidden flex items-center gap-1 px-2.5 py-1.5 text-xs font-extrabold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-colors shadow-2xs shrink-0 cursor-pointer"
-            >
-              <Download className="w-3.5 h-3.5 shrink-0" />
-              <span>APK</span>
-            </button>
-
-            {/* Download APK Button (Website View - beside Donate) */}
-            <button
-              onClick={downloadStudyWithGauravApk}
-              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-colors shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[36px] sm:min-h-[40px] cursor-pointer"
+              className="hidden md:inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 xs:px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-[11px] xs:text-xs sm:text-sm font-extrabold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-colors shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[30px] sm:min-h-[40px] shrink-0 cursor-pointer active:scale-95"
               title="Download Android APK (v1.0.4 - 4.6 MB)"
+              aria-label="Download Android APK"
             >
               <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-              <span>Download APK</span>
+              <span className="whitespace-nowrap font-bold">Download APK</span>
             </button>
 
             {/* Donate Button (Desktop) */}

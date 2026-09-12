@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const categoryWebsites = WEBSITES.filter((w) => w.category === slug);
 
   return {
-    title: `${category.name} Resources & Batches (${categoryWebsites.length}+ Platforms) | Study with Gaurav`,
+    title: `${category.name} Resources & Study Guides (${categoryWebsites.length}+ Platforms) | Study with Gaurav`,
     description: `${category.description} Discover ${categoryWebsites.length}+ verified ${category.name} educational portals, notes, courses, and study links.`,
     alternates: {
       canonical: `https://studywithgaurav.cc.cd/categories/${slug}`,
@@ -60,32 +60,7 @@ export default async function CategoryDetailPage({ params }: CategoryPageProps) 
 
   const categoryWebsites = WEBSITES.filter((w) => w.category === slug);
 
-  const jsonLdCollection = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": `${category.name} Educational Resources`,
-    "description": category.description,
-    "url": `https://studywithgaurav.cc.cd/categories/${slug}`,
-    "mainEntity": {
-      "@type": "ItemList",
-      "numberOfItems": categoryWebsites.length,
-      "itemListElement": categoryWebsites.map((item, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": item.name,
-        "url": item.url,
-        "description": item.description,
-      }))
-    }
-  };
-
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdCollection) }}
-      />
-      <CategorySlugClient category={category} categoryWebsites={categoryWebsites} />
-    </>
+    <CategorySlugClient category={category} categoryWebsites={categoryWebsites} />
   );
 }

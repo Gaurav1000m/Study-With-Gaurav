@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { PlusCircle, Globe, Mail } from "lucide-react";
-import { siteConfig } from "@/data/config";
+import { PlusCircle, Globe } from "lucide-react";
 
 interface SuggestResourceCTAProps {
   onOpenSuggestModal: () => void;

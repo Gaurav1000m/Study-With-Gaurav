@@ -1,164 +1,99 @@
 "use client";
 
-import Image from "next/image";
-import { Star, Quote } from "lucide-react";
-import { cn } from "@/lib/utils";
-
-const REVIEWS = [
-  {
-    id: 1,
-    name: "Shabnam",
-    text: "Great directory! It helped me find the best resources and batches for my preparation. Highly recommended for all students.",
-    rating: 5,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Shabnam",
-  },
-  {
-    id: 2,
-    name: "Nitika",
-    text: "Amazing platform with amazing links. Best study directory, it's definitely useful and fun.",
-    rating: 5,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Nitika",
-  },
-  {
-    id: 3,
-    name: "Rahul",
-    text: "Thanks for your constant effort!! Because of you my board exam preparation went pretty well. 🔥💯",
-    rating: 5,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul",
-  },
-  {
-    id: 4,
-    name: "Aman",
-    text: "Everything in one place! I don't have to search anywhere else now.",
-    rating: 5,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aman",
-  },
-];
+import Link from "next/link";
+import { ShieldCheck, Award, HeartHandshake, BookOpen, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export function TestimonialsSection() {
+  const commitments = [
+    {
+      icon: ShieldCheck,
+      color: "text-blue-600 bg-blue-50 border-blue-100",
+      title: "Zero Piracy & Safe Browsing",
+      description:
+        "We never distribute cracked software, bypassed paywalls, or pirated content. All links point to legitimate official platforms, open-source repositories, and legitimate public study archives.",
+    },
+    {
+      icon: Award,
+      color: "text-emerald-600 bg-emerald-50 border-emerald-100",
+      title: "Objective Pedagogical Reviews",
+      description:
+        "We evaluate learning resources through independent editorial reviews. Platforms are rated on syllabus relevance, instructional clarity, practice problems, and cost transparency.",
+    },
+    {
+      icon: BookOpen,
+      color: "text-purple-600 bg-purple-50 border-purple-100",
+      title: "Structured Learning Pathways",
+      description:
+        "Rather than tossing endless links at students, we organize materials into logical roadmaps and milestone-driven study guides to prevent tutorial paralysis.",
+    },
+    {
+      icon: HeartHandshake,
+      color: "text-amber-600 bg-amber-50 border-amber-100",
+      title: "Community-Driven & Student-First",
+      description:
+        "Maintained by students for students. If a platform changes its pricing, breaks its links, or introduces deceptive pop-ups, our editorial desk audits and updates it promptly.",
+    },
+  ];
+
   return (
-    <section className="w-full py-16 sm:py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+    <section className="w-full py-16 sm:py-24 bg-slate-50 border-y border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            <span className="relative inline-block">
-              Real stories.
-              <svg className="absolute w-full h-3 -bottom-1 left-0 text-blue-500" viewBox="0 0 100 10" preserveAspectRatio="none">
-                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="transparent" strokeLinecap="round" />
-              </svg>
-            </span>{" "}
-            Real results.
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">
+            <CheckCircle2 className="w-3.5 h-3.5" />
+            <span>Guaranteed Editorial Standards</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Our Educational Commitment to Students
           </h2>
-          <p className="text-lg sm:text-xl text-slate-500 font-medium">
-            See how students are winning with our directory
+
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            Finding high-yield study materials online shouldn&apos;t require navigating deceptive ad traps, broken links, or low-quality content farms.
           </p>
         </div>
 
-        {/* 2-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          
-          {/* Left: Map */}
-          <div className="relative w-full aspect-square max-w-md mx-auto lg:max-w-none lg:w-full flex items-center justify-center">
-            <div className="relative w-full h-full max-h-[500px]">
-              <Image 
-                src="https://scienceandfun.live/scienceandfun/testimonial-map.svg" 
-                alt="Map of student reach in India" 
-                width={500}
-                height={500}
-                unoptimized
-                className="w-full h-full object-contain" 
-              />
-            </div>
-          </div>
-
-          {/* Right: Review Slider */}
-          <div className="relative w-full h-[500px] overflow-hidden rounded-3xl">
-            <div className="absolute inset-0 flex flex-col pt-8 pb-8 w-full px-4 sm:px-8">
-              <div className="flex flex-col gap-6 animate-marquee-vertical w-full h-max">
-                
-                {/* First Set of Reviews */}
-                {REVIEWS.map((review) => (
-                  <div 
-                    key={`1-${review.id}`} 
-                    className="relative w-full bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200/80 flex flex-col gap-5 hover:shadow-md hover:bg-white transition-all shrink-0 group"
-                  >
-                    <Quote className="absolute top-6 right-6 w-8 h-8 text-blue-100 group-hover:text-blue-200 transition-colors" />
-                    <div className="flex items-center gap-4 relative z-10">
-                      <Image 
-                        src={review.avatar} 
-                        alt={`Student reviewer avatar for ${review.name}`} 
-                        width={56}
-                        height={56}
-                        unoptimized
-                        className="w-14 h-14 rounded-full bg-slate-50 border-2 border-slate-100 shadow-sm object-cover"
-                      />
-                      <div>
-                        <h3 className="font-bold text-slate-900 text-lg">{review.name}</h3>
-                        <div className="flex items-center gap-1 mt-1">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <Star 
-                              key={i} 
-                              className={cn(
-                                "w-4 h-4",
-                                i < review.rating ? "fill-yellow-400 text-yellow-400" : "fill-slate-100 text-slate-200"
-                              )} 
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-slate-600 text-base leading-relaxed font-medium relative z-10">
-                      &ldquo;{review.text}&rdquo;
-                    </p>
+        {/* 4 Pillars Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {commitments.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={idx}
+                className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow space-y-4 flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <div className={`w-12 h-12 rounded-2xl border flex items-center justify-center ${item.color}`}>
+                    <Icon className="w-6 h-6" />
                   </div>
-                ))}
-                
-                {/* Duplicate reviews to show scrolling content smoothly */}
-                {REVIEWS.map((review) => (
-                  <div 
-                    key={`2-${review.id}`} 
-                    className="relative w-full bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200/80 flex flex-col gap-5 hover:shadow-md hover:bg-white transition-all shrink-0 group"
-                  >
-                    <Quote className="absolute top-6 right-6 w-8 h-8 text-blue-100 group-hover:text-blue-200 transition-colors" />
-                    <div className="flex items-center gap-4 relative z-10">
-                      <Image 
-                        src={review.avatar} 
-                        alt={`Student reviewer avatar for ${review.name}`} 
-                        width={56}
-                        height={56}
-                        unoptimized
-                        className="w-14 h-14 rounded-full bg-slate-50 border-2 border-slate-100 shadow-sm object-cover"
-                      />
-                      <div>
-                        <h3 className="font-bold text-slate-900 text-lg">{review.name}</h3>
-                        <div className="flex items-center gap-1 mt-1">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <Star 
-                              key={i} 
-                              className={cn(
-                                "w-4 h-4",
-                                i < review.rating ? "fill-yellow-400 text-yellow-400" : "fill-slate-100 text-slate-200"
-                              )} 
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-slate-600 text-base leading-relaxed font-medium relative z-10">
-                      &ldquo;{review.text}&rdquo;
-                    </p>
-                  </div>
-                ))}
+                  <h3 className="text-lg font-bold text-slate-900">{item.title}</h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-            </div>
-            
-            {/* Fade effect at top and bottom of slider */}
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-10"></div>
-            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-10"></div>
-          </div>
+            );
+          })}
+        </div>
 
+        {/* Editorial Policy Callout */}
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="space-y-1 text-center sm:text-left">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900">
+              Want to learn how we evaluate, audit, and approve resources?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-500">
+              Read our full 5-point evaluation rubric, advertising disclosure, and correction policy.
+            </p>
+          </div>
+          <Link
+            href="/editorial-policy"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white font-bold text-xs sm:text-sm hover:bg-blue-700 transition-colors shadow-sm shrink-0"
+          >
+            <span>Read Editorial Policy</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>

@@ -14,7 +14,6 @@ import {
   Sparkles,
   ChevronDown,
   Info,
-  ExternalLink,
   Lock,
   Cpu,
   ArrowRight,
@@ -26,7 +25,6 @@ import {
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SuggestModal } from "@/components/SuggestModal";
-import { AdsterraBanner } from "@/components/AdsterraBanner";
 import { downloadStudyWithGauravApk } from "@/lib/downloadApk";
 
 interface FaqItem {
@@ -81,7 +79,7 @@ export function DownloadClient() {
     if (navigator.share) {
       try {
         await navigator.share(shareData);
-      } catch (err) {
+      } catch {
         // Ignored if user dismissed share sheet
       }
     } else {
@@ -98,7 +96,7 @@ export function DownloadClient() {
       <div className="h-14 sm:h-16" />
 
       {/* Main Content: ample bottom padding for mobile bottom nav */}
-      <main className="flex-1 pb-24 md:pb-12">
+      <main id="main-content" className="flex-1 pb-24 md:pb-12">
         {/* Breadcrumb Bar */}
         <section className="bg-white border-b border-slate-200/80">
           <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3">
@@ -331,10 +329,6 @@ export function DownloadClient() {
           </div>
         </section>
 
-        {/* Simple Banner Ad */}
-        <div className="w-full flex items-center justify-center my-3 overflow-hidden">
-          <AdsterraBanner format="responsive" />
-        </div>
 
         {/* App Screenshots Showcase Section */}
         <section className="w-full py-10 sm:py-16 bg-white border-b border-slate-200/70">
@@ -616,10 +610,6 @@ export function DownloadClient() {
               </div>
             </div>
 
-            {/* In-feed High-CPM Adsterra Banner */}
-            <div className="mt-8 flex justify-center overflow-hidden">
-              <AdsterraBanner format="responsive" />
-            </div>
           </div>
         </section>
 

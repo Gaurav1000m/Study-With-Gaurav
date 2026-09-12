@@ -2,9 +2,8 @@ export const siteConfig = {
   name: "Study with Gaurav",
   domain: "studywithgaurav.cc.cd",
   url: "https://studywithgaurav.cc.cd",
-  tagline: "Everything Students Need, In One Place.",
-  description: "The ultimate student directory for JEE, NEET, SSC, Board exam preparation, free batch links, PDF notes, and educational portals.",
-  adsterraSmartLink: "https://www.profitableratecpmnetwork.com/wbaq56gdt?key=e7b6dd096a0f9a28dd21c51252679e4f",
+  tagline: "Organized Educational Resources, Study Guides & Learning Roadmaps.",
+  description: "An organized educational information and resource platform designed to help students discover verified learning websites, study guides, exam preparation resources, and academic roadmaps.",
   suggestWebsiteUrl: "", // Empty so we default to the suggestion modal
   feedbackUrl: "mailto:contact@studywithgaurav.cc.cd",
   contactEmail: "contact@studywithgaurav.cc.cd",

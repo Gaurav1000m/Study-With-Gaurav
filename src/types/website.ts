@@ -11,6 +11,11 @@ export interface Category {
   featured?: boolean;
 }
 
+export interface WebsiteFaq {
+  question: string;
+  answer: string;
+}
+
 export interface Website {
   id: string;
   name: string;
@@ -26,6 +31,20 @@ export interface Website {
   isNew?: boolean;
   dateAdded: string; // YYYY-MM-DD
   rating?: number;
+  
+  // Editorial and Educational Guidance Fields
+  longDescription?: string;
+  targetAudience?: string;
+  academicLevel?: string;
+  keyFeatures?: string[];
+  benefits?: string[];
+  prerequisites?: string;
+  howToUse?: string[];
+  recommendedStartingPoint?: string;
+  advantages?: string[];
+  limitations?: string[];
+  faqs?: WebsiteFaq[];
+  lastReviewed?: string;
 }
 
 export type SortOption = "recommended" | "popular" | "recent" | "a-z";

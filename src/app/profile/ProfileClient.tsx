@@ -22,11 +22,9 @@ import {
   Edit3,
   Check,
   Trash2,
-  Smartphone,
   Sparkles,
   ExternalLink,
   ChevronRight,
-  Compass,
   Flame,
   Send,
   CheckCircle2,
@@ -79,8 +77,11 @@ export function ProfileClient() {
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   useEffect(() => {
-    setNameInput(userProfile.name);
-    setGoalInput(userProfile.examGoal);
+    const timer = setTimeout(() => {
+      setNameInput(userProfile.name);
+      setGoalInput(userProfile.examGoal);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [userProfile]);
 
   // Map recently viewed IDs to website objects
@@ -110,7 +111,7 @@ export function ProfileClient() {
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
       <div className="h-14 sm:h-16" />
 
-      <main className="flex-1 py-4 sm:py-10 pb-24 md:pb-12">
+      <main id="main-content" className="flex-1 py-4 sm:py-10 pb-24 md:pb-12">
         {/* Responsive Student Profile Dashboard (Desktop & Mobile) */}
         <div className="w-full max-w-2xl mx-auto px-3 sm:px-6 space-y-4 sm:space-y-6">
 

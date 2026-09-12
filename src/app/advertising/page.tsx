@@ -129,15 +129,15 @@ export default function AdvertisingPage() {
         <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl mix-blend-multiply" />
       </div>
 
-      <main id="main-content" className="flex-1 py-10 sm:py-16 pb-24 md:pb-20 relative z-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <main id="main-content" className="flex-1 py-4 sm:py-16 pb-24 md:pb-20 relative z-10">
+        <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 space-y-4 sm:space-y-12">
 
           {/* Breadcrumb & Header Section */}
-          <div className="space-y-6 text-center md:text-left md:flex md:items-end md:justify-between">
-            <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-6 text-center md:text-left md:flex md:items-end md:justify-between">
+            <div className="space-y-2 sm:space-y-4">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-indigo-600 transition-colors group px-1"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-indigo-600 transition-colors group px-1 min-h-[44px]"
               >
                 <ArrowLeft className="w-4 h-4 text-indigo-500 group-hover:-translate-x-1 transition-transform" />
                 <span>Home <span className="mx-1 text-slate-300">/</span> <span className="text-slate-800">Advertising Disclosure</span></span>

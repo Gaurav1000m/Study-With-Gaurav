@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SuggestModal } from "@/components/SuggestModal";
@@ -12,7 +11,7 @@ import { LottieAnimation } from "@/components/LottieAnimation";
 import { WEBSITES } from "@/data/websites";
 import { CATEGORIES } from "@/data/categories";
 import { useApp } from "@/context/AppContext";
-import { Bookmark, Trash2, ArrowRight } from "lucide-react";
+import { Bookmark, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function SavedClient() {
@@ -77,7 +76,7 @@ export function SavedClient() {
       />
       <div className="h-14 sm:h-16" />
 
-      <main className="flex-1 py-4 sm:py-10 pb-20 md:pb-12">
+      <main id="main-content" className="flex-1 py-4 sm:py-10 pb-20 md:pb-12">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-4 sm:space-y-8">
           
           {/* Header Banner - Matching Resource Directory Header */}
@@ -170,7 +169,7 @@ export function SavedClient() {
             /* Empty State: Only animation showing without white box and text */
             <div className="flex items-center justify-center py-6 sm:py-12 w-full">
               <LottieAnimation
-                url="https://lottie.host/embed/9b9953e1-b7a9-426b-bc2d-8b47a3967132/dmWu1FgEtL.json"
+                url="/lottie/empty-saved.json"
                 width={260}
                 height={260}
                 className="w-56 h-56 sm:w-72 sm:h-72"

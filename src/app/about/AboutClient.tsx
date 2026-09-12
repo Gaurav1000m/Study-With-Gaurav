@@ -65,17 +65,23 @@ export function AboutClient() {
       <div className="h-14 sm:h-16" />
 
       {/* Main Page Layout */}
-      <main className="flex-1 pb-20 md:pb-0">
+      <main id="main-content" className="flex-1 pb-24 md:pb-0">
         <AboutHero />
-        <WhySection />
+        <div className="hidden md:block">
+          <WhySection />
+        </div>
         <MissionSection />
         <HowItWorks />
         <ResourceCategories />
-        <StudentFirst />
-        <CuratedResourceDirectory />
+        <div className="hidden md:block">
+          <StudentFirst />
+          <CuratedResourceDirectory />
+        </div>
         <SuggestResourceCTA onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
         <ExternalDisclaimer />
-        <FinalCTA />
+        <div className="hidden md:block">
+          <FinalCTA />
+        </div>
       </main>
 
       {/* Footer */}

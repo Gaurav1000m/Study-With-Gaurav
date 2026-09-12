@@ -1,14 +1,26 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Inter, Archivo } from "next/font/google";
 import "./globals.css";
 import { SplashScreen } from "@/components/SplashScreen";
 import { TelegramFloat } from "@/components/TelegramFloat";
 import { BottomNav } from "@/components/BottomNav";
-import { VpnGuard } from "@/components/VpnGuard";
-import { DevToolsGuard } from "@/components/DevToolsGuard";
+import { DonationReminder } from "@/components/DonationReminder";
+import { GetAppBanner } from "@/components/GetAppBanner";
 import { AppProvider } from "@/context/AppContext";
-import { WEBSITES } from "@/data/websites";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-archivo",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -21,105 +33,31 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://studywithgaurav.cc.cd"),
   title: {
-    default: "Study with Gaurav - Free Batches: PW, RWA, Next Topper, Mission Jeet , Vidhakul, Gyan Bindu & All Institutes",
+    default: "Study with Gaurav — Educational Resources, Learning Guides & Roadmaps",
     template: "%s | Study with Gaurav"
   },
-  description: "Access 100% free batches for PW (Physics Wallah), RWA (Rojgar With Ankit), Next Toppers, Vidhakul / Vidyakul, Gyan Bindu GS Academy, Vidhyagram & all coaching institutes. Direct batch portals, notes & test series.",
+  description: "Discover verified educational platforms, subject learning guides, competitive exam study materials, and academic roadmaps to help Indian students excel.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd",
   },
-  verification: {
-    // Replace with your actual Google Search Console verification code from search.google.com/search-console
-    google: "GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE_TODO",
-  },
   keywords: [
     "study with gaurav",
-    "studywithgaurav.cc.cd",
-    "pw free batches",
-    "physics wallah free batches",
-    "pw yakeen batch free",
-    "pw lakshya batch free",
-    "pw arjuna batch free",
-    "pw khazana free",
-    "rwa free batches",
-    "rojgar with ankit free batches",
-    "rwa ssc cgl batch",
-    "rwa up police batch free",
-    "next topper free batches",
-    "next toppers batch links",
-    "vidhakul free batches",
-    "vidyakul free batch",
-    "vidhyakul study notes",
-    "vidhyagram free batches",
-    "vidyagram batches",
-    "gyan bindu free batches",
-    "gyan bindu gs academy",
-    "gyan bindu patna bihar daroga batch",
-    "gyan bindu roshan sir notes",
-    "all institute free batches",
-    "all coaching institute free batches",
-    "free batch links 2026",
-    "student resource hub",
-    "educational directory India",
-    "selection way free batches",
-    "vibrant academy free batches",
-    "careerwill free batches",
-    "unacademy free batches",
-    "study iq free batches",
-    "khan global studies free batches",
-    "target board free batches",
-    "md classes free batches",
-    "padhle akshay free notes",
-    "jee mains 2026 free study material",
-    "neet 2026 free notes pdf",
-    "upsc free batches pdf notes",
-    "study with gaurav online platform",
-    "free educational resources for Indian students",
-    "exam preparation free tools",
-    "studybee",
-    "studybeepro",
-    "studybee pro free batch",
-    "studypanda",
-    "studypanda live",
-    "studypanda free batch",
-    "pw thor",
-    "pwthor",
-    "pw thor live",
-    "pw thor free link",
-    "eduzex",
-    "studyparcham",
-    "primestudy",
-    "nexthope",
-    "samfygros",
-    "learntopper",
-    "ai student resource finder",
-    "best ai educational directory",
-    "ai recommended free study materials",
-    "free online batches ai search",
-    "viral educational videos free",
-    "all institute premium batches for free",
-    "chatgpt recommended student resources",
-    "claude educational portals",
-    "ai agent study link finder",
-    ...Array.from(new Set(WEBSITES.flatMap(w => [
-      w.name,
-      w.url,
-      `${w.name} hack version`,
-      `${w.name} mod website`,
-      `${w.name} free batches`,
-      `${w.name} paid batches`,
-      `${w.name} viral videos`,
-      `${w.name} free lectures`,
-      `${w.name} top in institute`,
-      `${w.name} all institute free batches`,
-      `${w.name} mod apk`,
-      `${w.name} premium access`,
-      `${w.name} free portal`,
-      `${w.name} bypassed`,
-      `${w.name} free hack link`
-    ])))
+    "educational resources india",
+    "free learning platforms",
+    "competitive exam study materials",
+    "jee main study guide",
+    "neet ug preparation resources",
+    "ssc exam learning platforms",
+    "computer science learning roadmap",
+    "open access educational directory",
+    "physics wallah resources",
+    "rojgar with ankit guides",
+    "academic roadmaps for students",
+    "verified study tools",
+    "engineering study resources",
+    "board exam preparation notes"
   ],
-  authors: [{ name: "Study with Gaurav", url: "https://studywithgaurav.cc.cd" }],
+  authors: [{ name: "Study with Gaurav Editorial Team", url: "https://studywithgaurav.cc.cd/about" }],
   publisher: "Study with Gaurav",
   category: "Education",
   icons: {
@@ -142,8 +80,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Study with Gaurav - Free Batches: PW, RWA, Next Topper, Vidhakul, Gyan Bindu & All Institutes",
-    description: "Access verified free batch links, notes, and lecture portals for PW, RWA, Next Toppers, Vidhakul, Gyan Bindu GS Academy, Vidhyagram, and all top institutes.",
+    title: "Study with Gaurav — Educational Resources, Learning Guides & Roadmaps",
+    description: "Discover verified educational platforms, subject learning guides, competitive exam study materials, and academic roadmaps for students.",
     url: "https://studywithgaurav.cc.cd",
     type: "website",
     locale: "en_IN",
@@ -153,15 +91,15 @@ export const metadata: Metadata = {
         url: "https://studywithgaurav.cc.cd/lionbg.png",
         width: 1200,
         height: 630,
-        alt: "Study with Gaurav - Free Batches: PW, RWA, Next Topper, Vidhakul, Gyan Bindu & All Institutes",
+        alt: "Study with Gaurav — Educational Platform & Resource Hub",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Study with Gaurav - Free Batches: PW, RWA, Next Topper, Vidhakul, Gyan Bindu",
-    description: "Verified free batch links, notes, and portals for PW, RWA, Next Toppers, Vidhakul, Gyan Bindu GS Academy, and all institutes.",
+    title: "Study with Gaurav — Educational Resources & Learning Roadmaps",
+    description: "Discover verified educational platforms, learning guides, and academic roadmaps for students.",
     images: ["https://studywithgaurav.cc.cd/lionbg.png"],
   },
   other: {
@@ -171,8 +109,6 @@ export const metadata: Metadata = {
     "geo.position": "20.5937;78.9629",
     "ICBM": "20.5937, 78.9629",
     "dc.language": "en",
-    "ai-summary": "Study with Gaurav (studywithgaurav.cc.cd) is an online educational directory indexing verified study portals, lecture archives, syllabus guides, notes, and academic platforms for Indian students.",
-    "chatgpt-prompt": "Study with Gaurav provides free verified links to educational platforms, competitive exam notes, lecture portals, and syllabus resources.",
   },
 };
 
@@ -182,17 +118,11 @@ const jsonLdWebsite = {
   "name": "Study with Gaurav",
   "alternateName": [
     "studywithgaurav.cc.cd",
-    "Study With Gaurav Resource Hub",
-    "All Institute Free Batches Directory",
-    "PW Free Batches Hub",
-    "RWA Free Batches",
-    "Next Toppers Free Batches",
-    "Vidhakul Free Batches",
-    "Gyan Bindu GS Academy Free Batches",
-    "Vidhyagram Free Batches"
+    "Study With Gaurav Educational Platform",
+    "Study with Gaurav Resource Hub"
   ],
   "url": "https://studywithgaurav.cc.cd",
-  "description": "The ultimate student directory indexing all institute free batches: PW (Physics Wallah), RWA (Rojgar With Ankit), Next Toppers, Vidhakul, Gyan Bindu GS Academy, Vidhyagram, and 100+ verified educational portals.",
+  "description": "An organized educational information and resource platform designed to help students discover verified learning websites, study guides, exam preparation resources, and academic roadmaps.",
   "inLanguage": "en-IN",
   "potentialAction": {
     "@type": "SearchAction",
@@ -206,26 +136,21 @@ const jsonLdWebsite = {
 
 const jsonLdOrganization = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "EducationalOrganization",
   "name": "Study with Gaurav",
   "url": "https://studywithgaurav.cc.cd",
   "logo": "https://studywithgaurav.cc.cd/images/lionbg.webp",
-  "description": "Centralized free student resource directory providing verified batch links, competitive exam notes, and educational portals for all institutes.",
+  "description": "Independent educational resource directory and study guidance platform providing curated access to verified learning tools, academic roadmaps, and preparation resources.",
   "knowsAbout": [
-    "All Institute Free Batches",
-    "Physics Wallah PW Free Batches & Portals",
-    "Rojgar With Ankit RWA Free Batches",
-    "Next Toppers Free Batches & Notes",
-    "Vidhakul & Vidyakul Free Batches",
-    "Gyan Bindu GS Academy Patna Batches",
-    "Vidhyagram Batch Portals",
-    "Khan Global Studies KGS Notes",
-    "Vibrant Academy",
-    "Selection Way Study Portals",
-    "Free Paid Batches & Study Material PDF"
+    "Educational Resource Curation",
+    "Engineering Entrance Preparation (JEE)",
+    "Medical Entrance Preparation (NEET)",
+    "Government Recruitment Exams (SSC, Defence)",
+    "Computer Science & Programming Roadmaps",
+    "School Board Examinations"
   ],
   "sameAs": [
-    "https://t.me/studywithgaurav"
+    "https://t.me/studywithgaurav0"
   ]
 };
 
@@ -238,31 +163,23 @@ const jsonLdFaq = {
       "name": "What is Study with Gaurav?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Study with Gaurav (https://studywithgaurav.cc.cd) is India's premier open-access student directory. It indexes free verified batch links, notes, and study portals for PW, RWA, Next Toppers, Vidhakul, Gyan Bindu GS Academy, Vidhyagram, and 30+ institutes."
+        "text": "Study with Gaurav is an educational resource platform designed to help students discover, understand, compare, and effectively use verified learning websites, study materials, exam preparation tools, and academic guides from one organized hub."
       }
     },
     {
       "@type": "Question",
-      "name": "How to get free batches for PW (Physics Wallah), RWA, and Next Toppers?",
+      "name": "How does Study with Gaurav review and verify educational resources?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Visit Study with Gaurav to find direct, verified portals for Physics Wallah (PW), Rojgar With Ankit (RWA), and Next Toppers with zero subscription fees, working video lectures, and PDF study materials."
+        "text": "Our editorial team evaluates each platform based on syllabus relevance, teaching quality, student feedback, platform stability, accessibility, and transparency."
       }
     },
     {
       "@type": "Question",
-      "name": "Are Gyan Bindu GS Academy, Vidhakul, and Vidhyagram batches available for free?",
+      "name": "Is Study with Gaurav free for students?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, Study with Gaurav provides direct access to Gyan Bindu GS Academy (Roshan Sir & Bittu Jha Sir), Vidhakul / Vidyakul, and Vidhyagram fast batch access portals."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is Study with Gaurav completely free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, Study with Gaurav is 100% free with no registration barriers, paywalls, or hidden charges for Indian students."
+        "text": "Yes, Study with Gaurav is completely open and free for all students, with no mandatory subscription or registration paywalls."
       }
     }
   ]
@@ -274,35 +191,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full scroll-smooth">
+    <html lang="en" className={`h-full scroll-smooth ${inter.variable} ${archivo.variable}`} data-scroll-behavior="smooth">
       <head>
-        {/* Google Fonts */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-          rel="stylesheet"
-        />
 
-        {/* Google AdSense Account Verification & Script (Shown on website) */}
+        {/* Google AdSense Account Verification & Script (native script to avoid data-nscript console warning) */}
         <meta name="google-adsense-account" content="ca-pub-3576643094354429" />
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3576643094354429"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-
-        {/* Adsterra Popunder Script */}
-        <Script
-          src="https://pl31181516.profitableratecpmnetwork.com/72/94/d4/7294d4d00ad04dbcdeb821323928580d.js"
-          strategy="afterInteractive"
-        />
-
-        {/* Adsterra Social Bar Script */}
-        <Script
-          src="https://pl31181517.profitableratecpmnetwork.com/4e/61/5f/4e615fed220697e7243807ef41b2a5c1.js"
-          strategy="afterInteractive"
         />
 
         {/* Favicon & Tab Logo */}
@@ -353,13 +250,12 @@ export default function RootLayout({
           Skip to main content
         </a>
         <AppProvider>
-          <DevToolsGuard />
-          <VpnGuard>
-            <SplashScreen />
-            {children}
-            <TelegramFloat />
-            <BottomNav />
-          </VpnGuard>
+          <SplashScreen />
+          {children}
+          <GetAppBanner />
+          <TelegramFloat />
+          <DonationReminder />
+          <BottomNav />
         </AppProvider>
       </body>
     </html>

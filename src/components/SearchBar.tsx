@@ -20,7 +20,6 @@ export function SearchBar({
   searchQuery,
   onSearchChange,
   onTagClick,
-  totalResultsCount,
   inputRef: externalRef,
   autoFocus,
 }: SearchBarProps) {

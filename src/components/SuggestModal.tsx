@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { X, Send, CheckCircle2, Globe } from "lucide-react";
-import { CATEGORIES } from "@/data/categories";
-import { CategoryId, SuggestionFormData } from "@/types/website";
+import { useEffect } from "react";
+import { X, Globe } from "lucide-react";
 
 interface SuggestModalProps {
   isOpen: boolean;
@@ -74,6 +72,7 @@ export function SuggestModal({ isOpen, onClose }: SuggestModalProps) {
         <div className="p-0 overflow-hidden flex-1 min-h-[60vh] sm:min-h-[70vh]">
           <iframe
             src="https://docs.google.com/forms/d/e/1FAIpQLSfadTCSm4pi3b7eqvFE4kDp3rmzLuGYd2llaO6TW_WmcI8zhQ/viewform?embedded=true"
+            title="Educational Resource Suggestion Form"
             width="100%"
             height="100%"
             frameBorder="0"

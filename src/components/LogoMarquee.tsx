@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { CATEGORIES } from "@/data/categories";
-import { cn } from "@/lib/utils";
 
 export function LogoMarquee() {
   // We duplicate the logos array so that the CSS marquee can scroll seamlessly.

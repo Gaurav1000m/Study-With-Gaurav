@@ -2,7 +2,7 @@
   "versionCode": 5,
   "versionName": "1.0.4",
   "apkUrl": "https://studywithgaurav.cc.cd/downloads/StudyWithGaurav.apk",
-  "releaseNotes": "• Dual-Layer Ad Blocker & Private DNS Detector with System Notifications\n• Instant One-Tap Network & DNS Settings Navigation\n• Full Ads & High-CPM Adsterra Partner Integration\n• High Speed Loading & Smooth 120Hz Scrolling\n• All Study Batches & Links Open in Same Tab",
+  "releaseNotes": "• Clean educational resource navigation\n• High Speed Loading & Smooth 120Hz Scrolling\n• Direct access to curated study guides and portal links\n• Accessibility and UI stability improvements",
   "minSupportedVersion": 1,
   "forceUpdate": false
 }

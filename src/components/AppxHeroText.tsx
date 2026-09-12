@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
+import Image from "next/image";
 import { CATEGORIES } from "@/data/categories";
-import { Sparkles, ShieldCheck, CheckCircle2, Zap, BookOpen } from "lucide-react";
+import { Sparkles, ShieldCheck, Zap, BookOpen } from "lucide-react";
 import { LottieVerified } from "./LottieVerified";
 
 // Text scramble characters
@@ -162,14 +163,14 @@ export function AppxHeroText() {
             {/* Floating Logo with soft drop shadow */}
             {currentCategory.logo && (
               <div className="relative shrink-0">
-                <img
+                <Image
                   src={currentCategory.logo}
                   alt={currentCategory.name}
+                  width={64}
+                  height={64}
+                  unoptimized
+                  priority
                   className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 object-contain rounded-2xl drop-shadow-md bg-white p-1 border border-slate-200/80 transition-transform duration-300 hover:scale-105"
-                  loading="eager"
-                  onError={(e) => {
-                    (e.target as HTMLElement).style.display = "none";
-                  }}
                 />
               </div>
             )}

@@ -1,11 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SuggestModal } from "@/components/SuggestModal";
-import { useState } from "react";
-import { FileQuestion, Home, Search, LayoutGrid, ArrowRight } from "lucide-react";
+import { FileQuestion, Home, Search, ArrowRight } from "lucide-react";
 import { CATEGORIES } from "@/data/categories";
 
 export default function NotFound() {
@@ -17,7 +17,7 @@ export default function NotFound() {
       <Header onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
       <div className="h-14 sm:h-16" />
 
-      <main className="flex-1 py-12 sm:py-20 flex items-center justify-center">
+      <main id="main-content" className="flex-1 py-12 sm:py-20 flex items-center justify-center">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center space-y-8">
           {/* Icon Badge */}
           <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-blue-50 border border-blue-200 text-blue-700 flex items-center justify-center mx-auto shadow-2xs">

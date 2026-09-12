@@ -4019,7 +4019,7 @@ export const WEBSITES: Website[] = [
     rating: 4.8
   },
   {
-    id: "pw-marco",
+    id: "pw-marco-study",
     name: "PW Marco Study",
     url: "https://www.pwmarco.site/study",
     logo: PW_LOGO,

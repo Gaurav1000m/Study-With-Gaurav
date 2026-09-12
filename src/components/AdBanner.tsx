@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { AdsterraBanner, AdsterraFormat } from "./AdsterraBanner";
 
 export interface AdBannerProps {
   slot?: string;
@@ -10,9 +9,6 @@ export interface AdBannerProps {
   className?: string;
   minHeight?: string;
   label?: string;
-  directLink?: string;
-  showSponsoredOffer?: boolean;
-  adsterraFormat?: AdsterraFormat;
 }
 
 declare global {
@@ -21,50 +17,59 @@ declare global {
   }
 }
 
+/**
+ * AdBanner - Google AdSense Publisher Container.
+ * Follows Google Publisher Policies:
+ * - Content > Navigation > Ads
+ * - Clear distinction between content and advertising
+ * - Layout Shift (CLS) prevention via min-height
+ */
 export function AdBanner({
   slot,
   format = "auto",
   responsive = true,
   className = "",
-  adsterraFormat = "responsive",
+  minHeight = "min-h-[90px]",
+  label = "Advertisement",
 }: AdBannerProps) {
   const pushedRef = useRef(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && slot) {
       if (!pushedRef.current && window.adsbygoogle) {
         try {
           window.adsbygoogle.push({});
           pushedRef.current = true;
         } catch {
-          // Ignore push errors
+          // Ignore push errors during hydration/re-render
         }
       }
     }
-  }, []);
+  }, [slot]);
+
+  // If no slot is configured, do not render intrusive blank placeholders
+  if (!slot) {
+    return null;
+  }
 
   return (
     <div
-      className={`w-full flex items-center justify-center my-3 sm:my-4 overflow-hidden ${className}`}
-      aria-label="Advertisement"
+      className={`w-full flex flex-col items-center justify-center my-4 overflow-hidden ${minHeight} ${className}`}
+      aria-label={label}
     >
-      {/* Simple, Pure Adsterra Display Banner (No boxes, no borders, no labels) */}
-      <AdsterraBanner
-        format={adsterraFormat}
-        className="my-0"
+      <span className="text-[10px] uppercase font-semibold text-slate-400 tracking-wider mb-1">
+        {label}
+      </span>
+      <ins
+        className="adsbygoogle block w-full max-w-5xl text-center"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-3576643094354429"
+        data-ad-slot={slot}
+        data-ad-format={format}
+        data-full-width-responsive={responsive ? "true" : "false"}
       />
-
-      {/* Optional Google AdSense Unit (if approved and configured) */}
-      {slot && (
-        <ins
-          className="adsbygoogle hidden"
-          style={{ display: "none" }}
-          data-ad-client="ca-pub-3576643094354429"
-          data-ad-slot={slot}
-          data-ad-format={format}
-          data-full-width-responsive={responsive ? "true" : "false"}
-        />
-      )}
     </div>
   );
 }
+
+export default AdBanner;

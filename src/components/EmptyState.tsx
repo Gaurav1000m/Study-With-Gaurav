@@ -14,7 +14,7 @@ export function EmptyState({ searchQuery, onReset }: EmptyStateProps) {
       {/* Lottie Animation */}
       <div className="mb-4 flex items-center justify-center">
         <LottieAnimation
-          url="https://lottie.host/embed/9b9953e1-b7a9-426b-bc2d-8b47a3967132/dmWu1FgEtL.json"
+          url="/lottie/empty-saved.json"
           width={180}
           height={180}
           className="w-40 h-40 sm:w-48 sm:h-48"

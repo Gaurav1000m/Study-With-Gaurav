@@ -10,7 +10,7 @@ export function TelegramFloat({
   return (
     <aside
       aria-label="Join Telegram Community"
-      className="fixed right-3 sm:right-6 bottom-[calc(3.75rem+env(safe-area-inset-bottom,0px))] md:bottom-6 z-40 flex items-center group animate-float"
+      className="fixed right-3 sm:right-6 bottom-[calc(8.5rem+env(safe-area-inset-bottom,0px))] md:bottom-6 z-40 flex items-center group animate-float"
     >
       <a
         href={telegramUrl}

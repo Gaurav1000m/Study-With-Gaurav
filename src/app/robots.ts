@@ -4,47 +4,55 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        // Google AdSense and Googlebot: full access to all public pages
+        // Google AdSense and Googlebot: full access to all educational content pages
         userAgent: ['Mediapartners-Google', 'Google-Display-Ads-Bot', 'Googlebot'],
         allow: [
           '/',
           '/ads.txt',
           '/categories/',
           '/resources',
-          '/explore',
+          '/resources/',
+          '/articles',
+          '/articles/',
+          '/roadmaps',
+          '/roadmaps/',
+          '/editorial-policy',
           '/popular',
           '/about',
           '/contact',
           '/privacy',
           '/terms',
           '/disclaimer',
-          '/donate',
           '/advertising',
         ],
-        disallow: ['/go/', '/private/'],
+        disallow: ['/go/', '/private/', '/saved', '/profile'],
       },
       {
-        // General crawlers: allow all public content pages
+        // General search engine crawlers
         userAgent: '*',
         allow: [
           '/',
           '/ads.txt',
           '/categories/',
           '/resources',
-          '/explore',
+          '/resources/',
+          '/articles',
+          '/articles/',
+          '/roadmaps',
+          '/roadmaps/',
+          '/editorial-policy',
           '/popular',
           '/about',
           '/contact',
           '/privacy',
           '/terms',
           '/disclaimer',
-          '/donate',
           '/advertising',
         ],
-        disallow: ['/go/', '/private/', '/saved', '/profile'],
+        disallow: ['/go/', '/private/', '/saved', '/profile', '/donate'],
       },
       {
-        // AI training bots: full access (helps with AI discoverability)
+        // AI discoverability
         userAgent: [
           'GPTBot',
           'ChatGPT-User',
@@ -55,6 +63,7 @@ export default function robots(): MetadataRoute.Robots {
           'cohere-ai',
         ],
         allow: '/',
+        disallow: ['/go/', '/saved', '/profile'],
       },
     ],
     sitemap: 'https://studywithgaurav.cc.cd/sitemap.xml',

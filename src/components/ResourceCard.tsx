@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, ShieldCheck, Sparkles, Flame, Check, Bookmark } from "lucide-react";
+import { ExternalLink, ShieldCheck, Sparkles, Flame, Bookmark } from "lucide-react";
 import { Website } from "@/types/website";
 import { CATEGORY_MAP } from "@/data/categories";
 import { getFaviconUrl, getMonogram, cn } from "@/lib/utils";
@@ -20,22 +20,13 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
     website.logo || getFaviconUrl(website.url)
   );
   const [hasImageError, setHasImageError] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
 
   const bookmarked = isBookmarked(website.id);
   const categoryObj = CATEGORY_MAP.get(website.category);
   const categoryName = categoryObj ? categoryObj.shortName || categoryObj.name : website.category;
   const monogram = getMonogram(website.name);
 
-  const targetUrl = website.url;
-
-  const handleCopyLink = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    navigator.clipboard.writeText(targetUrl);
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
-  };
+  const internalDetailUrl = `/resources/${website.id}`;
 
   const handleBookmarkToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -55,7 +46,11 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
         {/* Top Row: Logo + Badges + Bookmark Action */}
         <div className="flex items-start justify-between gap-2 mb-3">
           {/* Logo Container */}
-          <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-slate-200/80 bg-slate-50 flex items-center justify-center overflow-hidden shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+          <Link
+            href={internalDetailUrl}
+            onClick={handleResourceClick}
+            className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-slate-200/80 bg-slate-50 flex items-center justify-center overflow-hidden shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200"
+          >
             {!hasImageError && imgSrc ? (
               <Image
                 src={imgSrc}
@@ -77,11 +72,11 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
                 {monogram}
               </div>
             )}
-          </div>
+          </Link>
 
           {/* Badges and Bookmark Button */}
           <div className="flex items-center gap-1.5 min-w-0">
-          {website.isOfficial ? (
+            {website.isOfficial ? (
               <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 whitespace-nowrap">
                 <ShieldCheck className="w-2.5 h-2.5 text-emerald-600 shrink-0" />
                 <span>Official</span>
@@ -99,7 +94,6 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
                 <span>Popular</span>
               </span>
             )}
-
 
             {/* Bookmark Button */}
             <button
@@ -129,7 +123,7 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
           </div>
           <h3 className="text-sm sm:text-base font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug break-words">
             <Link
-              href={targetUrl}
+              href={internalDetailUrl}
               onClick={handleResourceClick}
               className="focus:outline-none after:absolute after:inset-0"
             >
@@ -168,31 +162,27 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
       </div>
 
       {/* Card Action Footer */}
-      <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between relative z-10 text-xs">
-        <button
-          onClick={handleCopyLink}
-          className="text-slate-500 hover:text-slate-800 font-semibold flex items-center gap-1 transition-colors min-h-[32px] px-1"
-          title="Copy link to clipboard"
-          aria-label="Copy link to clipboard"
-        >
-          {isCopied ? (
-            <>
-              <Check className="w-3.5 h-3.5 text-emerald-600" />
-              <span className="text-emerald-700 font-bold">Copied!</span>
-            </>
-          ) : (
-            <span>Copy Link</span>
-          )}
-        </button>
-
+      <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between relative z-10 text-xs gap-2">
         <Link
-          href={targetUrl}
+          href={internalDetailUrl}
           onClick={handleResourceClick}
-          className="inline-flex items-center gap-1 font-bold text-blue-600 group-hover:text-blue-700 hover:underline transition-colors min-h-[32px] px-1"
+          className="font-bold text-slate-700 hover:text-blue-700 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-xl transition-all inline-flex items-center gap-1 active:scale-95 min-h-[34px]"
         >
-          <span>Open Resource</span>
-          <ExternalLink className="w-3.5 h-3.5" />
+          <span>Read Review</span>
+          <span aria-hidden="true">→</span>
         </Link>
+
+        <a
+          href={website.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="inline-flex items-center gap-1 font-bold text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-xl shadow-2xs transition-all active:scale-95 min-h-[34px]"
+          title={`Open official ${website.name} in new tab`}
+        >
+          <span>Official Site</span>
+          <ExternalLink className="w-3.5 h-3.5" />
+        </a>
       </div>
     </article>
   );

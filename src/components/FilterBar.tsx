@@ -2,15 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { Category, CategoryId, SortOption } from "@/types/website";
-import { SlidersHorizontal, ArrowUpDown, X, Check, Filter } from "lucide-react";
+import { SlidersHorizontal, X, Check, Filter } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface FilterBarProps {
   categories: Category[];
   selectedCategory: CategoryId | "all";
   onSelectCategory: (category: CategoryId | "all") => void;
-  selectedSort: SortOption;
-  onSelectSort: (sort: SortOption) => void;
+  selectedSort?: SortOption;
+  onSelectSort?: (sort: SortOption) => void;
   searchQuery: string;
   onClearSearch: () => void;
   totalResultsCount: number;
@@ -20,8 +20,6 @@ export function FilterBar({
   categories,
   selectedCategory,
   onSelectCategory,
-  selectedSort,
-  onSelectSort,
   searchQuery,
   onClearSearch,
   totalResultsCount,

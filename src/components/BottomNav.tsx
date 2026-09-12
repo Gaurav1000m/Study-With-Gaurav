@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, BookOpen, Bookmark, User, Heart } from "lucide-react";
+import { Home, BookOpen, Layers, Bookmark, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
 
@@ -21,8 +21,8 @@ export function BottomNav() {
   const navItems: NavItem[] = [
     { name: "Home", href: "/", icon: Home },
     { name: "Resources", href: "/resources", icon: BookOpen },
+    { name: "Categories", href: "/categories", icon: Layers },
     { name: "Saved", href: "/saved", icon: Bookmark, badge: bookmarks.length },
-    { name: "Donate", href: "/donate", icon: Heart, isAccent: true },
     { name: "Profile", href: "/profile", icon: User },
   ];
 
@@ -50,8 +50,8 @@ export function BottomNav() {
                     ? "text-rose-600 font-bold"
                     : "text-blue-600 font-bold"
                   : item.isAccent
-                  ? "text-rose-500/80 hover:text-rose-600 font-medium"
-                  : "text-slate-500 hover:text-slate-900 font-medium"
+                    ? "text-rose-500/80 hover:text-rose-600 font-medium"
+                    : "text-slate-500 hover:text-slate-900 font-medium"
               )}
             >
               {isActive && (

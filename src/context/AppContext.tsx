@@ -46,29 +46,33 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   // Hydrate state from localStorage safely after mount
   useEffect(() => {
-    try {
-      const savedBookmarks = localStorage.getItem("swg_bookmarks");
-      if (savedBookmarks) {
-        setBookmarks(JSON.parse(savedBookmarks));
-      }
+    const timer = setTimeout(() => {
+      try {
+        const savedBookmarks = localStorage.getItem("swg_bookmarks");
+        if (savedBookmarks) {
+          setBookmarks(JSON.parse(savedBookmarks));
+        }
 
-      const savedRecent = localStorage.getItem("swg_recent");
-      if (savedRecent) {
-        setRecentlyViewed(JSON.parse(savedRecent));
-      }
+        const savedRecent = localStorage.getItem("swg_recent");
+        if (savedRecent) {
+          setRecentlyViewed(JSON.parse(savedRecent));
+        }
 
-      const savedProfile = localStorage.getItem("swg_profile");
-      if (savedProfile) {
-        const parsed = JSON.parse(savedProfile);
-        setUserProfile({
-          name: parsed.name || "Student",
-          examGoal: parsed.examGoal || "JEE / NEET / Competitive Exams",
-          avatar: parsed.avatar || "/images/profile-avatar.jpg",
-        });
+        const savedProfile = localStorage.getItem("swg_profile");
+        if (savedProfile) {
+          const parsed = JSON.parse(savedProfile);
+          setUserProfile({
+            name: parsed.name || "Student",
+            examGoal: parsed.examGoal || "JEE / NEET / Competitive Exams",
+            avatar: parsed.avatar || "/images/profile-avatar.jpg",
+          });
+        }
+      } catch {
+        // Fallback
       }
-    } catch {
-      // Fallback
-    }
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const toggleBookmark = (id: string) => {
