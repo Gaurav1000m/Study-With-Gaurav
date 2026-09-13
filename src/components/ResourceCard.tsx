@@ -3,10 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, ShieldCheck, Sparkles, Flame, Bookmark } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ExternalLink, ShieldCheck, Flame, Bookmark, Star, ChevronRight, Check } from "lucide-react";
 import { Website } from "@/types/website";
 import { CATEGORY_MAP } from "@/data/categories";
-import { getFaviconUrl, getMonogram, cn } from "@/lib/utils";
+import { getFaviconUrl, getMonogram } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
 
 interface ResourceCardProps {
@@ -15,6 +16,7 @@ interface ResourceCardProps {
 }
 
 export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
+  const router = useRouter();
   const { isBookmarked, toggleBookmark, addRecentlyViewed } = useApp();
   const [imgSrc, setImgSrc] = useState<string>(
     website.logo || getFaviconUrl(website.url)
@@ -38,150 +40,163 @@ export function ResourceCard({ website, onTagClick }: ResourceCardProps) {
     addRecentlyViewed(website.id);
   };
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest("button") || target.closest("a")) {
+      return;
+    }
+    handleResourceClick();
+    router.push(internalDetailUrl);
+  };
+
   return (
     <article
-      className="group relative flex flex-col justify-between p-3.5 sm:p-5 bg-white border border-slate-200/90 hover:border-blue-300 rounded-2xl shadow-2xs hover:shadow-xs transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-600 overflow-hidden w-full h-full"
+      onClick={handleCardClick}
+      className="group relative flex flex-col justify-between p-4 sm:p-5 bg-white border border-slate-200/90 hover:border-blue-400/80 rounded-2xl sm:rounded-3xl shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden w-full h-full cursor-pointer select-none"
     >
-      <div className="w-full">
-        {/* Top Row: Logo + Badges + Bookmark Action */}
-        <div className="flex items-start justify-between gap-2 mb-3">
-          {/* Logo Container */}
+      <div className="w-full flex-1 flex flex-col">
+        {/* Top Row: App Icon with Verified Badge + Quick Status & Bookmark */}
+        <div className="flex items-start justify-between gap-3 mb-3.5">
+          {/* App Squircle Logo */}
           <Link
             href={internalDetailUrl}
             onClick={handleResourceClick}
-            className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-slate-200/80 bg-slate-50 flex items-center justify-center overflow-hidden shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200"
+            className="relative w-12 h-12 rounded-2xl border border-slate-200/90 bg-white p-1.5 shadow-2xs group-hover:scale-105 transition-transform duration-200 shrink-0 flex items-center justify-center overflow-visible"
           >
-            {!hasImageError && imgSrc ? (
-              <Image
-                src={imgSrc}
-                alt={`${website.name} educational logo`}
-                width={44}
-                height={44}
-                unoptimized
-                className="w-full h-full object-contain p-1"
-                onError={() => {
-                  if (imgSrc !== getFaviconUrl(website.url)) {
-                    setImgSrc(getFaviconUrl(website.url));
-                  } else {
-                    setHasImageError(true);
-                  }
-                }}
-              />
-            ) : (
-              <div className="w-full h-full bg-slate-900 text-white font-bold text-xs sm:text-sm flex items-center justify-center">
-                {monogram}
-              </div>
+            <div className="w-full h-full rounded-xl overflow-hidden flex items-center justify-center bg-slate-50">
+              {!hasImageError && imgSrc ? (
+                <Image
+                  src={imgSrc}
+                  alt={`${website.name} educational logo`}
+                  width={48}
+                  height={48}
+                  unoptimized
+                  style={{ width: "auto", height: "auto" }}
+                  className="w-full h-full object-contain p-0.5"
+                  onError={() => {
+                    if (imgSrc !== getFaviconUrl(website.url)) {
+                      setImgSrc(getFaviconUrl(website.url));
+                    } else {
+                      setHasImageError(true);
+                    }
+                  }}
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-slate-900 to-blue-950 text-white font-black text-xs sm:text-sm flex items-center justify-center">
+                  {monogram}
+                </div>
+              )}
+            </div>
+
+            {/* Anchored Verified Badge on Icon Corner (never overflows or clips) */}
+            {website.isOfficial && (
+              <span
+                className="absolute -bottom-1 -right-1 bg-emerald-600 text-white p-0.5 rounded-full border-2 border-white shadow-xs"
+                title="Verified Official Portal"
+              >
+                <ShieldCheck className="w-3 h-3 text-white" />
+              </span>
             )}
           </Link>
 
-          {/* Badges and Bookmark Button */}
-          <div className="flex items-center gap-1.5 min-w-0">
-            {website.isOfficial ? (
-              <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 whitespace-nowrap">
-                <ShieldCheck className="w-2.5 h-2.5 text-emerald-600 shrink-0" />
-                <span>Official</span>
-              </span>
-            ) : (
-              <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold bg-slate-50 text-slate-500 border border-slate-200 whitespace-nowrap">
-                <Sparkles className="w-2.5 h-2.5 text-slate-400 shrink-0" />
-                <span>Community</span>
-              </span>
-            )}
-
+          {/* Top Right Action & Badges */}
+          <div className="flex items-center gap-1.5 shrink-0">
             {website.popular && (
-              <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200 whitespace-nowrap">
-                <Flame className="w-2.5 h-2.5 text-amber-600 shrink-0" />
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-50 text-amber-700 border border-amber-200/80">
+                <Flame className="w-2.5 h-2.5 text-amber-500 fill-amber-400" />
                 <span>Popular</span>
               </span>
             )}
 
-            {/* Bookmark Button */}
+            {/* Bookmark Icon Button */}
             <button
               onClick={handleBookmarkToggle}
               aria-label={bookmarked ? "Remove from saved resources" : "Save resource"}
               title={bookmarked ? "Saved" : "Save for later"}
-              className={cn(
-                "relative z-10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors shrink-0",
+              className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all cursor-pointer active:scale-90 ${
                 bookmarked
-                  ? "bg-blue-50 text-blue-600 border border-blue-200"
-                  : "bg-slate-100 text-slate-400 hover:text-slate-700 hover:bg-slate-200"
-              )}
+                  ? "bg-blue-50 text-blue-600 border border-blue-200/90 shadow-2xs"
+                  : "bg-slate-50 text-slate-400 hover:text-slate-700 hover:bg-slate-100 border border-slate-200/60"
+              }`}
             >
-              <Bookmark
-                className={cn("w-4 h-4", bookmarked && "fill-blue-600")}
-              />
+              <Bookmark className={`w-4 h-4 ${bookmarked ? "fill-blue-600" : ""}`} />
             </button>
           </div>
         </div>
 
-        {/* Title & Category Info */}
-        <div className="space-y-0.5 mb-1.5 w-full">
-          <div className="flex items-center gap-1.5">
-            <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider">
-              {categoryName}
-            </span>
-          </div>
-          <h3 className="text-sm sm:text-base font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug break-words">
-            <Link
-              href={internalDetailUrl}
-              onClick={handleResourceClick}
-              className="focus:outline-none after:absolute after:inset-0"
-            >
-              {website.name}
-            </Link>
-          </h3>
-          {website.subcategory && (
-            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider truncate">
-              {website.subcategory}
-            </p>
-          )}
+        {/* Category Pill Link */}
+        <div className="mb-1.5">
+          <Link
+            href={`/categories/${website.category}`}
+            onClick={(e) => e.stopPropagation()}
+            title={`Explore all ${categoryName} portals & batches`}
+            className="inline-block px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200/60 transition-colors"
+          >
+            {categoryName}
+          </Link>
         </div>
 
+        {/* Resource Name */}
+        <h3 className="text-sm sm:text-base font-black text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-1 leading-snug">
+          <Link
+            href={internalDetailUrl}
+            onClick={handleResourceClick}
+            className="focus:outline-none"
+          >
+            {website.name}
+          </Link>
+        </h3>
+
+        {/* Subcategory */}
+        {website.subcategory && (
+          <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider truncate mt-0.5">
+            {website.subcategory}
+          </p>
+        )}
+
         {/* Description */}
-        <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-3 break-words">
+        <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed font-medium mt-1.5 flex-1">
           {website.description}
         </p>
 
-        {/* Tag Badges */}
-        {website.tags && website.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1 mb-3 relative z-10">
-            {website.tags.slice(0, 3).map((tag) => (
-              <button
-                key={tag}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onTagClick?.(tag);
-                }}
-                className="px-2 py-0.5 text-[10px] font-medium text-slate-600 bg-slate-100 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-colors flex items-center min-h-[22px]"
-              >
-                #{tag}
-              </button>
-            ))}
-          </div>
-        )}
+        {/* Quality Strip: Rating & Free Access */}
+        <div className="flex items-center gap-2 pt-3 pb-1 text-[11px] font-semibold text-slate-500">
+          <span className="flex items-center gap-1 text-slate-800 font-black">
+            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+            <span>{website.rating ? website.rating.toFixed(1) : "4.8"}</span>
+          </span>
+          <span className="text-slate-300">•</span>
+          <span className="flex items-center gap-1 text-emerald-700 font-bold">
+            <Check className="w-3 h-3 text-emerald-600" />
+            <span>Free Access</span>
+          </span>
+        </div>
       </div>
 
-      {/* Card Action Footer */}
-      <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between relative z-10 text-xs gap-2">
+      {/* Card Action Footer: Equal 50/50 Balanced Buttons */}
+      <div className="pt-3 border-t border-slate-100 flex items-center gap-2 relative z-10">
         <Link
           href={internalDetailUrl}
           onClick={handleResourceClick}
-          className="font-bold text-slate-700 hover:text-blue-700 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-xl transition-all inline-flex items-center gap-1 active:scale-95 min-h-[34px]"
+          className="flex-1 py-2 px-2.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-slate-700 font-bold text-xs flex items-center justify-center gap-1 transition-all active:scale-95 text-center truncate min-h-[36px]"
         >
-          <span>Read Review</span>
-          <span aria-hidden="true">→</span>
+          <span>Details</span>
+          <ChevronRight className="w-3.5 h-3.5 shrink-0 text-slate-400" />
         </Link>
 
         <a
           href={website.url}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center gap-1 font-bold text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-xl shadow-2xs transition-all active:scale-95 min-h-[34px]"
+          onClick={(e) => {
+            e.stopPropagation();
+            addRecentlyViewed(website.id);
+          }}
+          className="flex-1 py-2 px-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs flex items-center justify-center gap-1 shadow-2xs hover:shadow-xs transition-all active:scale-95 text-center truncate min-h-[36px]"
           title={`Open official ${website.name} in new tab`}
         >
-          <span>Official Site</span>
-          <ExternalLink className="w-3.5 h-3.5" />
+          <span>Visit</span>
+          <ExternalLink className="w-3.5 h-3.5 shrink-0" />
         </a>
       </div>
     </article>

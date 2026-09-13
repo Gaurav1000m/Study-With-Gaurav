@@ -306,6 +306,15 @@ export const CATEGORIES: Category[] = [
     logo: "/images/english_speaking_logo.jpg",
     description: "Resources for English speaking and communication skills.",
     featured: true
+  },
+  {
+    id: "taiyari-karlo",
+    name: "Taiyari Karlo",
+    shortName: "Taiyari Karlo",
+    iconName: "GraduationCap",
+    logo: "https://www.taiyarikarlo.com/tenants/taiyarikarlo/logo.jpeg",
+    description: "Online preparation portal and learning platform for government recruitment and competitive exams.",
+    featured: true
   }
 ];
 

@@ -8,6 +8,7 @@ import { TelegramFloat } from "@/components/TelegramFloat";
 import { BottomNav } from "@/components/BottomNav";
 import { DonationReminder } from "@/components/DonationReminder";
 import { GetAppBanner } from "@/components/GetAppBanner";
+import { AdSenseLoader } from "@/components/AdSenseLoader";
 import { AppProvider } from "@/context/AppContext";
 
 const inter = Inter({
@@ -191,16 +192,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full scroll-smooth ${inter.variable} ${archivo.variable}`} data-scroll-behavior="smooth">
-      <head>
-
-        {/* Google AdSense Account Verification & Script (native script to avoid data-nscript console warning) */}
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`h-full scroll-smooth ${inter.variable} ${archivo.variable}`}
+      data-scroll-behavior="smooth"
+    >
+      <head suppressHydrationWarning>
+        {/* Google AdSense Verification */}
         <meta name="google-adsense-account" content="ca-pub-3576643094354429" />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3576643094354429"
-          crossOrigin="anonymous"
-        />
 
         {/* Favicon & Tab Logo */}
         <link rel="icon" type="image/webp" href="/images/lionbg.webp?v=2" />
@@ -226,22 +226,25 @@ export default function RootLayout({
             gtag('config', 'G-LVHR2NZ8LE');
           `}
         </Script>
-
-        {/* Structured Data / Schema.org JSON-LD */}
+      </head>
+      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-100 selection:text-blue-900 pb-[calc(3.5rem+env(safe-area-inset-bottom,0px))] md:pb-0">
+        {/* Structured Data / Schema.org JSON-LD placed in body to prevent head-injection hydration mismatches */}
         <script
+          id="jsonld-website"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebsite) }}
         />
         <script
+          id="jsonld-org"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
         />
         <script
+          id="jsonld-faq"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
         />
-      </head>
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-100 selection:text-blue-900 pb-[calc(3.5rem+env(safe-area-inset-bottom,0px))] md:pb-0">
+
         {/* Skip to main content — accessibility for keyboard and screen reader users */}
         <a
           href="#main-content"
@@ -250,6 +253,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <AppProvider>
+          <AdSenseLoader />
           <SplashScreen />
           {children}
           <GetAppBanner />

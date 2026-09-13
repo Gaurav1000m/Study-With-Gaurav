@@ -24,6 +24,7 @@ function CategoryCardItem({ cat }: { cat: Category }) {
             width={144}
             height={144}
             unoptimized
+            style={{ width: "auto", height: "auto" }}
             className="w-full h-full object-contain filter blur-[0.5px]"
           />
         </div>
@@ -42,6 +43,7 @@ function CategoryCardItem({ cat }: { cat: Category }) {
               width={40}
               height={40}
               unoptimized
+              style={{ width: "auto", height: "auto" }}
               className="w-full h-full object-contain relative z-20"
             />
           ) : (

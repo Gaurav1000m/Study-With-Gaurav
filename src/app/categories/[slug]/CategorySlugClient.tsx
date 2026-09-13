@@ -150,6 +150,7 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
                       width={64}
                       height={64}
                       unoptimized
+                      style={{ width: "auto", height: "auto" }}
                       className="w-full h-full object-contain"
                     />
                   ) : (

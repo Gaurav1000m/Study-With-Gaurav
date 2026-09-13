@@ -26,6 +26,7 @@ export function CategoryCard({ category, count }: CategoryCardProps) {
             width={112}
             height={112}
             unoptimized
+            style={{ width: "auto", height: "auto" }}
             className="w-full h-full object-contain filter blur-[0.3px]"
           />
         </div>
@@ -45,6 +46,7 @@ export function CategoryCard({ category, count }: CategoryCardProps) {
                 width={44}
                 height={44}
                 unoptimized
+                style={{ width: "auto", height: "auto" }}
                 className="w-full h-full object-contain relative z-20"
               />
             ) : (

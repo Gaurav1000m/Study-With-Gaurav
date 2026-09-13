@@ -34,6 +34,8 @@ import {
   Clock,
   ArrowRight,
   Calendar,
+  Cpu,
+  Sparkles,
 } from "lucide-react";
 
 export default function Home() {
@@ -217,10 +219,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Logo Marquee (Desktop only to prevent mobile clutter) */}
-        <div className="hidden md:block">
-          <LogoMarquee />
-        </div>
+        {/* Logo Marquee Moving Slider (Active on both Mobile & Desktop) */}
+        <LogoMarquee />
 
         {/* Top Leaderboard Ad */}
         <AdBanner className="my-2 sm:my-3" />
@@ -291,73 +291,133 @@ export default function Home() {
             {/* Mid-Feed Banner */}
             <AdBanner className="my-2 sm:my-3" />
 
-            {/* SECTION 1: Featured Learning Roadmaps */}
-            <section className="w-full py-6 sm:py-16 bg-white border-b border-slate-100">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-8">
-                {/* Header with App-Style Inline View All Action */}
-                <div className="flex items-center justify-between gap-3">
-                  <div className="space-y-1">
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">
-                      <Compass className="w-3 h-3 text-blue-600" />
+            {/* SECTION 1: Featured Learning Roadmaps (Desktop Web Only - Hidden in Mobile App View) */}
+            <section className="hidden md:block w-full py-16 bg-white border-b border-slate-100">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+                {/* Header with View All Action */}
+                <div className="flex items-end justify-between gap-4">
+                  <div className="space-y-2">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-black bg-blue-50 text-blue-700 border border-blue-200/80">
+                      <Compass className="w-3.5 h-3.5 text-blue-600" />
                       <span>Structured Curricula</span>
                     </div>
-                    <h2 className="text-xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
                       Learning Roadmaps
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-500 max-w-xl hidden xs:block">
-                      Sequential paths designed by educators to guide your study goals.
+                    <p className="text-xs sm:text-sm text-slate-500 max-w-xl hidden xs:block font-medium">
+                      Sequential master paths designed by educators to guide your learning journey.
                     </p>
                   </div>
                   <Link
                     href="/roadmaps"
-                    className="text-xs font-bold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 shrink-0 px-3 py-1.5 rounded-xl bg-blue-50 border border-blue-200 hover:bg-blue-100 transition-colors cursor-pointer"
+                    className="text-xs font-extrabold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 px-3.5 py-2 rounded-xl bg-blue-50/80 hover:bg-blue-100/90 border border-blue-200/70 shadow-2xs transition-all duration-300 active:scale-95 shrink-0"
                   >
                     <span>View All</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
 
-                {/* App-Style Horizontal Touch Carousel on Mobile / Grid on Desktop */}
-                <div className="flex overflow-x-auto pb-3 pt-1 gap-3 sm:gap-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
-                  {ROADMAPS.map((roadmap) => (
-                    <div
-                      key={roadmap.slug}
-                      className="group bg-slate-50/70 hover:bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between w-[78vw] max-w-[285px] sm:w-auto md:max-w-none snap-start shrink-0 md:shrink"
-                    >
-                      <div className="space-y-2.5">
-                        <div className="flex items-center justify-between text-[11px] font-semibold text-slate-500">
-                          <span className="inline-flex items-center gap-1 text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded-full font-bold">
-                            <Layers className="w-3 h-3" />
-                            {roadmap.stages.length} Stages
+                {/* Mobile Snap Carousel / Desktop 4-Column Grid */}
+                <div className="flex overflow-x-auto pb-4 pt-1 gap-4 sm:gap-6 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 snap-x snap-mandatory scrollbar-none -mx-4 px-4 md:mx-0 md:px-0 md:pb-0">
+                  {ROADMAPS.map((roadmap, idx) => {
+                    const themeConfig = [
+                      {
+                        bg: "bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/40 hover:from-blue-100/60 hover:to-indigo-50/70",
+                        iconBg: "bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/25",
+                        border: "border-blue-200/80 hover:border-blue-400",
+                        tagBg: "bg-blue-50 text-blue-700 border-blue-200/80",
+                        bar: "bg-blue-600",
+                      },
+                      {
+                        bg: "bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/40 hover:from-emerald-100/60 hover:to-teal-50/70",
+                        iconBg: "bg-gradient-to-br from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-500/25",
+                        border: "border-emerald-200/80 hover:border-emerald-400",
+                        tagBg: "bg-emerald-50 text-emerald-700 border-emerald-200/80",
+                        bar: "bg-emerald-600",
+                      },
+                      {
+                        bg: "bg-gradient-to-br from-purple-50/80 via-white to-violet-50/40 hover:from-purple-100/60 hover:to-violet-50/70",
+                        iconBg: "bg-gradient-to-br from-purple-600 to-violet-600 text-white shadow-md shadow-purple-500/25",
+                        border: "border-purple-200/80 hover:border-purple-400",
+                        tagBg: "bg-purple-50 text-purple-700 border-purple-200/80",
+                        bar: "bg-purple-600",
+                      },
+                      {
+                        bg: "bg-gradient-to-br from-amber-50/80 via-white to-orange-50/40 hover:from-amber-100/60 hover:to-orange-50/70",
+                        iconBg: "bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-md shadow-amber-500/25",
+                        border: "border-amber-200/80 hover:border-amber-400",
+                        tagBg: "bg-amber-50 text-amber-700 border-amber-200/80",
+                        bar: "bg-amber-600",
+                      },
+                    ][idx % 4];
+
+                    return (
+                      <Link
+                        key={roadmap.slug}
+                        href={`/roadmaps/${roadmap.slug}`}
+                        className={`group relative rounded-3xl p-5 sm:p-6 border shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between w-[84vw] max-w-[310px] md:w-full md:max-w-none snap-start shrink-0 md:shrink active:scale-[0.98] ${themeConfig.bg} ${themeConfig.border}`}
+                      >
+                        <div className="space-y-3.5">
+                          {/* Top Row: App Icon + Difficulty Tag */}
+                          <div className="flex items-center justify-between gap-2">
+                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black shrink-0 ${themeConfig.iconBg}`}>
+                              {idx === 0 && <Layers className="w-6 h-6" />}
+                              {idx === 1 && <Sparkles className="w-6 h-6" />}
+                              {idx === 2 && <Cpu className="w-6 h-6" />}
+                              {idx === 3 && <GraduationCap className="w-6 h-6" />}
+                            </div>
+
+                            <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wide border ${themeConfig.tagBg}`}>
+                              {roadmap.difficulty}
+                            </span>
+                          </div>
+
+                          {/* Roadmap Title & Subtitle */}
+                          <div className="space-y-1.5">
+                            <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-1 leading-snug">
+                              {roadmap.shortTitle}
+                            </h3>
+                            <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed font-medium min-h-[34px]">
+                              {roadmap.subtitle}
+                            </p>
+                          </div>
+
+                          {/* Milestone Track Mini-Bar */}
+                          <div className="space-y-2 pt-1">
+                            <div className="flex items-center justify-between text-[11px] font-bold text-slate-500">
+                              <span className="flex items-center gap-1.5">
+                                <Layers className="w-3.5 h-3.5 text-slate-400" />
+                                {roadmap.stages.length} Milestones
+                              </span>
+                              <span className="text-[10px] text-slate-400 font-semibold">{roadmap.estimatedTime.split("(")[0].trim()}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 w-full">
+                              {Array.from({ length: 4 }).map((_, i) => (
+                                <div
+                                  key={i}
+                                  className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
+                                    i < 3 ? themeConfig.bar : "bg-slate-200/80 group-hover:bg-slate-300"
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Action Footer */}
+                        <div className="pt-4 mt-4 border-t border-slate-200/70 flex items-center justify-between">
+                          <span className="inline-flex items-center gap-1 text-[11px] text-slate-600 font-bold">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                            Free Curriculum
                           </span>
-                          <span className="text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded-full font-bold">
-                            {roadmap.difficulty}
+                          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white group-hover:bg-blue-600 text-blue-600 group-hover:text-white font-black text-xs border border-slate-200 shadow-2xs group-hover:border-blue-600 transition-all duration-300">
+                            <span>Start Path</span>
+                            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                           </span>
                         </div>
-                        <h3 className="text-sm sm:text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-1">
-                          <Link href={`/roadmaps/${roadmap.slug}`}>
-                            {roadmap.shortTitle}
-                          </Link>
-                        </h3>
-                        <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                          {roadmap.subtitle}
-                        </p>
-                      </div>
-
-                      <div className="pt-3 mt-3 border-t border-slate-200/70 flex items-center justify-between">
-                        <span className="text-[11px] text-slate-400 font-medium">
-                          {roadmap.estimatedTime}
-                        </span>
-                        <Link
-                          href={`/roadmaps/${roadmap.slug}`}
-                          className="text-xs font-extrabold text-blue-600 group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1 bg-white hover:bg-blue-50 px-2.5 py-1 rounded-lg border border-slate-200/80 shadow-2xs"
-                        >
-                          <span>Start</span>
-                          <ArrowRight className="w-3 h-3" />
-                        </Link>
-                      </div>
-                    </div>
-                  ))}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             </section>
@@ -365,75 +425,75 @@ export default function Home() {
             {/* What Are You Looking For? Discovery Section */}
             <DiscoverySection onOptionSelect={handleDiscoverySelect} />
 
-            {/* SECTION 2: Educational Articles & Deep Guides */}
-            <section className="w-full py-6 sm:py-16 bg-white border-b border-slate-100">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-8">
-                {/* Header with App-Style Inline View All Action */}
-                <div className="flex items-center justify-between gap-3">
-                  <div className="space-y-1">
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
-                      <BookOpen className="w-3 h-3 text-indigo-600" />
+            {/* SECTION 2: Educational Articles & Deep Guides (Desktop Web Only - Hidden in Mobile App View) */}
+            <section className="hidden md:block w-full py-16 bg-slate-50/60 border-b border-slate-100">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+                {/* Header with View All Action */}
+                <div className="flex items-end justify-between gap-4">
+                  <div className="space-y-2">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-black bg-indigo-50 text-indigo-700 border border-indigo-200/80">
+                      <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
                       <span>Original Educational Guides</span>
                     </div>
-                    <h2 className="text-xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
                       Guides & Insights
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-500 max-w-xl hidden xs:block">
-                      Exam revision methodologies, problem-solving habits, and resource evaluation.
+                    <p className="text-xs sm:text-sm text-slate-500 max-w-xl hidden xs:block font-medium">
+                      Exam revision methodologies, problem-solving habits, and resource evaluation masterclasses.
                     </p>
                   </div>
                   <Link
                     href="/articles"
-                    className="text-xs font-bold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 shrink-0 px-3 py-1.5 rounded-xl bg-blue-50 border border-blue-200 hover:bg-blue-100 transition-colors cursor-pointer"
+                    className="text-xs font-extrabold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 px-3.5 py-2 rounded-xl bg-white hover:bg-blue-50 border border-slate-200/90 shadow-2xs hover:border-blue-300 transition-all duration-300 active:scale-95 shrink-0"
                   >
-                    <span>Read All</span>
+                    <span>Read All Guides</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
 
-                {/* App-Style Horizontal Touch Carousel on Mobile / Grid on Desktop */}
-                <div className="flex overflow-x-auto pb-3 pt-1 gap-3 sm:gap-4 md:grid md:grid-cols-3 md:gap-6 snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+                {/* Mobile Snap Carousel / Desktop 3-Column Grid */}
+                <div className="flex overflow-x-auto pb-4 pt-1 gap-4 sm:gap-6 md:grid md:grid-cols-3 md:gap-6 snap-x snap-mandatory scrollbar-none -mx-4 px-4 md:mx-0 md:px-0 md:pb-0">
                   {ARTICLES.slice(0, 3).map((article) => (
-                    <article
+                    <Link
                       key={article.slug}
-                      className="group bg-slate-50/70 hover:bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between w-[78vw] max-w-[285px] sm:w-auto md:max-w-none snap-start shrink-0 md:shrink"
+                      href={`/articles/${article.slug}`}
+                      className="group relative bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 hover:border-indigo-300/80 transition-all duration-300 flex flex-col justify-between w-[84vw] max-w-[325px] md:w-full md:max-w-none snap-start shrink-0 md:shrink active:scale-[0.98]"
                     >
-                      <div className="space-y-2.5">
-                        <div className="flex items-center justify-between text-[11px] text-slate-400">
-                          <span className="font-bold text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded-full text-[10px]">
+                      <div className="space-y-3.5">
+                        {/* Top Row: Category Badge + Reading Time */}
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-indigo-50 text-indigo-700 border border-indigo-200/80">
                             {article.category}
                           </span>
-                          <span className="flex items-center gap-1 font-medium text-slate-500">
-                            <Clock className="w-3 h-3" />
+                          <span className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-400">
+                            <Clock className="w-3.5 h-3.5 text-slate-400" />
                             {article.readingTime}
                           </span>
                         </div>
 
-                        <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug line-clamp-2">
-                          <Link href={`/articles/${article.slug}`}>
-                            {article.title}
-                          </Link>
+                        {/* Article Title */}
+                        <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug line-clamp-2 min-h-[46px]">
+                          {article.title}
                         </h3>
 
-                        <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                        {/* Excerpt */}
+                        <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed font-medium min-h-[34px]">
                           {article.excerpt}
                         </p>
                       </div>
 
-                      <div className="pt-3 mt-3 border-t border-slate-200/70 flex items-center justify-between">
-                        <span className="text-[10px] text-slate-400 flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
+                      {/* Action & Date Footer */}
+                      <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span className="text-[11px] text-slate-400 flex items-center gap-1.5 font-semibold">
+                          <Calendar className="w-3.5 h-3.5 text-slate-400" />
                           {article.publishedAt}
                         </span>
-                        <Link
-                          href={`/articles/${article.slug}`}
-                          className="text-xs font-extrabold text-blue-600 group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1 bg-white hover:bg-blue-50 px-2.5 py-1 rounded-lg border border-slate-200/80 shadow-2xs"
-                        >
-                          <span>Read</span>
-                          <ArrowRight className="w-3 h-3" />
-                        </Link>
+                        <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-50 group-hover:bg-indigo-600 text-slate-700 group-hover:text-white font-extrabold text-xs border border-slate-200/80 group-hover:border-indigo-600 shadow-2xs transition-all duration-300">
+                          <span>Read Guide</span>
+                          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                        </span>
                       </div>
-                    </article>
+                    </Link>
                   ))}
                 </div>
               </div>

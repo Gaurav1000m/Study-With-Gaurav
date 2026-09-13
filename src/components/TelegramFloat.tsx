@@ -1,5 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+
 interface TelegramFloatProps {
   telegramUrl?: string;
 }
@@ -10,20 +14,20 @@ export function TelegramFloat({
   return (
     <aside
       aria-label="Join Telegram Community"
-      className="fixed right-3 sm:right-6 bottom-[calc(8.5rem+env(safe-area-inset-bottom,0px))] md:bottom-6 z-40 flex items-center group animate-float"
+      className="fixed right-3 sm:right-6 bottom-[calc(4.5rem+env(safe-area-inset-bottom,0px))] md:bottom-6 z-40 flex items-center group transition-all duration-300 ease-out"
     >
       <a
         href={telegramUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#0088cc] hover:bg-[#0077bb] active:scale-95 text-white shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0088cc] focus-visible:ring-offset-2"
-        title="Join Telegram Group"
-        aria-label="Join Telegram Group"
+        className="relative flex items-center justify-center w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-gradient-to-tr from-[#0080c6] to-[#009beb] hover:from-[#0074b3] hover:to-[#008ecc] active:scale-95 text-white shadow-lg shadow-sky-600/30 hover:shadow-xl hover:shadow-sky-600/40 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0088cc] focus-visible:ring-offset-2"
+        title="Join Telegram Community"
+        aria-label="Join Telegram Community"
       >
-        {/* Pulsing ring expansion animation */}
-        <span className="absolute inset-0 rounded-full bg-[#0088cc] animate-ping opacity-25 pointer-events-none" />
+        {/* Subtle pulsing ambient ring */}
+        <span className="absolute inset-0 rounded-full bg-[#0088cc] animate-ping opacity-20 pointer-events-none" />
 
-        {/* Font Awesome style Paper Plane SVG with group hover scale & wiggle */}
+        {/* Paper Plane SVG */}
         <svg
           viewBox="0 0 24 24"
           className="w-5 h-5 sm:w-6 sm:h-6 fill-white text-white relative z-10 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-12 group-hover:-translate-y-0.5"
@@ -34,9 +38,10 @@ export function TelegramFloat({
 
         {/* Hover Tooltip Label for Desktop */}
         <span className="hidden md:block absolute right-full mr-3 px-3 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-md pointer-events-none">
-          Join Telegram Group
+          Join Telegram Community
         </span>
       </a>
     </aside>
   );
 }
+

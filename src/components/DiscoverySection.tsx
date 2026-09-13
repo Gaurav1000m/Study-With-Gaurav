@@ -22,10 +22,11 @@ export function DiscoverySection({ onOptionSelect }: DiscoverySectionProps) {
   const col3 = CATEGORIES.slice(Math.ceil((CATEGORIES.length * 2) / 3));
 
   const renderPill = (cat: Category) => (
-    <button
+    <Link
       key={cat.id}
-      onClick={() => onOptionSelect(cat.id)}
-      className="flex items-center gap-4 w-full bg-white p-3 rounded-full border border-slate-200/80 shadow-sm hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 shrink-0 group focus:outline-none"
+      href={`/categories/${cat.id}`}
+      title={`Open ${cat.name} portal details`}
+      className="flex items-center gap-4 w-full bg-white p-3 rounded-full border border-slate-200/80 shadow-sm hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 shrink-0 group focus:outline-none cursor-pointer"
     >
       <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-slate-100 bg-slate-50 flex items-center justify-center p-1 relative">
         <Image 
@@ -40,7 +41,7 @@ export function DiscoverySection({ onOptionSelect }: DiscoverySectionProps) {
       <span className="font-bold text-slate-800 text-sm text-left group-hover:text-blue-700 transition-colors line-clamp-1">
         {cat.name}
       </span>
-    </button>
+    </Link>
   );
 
   return (
