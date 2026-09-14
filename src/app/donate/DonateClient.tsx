@@ -147,15 +147,48 @@ export function DonateClient() {
                   </span>
                 </div>
 
-                {/* QR Code Image Display */}
-                <div className="relative flex justify-center bg-slate-50 p-3 sm:p-4 rounded-xl border border-slate-200/80">
-                  <Image
-                    src="/Qrcode.jpg"
-                    alt="Scan QR Code to Donate via PhonePe, GPay, Paytm, BHIM"
-                    width={260}
-                    height={260}
-                    className="max-w-[220px] sm:max-w-[260px] w-full h-auto rounded-lg shadow-sm border border-slate-200 object-contain"
-                  />
+                {/* QR Code Image Display with Scanner Type Corner Edges */}
+                <div className="relative flex flex-col items-center justify-center bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80">
+                  <div className="relative p-3 bg-white rounded-2xl shadow-md border border-slate-200 overflow-visible">
+                    {/* Scanner Viewfinder Corner Brackets */}
+                    <span
+                      aria-hidden="true"
+                      className="absolute -top-2 -left-2 w-8 h-8 border-t-4 border-l-4 border-blue-600 rounded-tl-xl pointer-events-none z-10 shadow-xs"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="absolute -top-2 -right-2 w-8 h-8 border-t-4 border-r-4 border-blue-600 rounded-tr-xl pointer-events-none z-10 shadow-xs"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="absolute -bottom-2 -left-2 w-8 h-8 border-b-4 border-l-4 border-blue-600 rounded-bl-xl pointer-events-none z-10 shadow-xs"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="absolute -bottom-2 -right-2 w-8 h-8 border-b-4 border-r-4 border-blue-600 rounded-br-xl pointer-events-none z-10 shadow-xs"
+                    />
+
+                    {/* Subtle scanner laser beam effect */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-x-2 top-1/2 -translate-y-1/2 h-0.5 bg-gradient-to-r from-transparent via-blue-500/70 to-transparent pointer-events-none animate-pulse"
+                    />
+
+                    <Image
+                      src="/Qrcode.jpg"
+                      alt="Scan QR Code to Donate via PhonePe, GPay, Paytm, BHIM"
+                      width={732}
+                      height={722}
+                      sizes="(max-width: 640px) 220px, 260px"
+                      priority
+                      unoptimized
+                      className="max-w-[220px] sm:max-w-[260px] w-full h-auto rounded-xl object-contain"
+                    />
+                  </div>
+                  <span className="text-[11px] font-semibold text-slate-500 mt-2.5 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Scan with any UPI app (GPay, PhonePe, Paytm, BHIM)</span>
+                  </span>
                 </div>
 
                 {/* Preset Amount Selector */}

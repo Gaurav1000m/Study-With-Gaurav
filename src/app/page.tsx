@@ -19,6 +19,7 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ModernLearningSection } from "@/components/ModernLearningSection";
 import { HeroSlider } from "@/components/HeroSlider";
 import { AdBanner } from "@/components/AdBanner";
+import { NativeAdBanner } from "@/components/NativeAdBanner";
 import { WEBSITES } from "@/data/websites";
 import { CATEGORIES } from "@/data/categories";
 import { ROADMAPS } from "@/data/roadmaps";
@@ -421,6 +422,9 @@ export default function Home() {
                 </div>
               </div>
             </section>
+
+            {/* Native Sponsored Educational Ad */}
+            <NativeAdBanner />
 
             {/* What Are You Looking For? Discovery Section */}
             <DiscoverySection onOptionSelect={handleDiscoverySelect} />

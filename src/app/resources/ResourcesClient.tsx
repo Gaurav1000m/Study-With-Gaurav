@@ -11,6 +11,7 @@ import { WEBSITES } from "@/data/websites";
 import { CATEGORIES } from "@/data/categories";
 import { BookOpenCheck } from "lucide-react";
 import { AdBanner } from "@/components/AdBanner";
+import { NativeAdBanner } from "@/components/NativeAdBanner";
 import { cn } from "@/lib/utils";
 
 function ResourcesContent() {
@@ -194,6 +195,9 @@ function ResourcesContent() {
             onResetFilters={handleResetFilters}
             onTagClick={(tag) => setSearchQuery(tag)}
           />
+
+          {/* Native Educational Ad Banner */}
+          <NativeAdBanner className="my-6" />
 
           {/* AdSense Unit */}
           <AdBanner format="auto" minHeight="min-h-[100px]" label="ADVERTISEMENT" />

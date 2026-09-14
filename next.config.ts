@@ -2,16 +2,16 @@ import type { NextConfig } from "next";
 
 const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://tpc.googlesyndication.com https://googleads.g.doubleclick.net https://ep2.adtrafficquality.google;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https: blob: data:;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   img-src 'self' blob: data: https:;
   font-src 'self' https://fonts.gstatic.com data:;
   object-src 'none';
   base-uri 'self';
-  form-action 'self' https://t.me;
+  form-action 'self' https://t.me https://docs.google.com https://*.google.com;
   frame-ancestors 'self';
-  frame-src 'self' https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://www.google.com;
-  connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ep2.adtrafficquality.google;
+  frame-src 'self' https: blob: data:;
+  connect-src 'self' https: wss:;
   upgrade-insecure-requests;
 `.replace(/\s{2,}/g, " ").trim();
 

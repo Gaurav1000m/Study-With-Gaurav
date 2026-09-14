@@ -1,15 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Heart, X, Clock, ArrowRight, ShieldCheck, Check, Copy, Smartphone } from "lucide-react";
+import { Heart, X, Clock, ArrowRight, Check, Copy, Smartphone } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const STORAGE_KEY_NEXT = "swg_donation_reminder_next";
 const STORAGE_KEY_DISMISSED = "swg_donation_reminder_dismissed_count";
-const SNOOZE_DAYS_MS = 3 * 24 * 60 * 60 * 1000; // 3 days
-const CLOSE_SNOOZE_MS = 24 * 60 * 60 * 1000; // 24 hours
+const SNOOZE_DAYS_MS = 3 * 24 * 60 * 60 * 1000;
+const CLOSE_SNOOZE_MS = 24 * 60 * 60 * 1000;
 const UPI_ID = "gauraveducation@fam";
 
 export function DonationReminder() {
@@ -17,55 +18,42 @@ export function DonationReminder() {
   const [isVisible, setIsVisible] = useState(false);
   const [copied, setCopied] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState<number>(20);
+  const [showQr, setShowQr] = useState(false);
 
   useEffect(() => {
-    // Never show reminder on the actual donate page
-    if (pathname === "/donate") {
-      return;
-    }
+    if (pathname === "/donate") return;
 
-    // Check localStorage for snooze timer
     try {
       const nextTime = localStorage.getItem(STORAGE_KEY_NEXT);
-      if (nextTime && Date.now() < parseInt(nextTime, 10)) {
-        return; // Snooze active
-      }
+      if (nextTime && Date.now() < parseInt(nextTime, 10)) return;
     } catch {
-      // localStorage may be disabled or restricted
+      // localStorage may be disabled
     }
 
-    // Show after a gentle 10-second delay so user has time to explore
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 10000);
-
+    const timer = setTimeout(() => setIsVisible(true), 10000);
     return () => clearTimeout(timer);
   }, [pathname]);
 
   const handleRemindLater = () => {
     setIsVisible(false);
     try {
-      const nextSnooze = Date.now() + SNOOZE_DAYS_MS;
-      localStorage.setItem(STORAGE_KEY_NEXT, nextSnooze.toString());
-      const dismissedCount = parseInt(localStorage.getItem(STORAGE_KEY_DISMISSED) || "0", 10);
-      localStorage.setItem(STORAGE_KEY_DISMISSED, (dismissedCount + 1).toString());
+      localStorage.setItem(STORAGE_KEY_NEXT, (Date.now() + SNOOZE_DAYS_MS).toString());
+      const count = parseInt(localStorage.getItem(STORAGE_KEY_DISMISSED) || "0", 10);
+      localStorage.setItem(STORAGE_KEY_DISMISSED, (count + 1).toString());
     } catch {}
   };
 
   const handleClose = () => {
     setIsVisible(false);
     try {
-      const nextSnooze = Date.now() + CLOSE_SNOOZE_MS;
-      localStorage.setItem(STORAGE_KEY_NEXT, nextSnooze.toString());
+      localStorage.setItem(STORAGE_KEY_NEXT, (Date.now() + CLOSE_SNOOZE_MS).toString());
     } catch {}
   };
 
   const handleDonateClick = () => {
     setIsVisible(false);
     try {
-      // Snooze for 14 days after user clicks Donate
-      const nextSnooze = Date.now() + 14 * 24 * 60 * 60 * 1000;
-      localStorage.setItem(STORAGE_KEY_NEXT, nextSnooze.toString());
+      localStorage.setItem(STORAGE_KEY_NEXT, (Date.now() + 14 * 24 * 60 * 60 * 1000).toString());
     } catch {}
   };
 
@@ -79,135 +67,159 @@ export function DonationReminder() {
     }
   };
 
-  const getUpiUrl = () => {
-    return `upi://pay?pa=${UPI_ID}&pn=Study%20with%20Gaurav&cu=INR&am=${selectedAmount}`;
-  };
+  const getUpiUrl = () =>
+    `upi://pay?pa=${UPI_ID}&pn=Study%20with%20Gaurav&cu=INR&am=${selectedAmount}`;
 
-  if (!isVisible || pathname === "/donate") {
-    return null;
-  }
+  if (!isVisible || pathname === "/donate") return null;
 
   return (
     <aside
-      aria-label="Student Support Reminder"
+      aria-label="Community Support Reminder"
       className={cn(
-        "fixed z-40 transition-all duration-300 ease-out animate-slide-up",
-        // Positioned cleanly above bottom nav without blocking tabs or screen center
-        "bottom-[calc(4.25rem+env(safe-area-inset-bottom,0px))] left-3 right-3 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-[380px] w-auto"
+        "fixed z-40 animate-slide-up",
+        "bottom-[calc(4.5rem+env(safe-area-inset-bottom,0px))] left-3 right-3",
+        "sm:left-auto sm:right-5 sm:bottom-5 sm:max-w-[340px] w-auto"
       )}
     >
-      <div className="relative bg-white/98 backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-4 sm:p-4.5 border border-rose-100/90 shadow-xl shadow-slate-900/10 space-y-3 overflow-hidden">
-        {/* Subtle Top Ambient Gradient Line */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-500 via-pink-500 to-amber-500" />
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-lg overflow-hidden">
 
-        {/* Header Row */}
-        <div className="flex items-center justify-between gap-2.5 pt-0.5">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-8.5 h-8.5 rounded-xl bg-gradient-to-br from-rose-50 to-pink-100/80 border border-rose-200/80 text-rose-600 flex items-center justify-center shrink-0 shadow-2xs">
-              <Heart className="w-4 h-4 fill-rose-600 animate-pulse" />
+        {/* Header */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
+              <Heart className="w-3.5 h-3.5 fill-slate-700 text-slate-700" />
             </div>
-            <div className="min-w-0">
-              <h4 className="text-xs sm:text-sm font-extrabold text-slate-900 leading-tight">
-                Support Free Student Resources
-              </h4>
-              <div className="text-[10px] font-semibold text-rose-600 flex items-center gap-1 mt-0.5">
-                <ShieldCheck className="w-3 h-3 text-rose-500 shrink-0" />
-                <span className="truncate">100% Student-Run • No Paywalls</span>
-              </div>
+            <div>
+              <p className="text-xs font-bold text-slate-900 leading-tight">Support Free Education</p>
+              <p className="text-[10px] text-slate-400 font-medium">Student-built · Always free</p>
+            </div>
+          </div>
+          <button
+            onClick={handleClose}
+            className="w-6 h-6 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 flex items-center justify-center transition-colors cursor-pointer"
+            aria-label="Close"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="p-4 space-y-3">
+
+          {/* Amount selector */}
+          <div>
+            <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+              Select amount:
+            </p>
+            <div className="grid grid-cols-4 gap-1.5">
+              {[20, 50, 100, 250].map((amt) => (
+                <button
+                  key={amt}
+                  type="button"
+                  onClick={() => setSelectedAmount(amt)}
+                  className={cn(
+                    "py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer",
+                    selectedAmount === amt
+                      ? "bg-slate-900 text-white border-slate-900"
+                      : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-white hover:border-slate-300"
+                  )}
+                >
+                  ₹{amt}
+                </button>
+              ))}
             </div>
           </div>
 
+          {/* QR toggle */}
           <button
-            onClick={handleClose}
-            className="w-7 h-7 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors cursor-pointer shrink-0"
-            aria-label="Close reminder"
-            title="Dismiss reminder"
+            type="button"
+            onClick={() => setShowQr((v) => !v)}
+            className="w-full text-left text-xs font-semibold text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1.5"
           >
-            <X className="w-4 h-4" />
+            <span>{showQr ? "▲ Hide QR Code" : "▼ Show QR to scan"}</span>
           </button>
-        </div>
 
-        {/* Message */}
-        <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed font-medium">
-          StudyWithGaurav keeps all batches, roadmaps, and notes completely free for students. Help keep our servers fast with a quick micro-contribution!
-        </p>
+          {/* Inline QR */}
+          {showQr && (
+            <div className="flex flex-col items-center bg-slate-50 border border-slate-200 rounded-xl p-3">
+              <div className="relative p-2 bg-white rounded-xl border border-slate-200 shadow-xs overflow-visible">
+                <span aria-hidden="true" className="absolute -top-1.5 -left-1.5 w-5 h-5 border-t-[3px] border-l-[3px] border-blue-600 rounded-tl-lg pointer-events-none z-10" />
+                <span aria-hidden="true" className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-[3px] border-r-[3px] border-blue-600 rounded-tr-lg pointer-events-none z-10" />
+                <span aria-hidden="true" className="absolute -bottom-1.5 -left-1.5 w-5 h-5 border-b-[3px] border-l-[3px] border-blue-600 rounded-bl-lg pointer-events-none z-10" />
+                <span aria-hidden="true" className="absolute -bottom-1.5 -right-1.5 w-5 h-5 border-b-[3px] border-r-[3px] border-blue-600 rounded-br-lg pointer-events-none z-10" />
+                <Image
+                  src="/Qrcode.jpg"
+                  alt="Scan QR Code to donate via GPay, PhonePe, Paytm, BHIM"
+                  width={732}
+                  height={722}
+                  sizes="160px"
+                  unoptimized
+                  className="w-40 h-auto rounded-lg object-contain"
+                />
+              </div>
+              <p className="text-[10px] text-slate-400 mt-2 font-medium">
+                GPay / PhonePe / Paytm / BHIM
+              </p>
+            </div>
+          )}
 
-        {/* Amount Selector Pills */}
-        <div className="flex items-center justify-between gap-1.5 pt-0.5">
-          {[20, 50, 100, 250].map((amt) => (
+          {/* UPI ID */}
+          <div className="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-lg px-3 py-2">
+            <span className="text-xs font-mono font-semibold text-slate-800 truncate mr-2">
+              {UPI_ID}
+            </span>
             <button
-              key={amt}
-              onClick={() => setSelectedAmount(amt)}
-              className={cn(
-                "flex-1 py-1.5 px-2 rounded-xl text-xs font-black transition-all border cursor-pointer text-center",
-                selectedAmount === amt
-                  ? "bg-rose-600 text-white border-rose-600 shadow-xs scale-102"
-                  : "bg-slate-50 text-slate-700 border-slate-200/80 hover:bg-slate-100 hover:text-slate-900"
-              )}
+              type="button"
+              onClick={handleCopyUpi}
+              className="flex items-center gap-1 text-xs font-semibold cursor-pointer shrink-0 transition-colors text-blue-600 hover:text-blue-700"
+              title="Copy UPI ID"
             >
-              ₹{amt}
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  <span className="text-emerald-700">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>Copy</span>
+                </>
+              )}
             </button>
-          ))}
-        </div>
+          </div>
 
-        {/* Quick UPI ID Copy Bar */}
-        <div className="flex items-center justify-between bg-slate-50/90 border border-slate-200/70 rounded-xl px-2.5 py-1.5 text-[11px]">
-          <span className="font-mono font-semibold text-slate-600 text-[10.5px] truncate mr-2">
-            UPI: <span className="text-slate-900 font-bold">{UPI_ID}</span>
-          </span>
-          <button
-            onClick={handleCopyUpi}
-            className="font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 text-[11px] shrink-0 cursor-pointer active:scale-95 transition-transform"
-            title="Copy UPI ID"
-          >
-            {copied ? (
-              <>
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="text-emerald-700 font-extrabold">Copied!</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-3 h-3 text-slate-500" />
-                <span>Copy</span>
-              </>
-            )}
-          </button>
-        </div>
+          {/* CTA row */}
+          <div className="flex items-center gap-2">
+            <a
+              href={getUpiUrl()}
+              onClick={handleDonateClick}
+              className="flex-1 py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-xs"
+            >
+              <Smartphone className="w-3.5 h-3.5 shrink-0" />
+              Pay ₹{selectedAmount} via UPI
+            </a>
+            <button
+              type="button"
+              onClick={handleRemindLater}
+              className="py-2.5 px-3 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 font-semibold text-xs flex items-center gap-1 transition-colors cursor-pointer shrink-0"
+              title="Remind me in 3 days"
+            >
+              <Clock className="w-3.5 h-3.5 text-slate-400" />
+              Later
+            </button>
+          </div>
 
-        {/* Action Row */}
-        <div className="flex items-center gap-2 pt-0.5">
-          {/* Direct 1-Tap UPI App Launcher */}
-          <a
-            href={getUpiUrl()}
-            onClick={handleDonateClick}
-            className="flex-1 py-2.5 px-3.5 rounded-xl bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-700 hover:to-rose-800 active:scale-98 text-white font-extrabold text-xs shadow-md shadow-rose-600/20 flex items-center justify-center gap-1.5 transition-all"
-          >
-            <Smartphone className="w-3.5 h-3.5" />
-            <span>Pay ₹{selectedAmount} (UPI)</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
-
-          {/* Remind Later Snooze Button */}
-          <button
-            onClick={handleRemindLater}
-            className="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 font-bold text-xs flex items-center justify-center gap-1 transition-all cursor-pointer shrink-0"
-            title="Remind me in 3 days"
-          >
-            <Clock className="w-3.5 h-3.5 text-slate-500" />
-            <span>Later</span>
-          </button>
-        </div>
-
-        {/* Footer Link */}
-        <div className="text-center pt-0.5">
-          <Link
-            href="/donate"
-            onClick={handleDonateClick}
-            className="text-[10px] font-bold text-slate-400 hover:text-rose-600 transition-colors inline-flex items-center gap-1"
-          >
-            <span>Scan QR code or view transparency report</span>
-            <span>→</span>
-          </Link>
+          {/* Footer */}
+          <div className="border-t border-slate-100 pt-2 text-center">
+            <Link
+              href="/donate"
+              onClick={handleDonateClick}
+              className="text-[11px] font-medium text-slate-400 hover:text-blue-600 transition-colors inline-flex items-center gap-1"
+            >
+              View donation page
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
         </div>
       </div>
     </aside>

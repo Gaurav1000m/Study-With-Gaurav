@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer";
 import { SuggestModal } from "@/components/SuggestModal";
 import { ResourceGrid } from "@/components/ResourceGrid";
 import { AdBanner } from "@/components/AdBanner";
+import { NativeAdBanner } from "@/components/NativeAdBanner";
 import { Category, Website } from "@/types/website";
 import { getCategoryGuide } from "@/data/categoryGuides";
 import {
@@ -388,6 +389,9 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
               </div>
             </div>
           )}
+
+          {/* Native Sponsored Educational Ad */}
+          <NativeAdBanner className="my-6" />
 
           {/* Cross-Link Hub */}
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50/60 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-blue-100 flex flex-col sm:flex-row items-center justify-between gap-3.5 sm:gap-4">

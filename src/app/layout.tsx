@@ -9,6 +9,7 @@ import { BottomNav } from "@/components/BottomNav";
 import { DonationReminder } from "@/components/DonationReminder";
 import { GetAppBanner } from "@/components/GetAppBanner";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
+import { AdNetworkScripts } from "@/components/AdNetworkScripts";
 import { AppProvider } from "@/context/AppContext";
 
 const inter = Inter({
@@ -254,6 +255,7 @@ export default function RootLayout({
         </a>
         <AppProvider>
           <AdSenseLoader />
+          <AdNetworkScripts />
           <SplashScreen />
           {children}
           <GetAppBanner />
