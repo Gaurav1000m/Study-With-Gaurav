@@ -21,11 +21,10 @@ function CategoryCardItem({ cat }: { cat: Category }) {
             src={cat.logo || "/images/logo.webp"}
             alt=""
             aria-hidden="true"
-            width={144}
-            height={144}
+            fill
+            sizes="144px"
             unoptimized
-            style={{ width: "auto", height: "auto" }}
-            className="w-full h-full object-contain filter blur-[0.5px]"
+            className="object-contain filter blur-[0.5px]"
           />
         </div>
       )}
@@ -40,11 +39,10 @@ function CategoryCardItem({ cat }: { cat: Category }) {
             <Image
               src={cat.logo || "/images/logo.webp"}
               alt={`${cat.name} portal logo`}
-              width={40}
-              height={40}
+              fill
+              sizes="48px"
               unoptimized
-              style={{ width: "auto", height: "auto" }}
-              className="w-full h-full object-contain relative z-20"
+              className="object-contain p-1 relative z-20"
             />
           ) : (
             <div className="w-full h-full rounded-lg bg-blue-600 text-white flex items-center justify-center font-black text-sm relative z-20">

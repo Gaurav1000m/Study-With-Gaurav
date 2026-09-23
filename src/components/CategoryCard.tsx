@@ -23,11 +23,10 @@ export function CategoryCard({ category, count }: CategoryCardProps) {
             src={category.logo || "/images/logo.webp"}
             alt=""
             aria-hidden="true"
-            width={112}
-            height={112}
+            fill
+            sizes="(max-width: 640px) 64px, 112px"
             unoptimized
-            style={{ width: "auto", height: "auto" }}
-            className="w-full h-full object-contain filter blur-[0.3px]"
+            className="object-contain filter blur-[0.3px]"
           />
         </div>
       )}
@@ -43,11 +42,10 @@ export function CategoryCard({ category, count }: CategoryCardProps) {
               <Image
                 src={category.logo || "/images/logo.webp"}
                 alt={`${category.name} portal logo`}
-                width={44}
-                height={44}
+                fill
+                sizes="48px"
                 unoptimized
-                style={{ width: "auto", height: "auto" }}
-                className="w-full h-full object-contain relative z-20"
+                className="object-contain p-1 relative z-20"
               />
             ) : (
               <div className="w-full h-full rounded-lg bg-blue-600 text-white flex items-center justify-center font-black text-xs sm:text-sm relative z-20">

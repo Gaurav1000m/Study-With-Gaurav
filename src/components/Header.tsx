@@ -7,7 +7,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { Search, Heart, User, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
-import { downloadStudyWithGauravApk } from "@/lib/downloadApk";
 
 interface HeaderProps {
   onOpenSuggestModal?: () => void;
@@ -146,15 +145,15 @@ export function Header({ onFocusSearch }: HeaderProps = {}) {
 
           {/* Header Action Buttons */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            {/* Mobile Action: Donate Button (Mobile header bar only) */}
+            {/* Mobile Action: Get APK Button */}
             <Link
-              href="/donate"
-              className="inline-flex md:hidden items-center gap-1 px-2.5 py-1 rounded-full text-xs font-extrabold text-white bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 active:scale-95 transition-all shadow-xs border border-rose-400 min-h-[30px]"
-              title="Support & Donate"
-              aria-label="Donate to Study with Gaurav"
+              href="/download"
+              className="inline-flex md:hidden items-center gap-1 px-2.5 py-1 rounded-full text-xs font-extrabold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 transition-all shadow-xs border border-blue-500 min-h-[30px]"
+              title="Get Android APK"
+              aria-label="Get Android APK"
             >
-              <Heart className="w-3.5 h-3.5 fill-white text-white animate-pulse" />
-              <span>Donate</span>
+              <Download className="w-3.5 h-3.5 shrink-0" />
+              <span>Get APK</span>
             </Link>
 
             {/* Mobile Action: Quick Search Icon */}
@@ -167,16 +166,16 @@ export function Header({ onFocusSearch }: HeaderProps = {}) {
               <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
 
-            {/* Download APK Button (Desktop Only) */}
-            <button
-              onClick={downloadStudyWithGauravApk}
-              className="hidden md:inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 xs:px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-[11px] xs:text-xs sm:text-sm font-extrabold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-colors shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[30px] sm:min-h-[40px] shrink-0 cursor-pointer active:scale-95"
-              title="Download Android APK (v1.0.4 - 4.6 MB)"
-              aria-label="Download Android APK"
+            {/* Get APK Button (Desktop) */}
+            <Link
+              href="/download"
+              className="hidden md:inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs sm:text-sm font-extrabold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-colors shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 min-h-[32px] sm:min-h-[40px] shrink-0 active:scale-95"
+              title="Get Official Android App (v1.0.4 - 4.5 MB)"
+              aria-label="Get Android APK"
             >
               <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-              <span className="whitespace-nowrap font-bold">Download APK</span>
-            </button>
+              <span className="whitespace-nowrap font-bold">Get APK</span>
+            </Link>
 
             {/* Donate Button (Desktop) */}
             <Link

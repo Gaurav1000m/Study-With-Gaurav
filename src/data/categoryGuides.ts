@@ -103,6 +103,35 @@ const SPECIALIZED_GUIDES: Partial<Record<CategoryId, CategoryGuide>> = {
         answer: "No. Basic subject-verb agreement and foundational tenses are sufficient to start communicating effectively. Fluency develops through active conversational usage, not theoretical grammar mastery."
       }
     ]
+  },
+  "eduteria": {
+    curriculumOverview: "Eduteria specializes in state civil services (BPSC, UPPSC), Bihar Daroga / Police exams, SSC, and comprehensive monthly & yearly Current Affairs compilations curated by Pravin Sir. Pedagogy emphasizes high-yield facts, Bihar special GK, history, polity, and systematic revision tests.",
+    recommendedStudyProtocol: [
+      "Follow daily and monthly current affairs compilations with concise one-liner note-taking.",
+      "Thoroughly cover Bihar Special GK (history, geography, economy, and budget) for state examination requirements.",
+      "Practice full-length previous year papers and sectional practice sets weekly.",
+      "Review NCERT foundations in Indian History, Polity, and Geography alongside Eduteria video lectures."
+    ],
+    evaluationStandards: [
+      "High factual accuracy and alignment with recent BPSC and State PCS question patterns.",
+      "Concise, high-yield summary notes and test series.",
+      "Coverage of national and international current affairs with state-specific relevance."
+    ],
+    commonPitfalls: [
+      "Cramming current affairs at the last minute rather than consistent daily or weekly review.",
+      "Ignoring state-specific economic surveys and budgets.",
+      "Not writing timed sectional practice mock tests."
+    ],
+    faqs: [
+      {
+        question: "Is Eduteria current affairs sufficient for BPSC Prelims?",
+        answer: "Yes, Eduteria's yearly and semi-annual current affairs compilations are widely regarded as one of the best concise resources for BPSC, Bihar SI, and railway exams."
+      },
+      {
+        question: "How can I access Eduteria study batches and test series?",
+        answer: "You can access Eduteria resources via the official portal as well as verified web companion links listed on StudyWithGaurav."
+      }
+    ]
   }
 };
 

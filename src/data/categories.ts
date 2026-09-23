@@ -315,6 +315,15 @@ export const CATEGORIES: Category[] = [
     logo: "https://www.taiyarikarlo.com/tenants/taiyarikarlo/logo.jpeg",
     description: "Online preparation portal and learning platform for government recruitment and competitive exams.",
     featured: true
+  },
+  {
+    id: "eduteria",
+    name: "Eduteria",
+    shortName: "Eduteria",
+    iconName: "BookOpenCheck",
+    logo: "https://decicqog4ulhy.cloudfront.net/0/admin_v1/application_management/clientlogo/2897883166_Eduteria-logo.png",
+    description: "Premier learning platform by Pravin Sir for BPSC, Bihar Daroga, SSC, and Current Affairs preparation.",
+    featured: true
   }
 ];
 

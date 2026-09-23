@@ -168,6 +168,7 @@ export default function Home() {
               height={500}
               priority
               unoptimized
+              style={{ width: "auto", height: "100%" }}
               className="w-auto h-full max-h-[250px] sm:max-h-[390px] lg:max-h-[430px] object-contain object-bottom sm:object-left-bottom filter drop-shadow-md"
             />
           </div>
@@ -181,6 +182,7 @@ export default function Home() {
               height={750}
               priority
               unoptimized
+              style={{ width: "auto", height: "100%" }}
               className="w-auto h-full max-h-[340px] sm:max-h-[520px] lg:max-h-[600px] object-contain object-right-bottom filter drop-shadow-lg scale-105"
             />
           </div>

@@ -16,7 +16,6 @@ import {
   Info,
   Lock,
   Cpu,
-  ArrowRight,
   HelpCircle,
   FileCheck,
   Globe,
@@ -140,10 +139,10 @@ export function DownloadClient() {
 
           <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
-              
+
               {/* Left Column: App Branding, Description & Direct Downloads */}
               <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-left">
-                
+
                 {/* Pill Badges */}
                 <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-blue-50 text-blue-800 text-[10px] sm:text-xs font-bold border border-blue-200 shadow-2xs">
@@ -256,7 +255,7 @@ export function DownloadClient() {
               {/* Right Column: App Card & Feature Checklist */}
               <div className="lg:col-span-5">
                 <div className="bg-white border border-slate-200/90 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-xl shadow-slate-200/50 relative overflow-hidden text-center">
-                  
+
                   {/* Decorative corner glows */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
                   <div className="absolute bottom-0 left-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -646,9 +645,8 @@ export function DownloadClient() {
                         {faq.question}
                       </span>
                       <ChevronDown
-                        className={`w-4 h-4 text-slate-500 shrink-0 transition-transform duration-200 ${
-                          isOpen ? "rotate-180 text-blue-600" : ""
-                        }`}
+                        className={`w-4 h-4 text-slate-500 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180 text-blue-600" : ""
+                          }`}
                       />
                     </button>
                     {isOpen && (
@@ -659,53 +657,6 @@ export function DownloadClient() {
                   </div>
                 );
               })}
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA Banner */}
-        <section className="w-full py-10 sm:py-16 bg-gradient-to-br from-blue-700 via-indigo-700 to-slate-900 text-white relative overflow-hidden">
-          {/* Subtle background lion watermark */}
-          <div className="absolute right-0 bottom-0 opacity-15 pointer-events-none select-none max-w-sm">
-            <Image
-              src="/black-and-white-portrait-of-a-lion.webp"
-              alt="Background lion watermark"
-              width={350}
-              height={350}
-              className="object-cover"
-            />
-          </div>
-
-          <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 text-center relative z-10 space-y-4 sm:space-y-6">
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-md text-cyan-200 text-[10px] sm:text-xs font-bold border border-white/15">
-              <Sparkles className="w-3.5 h-3.5 shrink-0" />
-              <span>SUPERCHARGE YOUR PREPARATION TODAY</span>
-            </div>
-
-            <h2 className="text-xl sm:text-4xl font-extrabold tracking-tight max-w-2xl mx-auto leading-tight">
-              Get the Free Study With Gaurav App on Android
-            </h2>
-
-            <p className="text-slate-200 text-xs sm:text-base max-w-xl mx-auto leading-relaxed">
-              Join thousands of aspirants preparing for JEE, NEET, SSC, and Defense exams with direct batch portals and lecture notes.
-            </p>
-
-            <div className="pt-1 sm:pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3">
-              <button
-                onClick={downloadStudyWithGauravApk}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white text-blue-900 hover:bg-slate-100 font-extrabold text-sm sm:text-base shadow-xl shadow-slate-950/20 active:scale-95 transition-all min-h-[48px] cursor-pointer"
-              >
-                <Download className="w-4 h-4 sm:w-5 sm:h-5 text-blue-700 shrink-0" />
-                <span>Download APK (4.6 MB)</span>
-              </button>
-
-              <Link
-                href="/"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs sm:text-sm border border-white/20 backdrop-blur-sm transition-all min-h-[44px]"
-              >
-                <span>Continue on Web</span>
-                <ArrowRight className="w-4 h-4 shrink-0" />
-              </Link>
             </div>
           </div>
         </section>

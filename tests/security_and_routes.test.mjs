@@ -72,14 +72,12 @@ describe("Production Security & Route Policy Tests", () => {
     assert.ok(content.includes('href: "/profile"'), "BottomNav must have /profile link");
   });
 
-  test("DonationReminder component exists with polite snooze and UPI support", () => {
+  test("DonationReminder component is neutralized per user specification", () => {
     const reminderPath = path.join(rootDir, "src", "components", "DonationReminder.tsx");
     assert.ok(fs.existsSync(reminderPath), "DonationReminder.tsx must exist");
     const content = fs.readFileSync(reminderPath, "utf8");
 
-    assert.ok(content.includes("swg_donation_reminder_next"), "Must use localStorage snooze timer");
-    assert.ok(content.includes("gauraveducation@fam"), "Must include valid UPI ID");
-    assert.ok(content.includes('href="/donate"'), "Must link to /donate page");
+    assert.ok(content.includes("return null"), "Donation reminder should be neutralized");
   });
 
   test("DonateClient includes working mobile UPI protocol and QR code", () => {

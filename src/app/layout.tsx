@@ -6,10 +6,7 @@ import "./globals.css";
 import { SplashScreen } from "@/components/SplashScreen";
 import { TelegramFloat } from "@/components/TelegramFloat";
 import { BottomNav } from "@/components/BottomNav";
-import { DonationReminder } from "@/components/DonationReminder";
-import { GetAppBanner } from "@/components/GetAppBanner";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
-import { AdNetworkScripts } from "@/components/AdNetworkScripts";
 import { AppProvider } from "@/context/AppContext";
 
 const inter = Inter({
@@ -228,7 +225,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-100 selection:text-blue-900 pb-[calc(3.5rem+env(safe-area-inset-bottom,0px))] md:pb-0">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-100 selection:text-blue-900 pb-[calc(3.5rem+env(safe-area-inset-bottom,0px))] md:pb-0">
         {/* Structured Data / Schema.org JSON-LD placed in body to prevent head-injection hydration mismatches */}
         <script
           id="jsonld-website"
@@ -255,12 +252,9 @@ export default function RootLayout({
         </a>
         <AppProvider>
           <AdSenseLoader />
-          <AdNetworkScripts />
           <SplashScreen />
           {children}
-          <GetAppBanner />
           <TelegramFloat />
-          <DonationReminder />
           <BottomNav />
         </AppProvider>
       </body>
