@@ -115,7 +115,7 @@ export default function ContactPage() {
                 <div>
                   <h2 className="text-lg sm:text-xl font-bold text-slate-900">Telegram Community</h2>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1">
-                    Join our active student discussion group for real-time exam updates, newly verified batch portals, and peer study groups:
+                    Join our active student discussion group for real-time exam updates, newly reviewed batch portals, and peer study groups:
                   </p>
                 </div>
                 <div className="pt-1">

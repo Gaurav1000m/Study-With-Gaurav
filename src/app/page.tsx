@@ -288,14 +288,32 @@ export default function Home() {
           </section>
         ) : (
           <>
+            {/* What is Study with Gaurav Explanatory Section */}
+            <section aria-label="About Study with Gaurav" className="w-full py-8 sm:py-12 bg-slate-50/80 border-b border-slate-100">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-3xl mx-auto text-center space-y-3">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200/80">
+                    <BookOpen className="w-3.5 h-3.5 text-blue-600" />
+                    <span>Educational Discovery & Guidance</span>
+                  </div>
+                  <h2 className="text-xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                    What is Study with Gaurav?
+                  </h2>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                    Study with Gaurav is an open-access educational directory and study guide portal. We help students preparing for engineering (JEE, B.Tech CSE), medical entrances (NEET), government recruitment (SSC, Defence), and computer programming discover verified learning platforms, milestone-based roadmaps, and syllabus-aligned notes in one structured location.
+                  </p>
+                </div>
+              </div>
+            </section>
+
             {/* Explore Categories Section */}
             <CategorySection categoryCounts={categoryCounts} />
 
             {/* Mid-Feed Banner */}
             <AdBanner className="my-2 sm:my-3" />
 
-            {/* SECTION 1: Featured Learning Roadmaps (Desktop Web Only - Hidden in Mobile App View) */}
-            <section className="hidden md:block w-full py-16 bg-white border-b border-slate-100">
+            {/* SECTION 1: Featured Learning Roadmaps (Visible on Mobile & Web) */}
+            <section className="w-full py-10 sm:py-16 bg-white border-b border-slate-100">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
                 {/* Header with View All Action */}
                 <div className="flex items-end justify-between gap-4">
@@ -431,8 +449,8 @@ export default function Home() {
             {/* What Are You Looking For? Discovery Section */}
             <DiscoverySection onOptionSelect={handleDiscoverySelect} />
 
-            {/* SECTION 2: Educational Articles & Deep Guides (Desktop Web Only - Hidden in Mobile App View) */}
-            <section className="hidden md:block w-full py-16 bg-slate-50/60 border-b border-slate-100">
+            {/* SECTION 2: Educational Articles & Deep Guides (Visible on Mobile & Web) */}
+            <section className="w-full py-10 sm:py-16 bg-slate-50/60 border-b border-slate-100">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
                 {/* Header with View All Action */}
                 <div className="flex items-end justify-between gap-4">
@@ -505,18 +523,18 @@ export default function Home() {
               </div>
             </section>
 
-            {/* Modern Learning Section (Desktop only) */}
-            <div className="hidden md:block">
+            {/* Modern Learning Section */}
+            <div>
               <ModernLearningSection />
             </div>
 
-            {/* Testimonials Section (Desktop only) */}
-            <div className="hidden md:block">
+            {/* Testimonials Section */}
+            <div>
               <TestimonialsSection />
             </div>
 
-            {/* Knowledge Base & FAQ Section (Desktop full guide) */}
-            <section className="hidden md:block w-full py-16 sm:py-24 bg-white relative overflow-hidden">
+            {/* Knowledge Base & FAQ Section */}
+            <section className="w-full py-12 sm:py-24 bg-white relative overflow-hidden">
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 relative z-10">
                 <div className="text-center space-y-4 max-w-3xl mx-auto">
                   <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-widest text-blue-700 bg-blue-100/80 px-4 py-1.5 rounded-full border border-blue-200 shadow-sm">

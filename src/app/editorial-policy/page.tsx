@@ -88,7 +88,7 @@ export default function EditorialPolicyPage() {
             </h1>
 
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              At StudyWithGaurav, our mission is to cut through online noise and provide students with legitimate, verified, and safe educational resources. We follow strict editorial guidelines to ensure every review, roadmap, and resource recommendation meets high academic standards.
+              At StudyWithGaurav, our mission is to cut through online noise and provide students with legitimate, curated, and safe educational resources. We follow strict editorial guidelines to ensure every review, roadmap, and resource recommendation meets high academic standards.
             </p>
 
             <div className="pt-2 text-xs text-slate-400 font-medium flex items-center gap-2">

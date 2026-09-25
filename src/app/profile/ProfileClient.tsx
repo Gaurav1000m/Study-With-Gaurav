@@ -481,7 +481,7 @@ export function ProfileClient() {
                           </Link>
                           <a
                             href={website.url}
-                            target="_blank"
+                            target="_self"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors shadow-2xs"
                           >
@@ -583,7 +583,7 @@ export function ProfileClient() {
                         </Link>
                         <a
                           href={website.url}
-                          target="_blank"
+                          target="_self"
                           rel="noopener noreferrer"
                           className="flex-1 py-1.5 text-center text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex items-center justify-center gap-1 shadow-2xs"
                         >
@@ -684,7 +684,7 @@ export function ProfileClient() {
                         </Link>
                         <a
                           href={website.url}
-                          target="_blank"
+                          target="_self"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors shadow-2xs"
                         >

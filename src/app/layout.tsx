@@ -80,7 +80,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Study with Gaurav — Educational Resources, Learning Guides & Roadmaps",
-    description: "Discover verified educational platforms, subject learning guides, competitive exam study materials, and academic roadmaps for students.",
+    description: "Discover curated educational platforms, subject learning guides, competitive exam study materials, and academic roadmaps for students.",
     url: "https://studywithgaurav.cc.cd",
     type: "website",
     locale: "en_IN",
@@ -98,7 +98,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Study with Gaurav — Educational Resources & Learning Roadmaps",
-    description: "Discover verified educational platforms, learning guides, and academic roadmaps for students.",
+    description: "Discover curated educational platforms, learning guides, and academic roadmaps for students.",
     images: ["https://studywithgaurav.cc.cd/lionbg.png"],
   },
   other: {
@@ -121,7 +121,7 @@ const jsonLdWebsite = {
     "Study with Gaurav Resource Hub"
   ],
   "url": "https://studywithgaurav.cc.cd",
-  "description": "An organized educational information and resource platform designed to help students discover verified learning websites, study guides, exam preparation resources, and academic roadmaps.",
+  "description": "An organized educational information and resource platform designed to help students discover curated learning websites, study guides, exam preparation resources, and academic roadmaps.",
   "inLanguage": "en-IN",
   "potentialAction": {
     "@type": "SearchAction",
@@ -139,7 +139,7 @@ const jsonLdOrganization = {
   "name": "Study with Gaurav",
   "url": "https://studywithgaurav.cc.cd",
   "logo": "https://studywithgaurav.cc.cd/images/lionbg.webp",
-  "description": "Independent educational resource directory and study guidance platform providing curated access to verified learning tools, academic roadmaps, and preparation resources.",
+  "description": "Independent educational resource directory and study guidance platform providing curated access to learning tools, academic roadmaps, and preparation resources.",
   "knowsAbout": [
     "Educational Resource Curation",
     "Engineering Entrance Preparation (JEE)",
@@ -150,37 +150,6 @@ const jsonLdOrganization = {
   ],
   "sameAs": [
     "https://t.me/studywithgaurav0"
-  ]
-};
-
-const jsonLdFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is Study with Gaurav?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Study with Gaurav is an educational resource platform designed to help students discover, understand, compare, and effectively use verified learning websites, study materials, exam preparation tools, and academic guides from one organized hub."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How does Study with Gaurav review and verify educational resources?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Our editorial team evaluates each platform based on syllabus relevance, teaching quality, student feedback, platform stability, accessibility, and transparency."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is Study with Gaurav free for students?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, Study with Gaurav is completely open and free for all students, with no mandatory subscription or registration paywalls."
-      }
-    }
   ]
 };
 
@@ -236,11 +205,6 @@ export default function RootLayout({
           id="jsonld-org"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
-        />
-        <script
-          id="jsonld-faq"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
         />
 
         {/* Skip to main content — accessibility for keyboard and screen reader users */}

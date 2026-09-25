@@ -138,8 +138,8 @@ export function GoClient({ website }: GoClientProps) {
               <span>Safety & Verification Notice:</span>
             </div>
             <ul className="space-y-1.5 pl-6 list-disc text-slate-400">
-              <li>This link directs to the official, verified destination of {website.name}.</li>
-              <li>Opens in a safe, isolated browser tab with <code className="text-slate-300">rel=&quot;noopener noreferrer&quot;</code> protection.</li>
+              <li>This link directs to the official destination of {website.name}.</li>
+              <li>Directs safely with <code className="text-slate-300">rel=&quot;noopener noreferrer&quot;</code> protection.</li>
               <li>No credentials or student account details are shared by StudyWithGaurav.</li>
             </ul>
           </div>
@@ -148,7 +148,7 @@ export function GoClient({ website }: GoClientProps) {
           <div className="space-y-3 pt-2">
             <a
               href={website.url}
-              target="_blank"
+              target="_self"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-base shadow-lg shadow-blue-600/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
             >

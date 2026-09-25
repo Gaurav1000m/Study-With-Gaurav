@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
   return {
     title: `${category.name} Resources & Study Guides (${categoryWebsites.length}+ Platforms) | Study with Gaurav`,
-    description: `${category.description} Discover ${categoryWebsites.length}+ verified ${category.name} educational portals, notes, courses, and study links.`,
+    description: `${category.description} Discover ${categoryWebsites.length}+ curated ${category.name} educational portals, notes, courses, and structured study guides on Study with Gaurav.`,
     alternates: {
       canonical: `https://studywithgaurav.cc.cd/categories/${slug}`,
     },

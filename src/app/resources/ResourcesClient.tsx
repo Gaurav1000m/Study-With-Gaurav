@@ -113,7 +113,7 @@ function ResourcesContent() {
               </div>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
-              Search, filter, and discover {WEBSITES.length}+ verified educational platforms, study tools, competitive exam portals, and coding sites. Click any card to open.
+              Search, filter, and discover {WEBSITES.length}+ curated educational platforms, study tools, competitive exam portals, and coding sites. Click any card to view detailed editorial analysis or access official resources.
             </p>
 
             <div className="pt-1 space-y-3">

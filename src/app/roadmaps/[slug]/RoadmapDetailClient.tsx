@@ -360,7 +360,7 @@ export function RoadmapDetailClient({ roadmap }: Props) {
           href="/resources"
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-colors shadow-sm"
         >
-          <span>Browse Vetted Tools & Platforms</span>
+          <span>Browse Curated Platforms & Portals</span>
           <ArrowRight className="w-4 h-4" />
         </Link>
       </div>

@@ -11,6 +11,8 @@ import { AdBanner } from "@/components/AdBanner";
 import { NativeAdBanner } from "@/components/NativeAdBanner";
 import { Category, Website } from "@/types/website";
 import { getCategoryGuide } from "@/data/categoryGuides";
+import { ROADMAPS } from "@/data/roadmaps";
+import { ARTICLES } from "@/data/articles";
 import {
   ArrowLeft,
   BookOpen,
@@ -24,6 +26,7 @@ import {
   ArrowRight,
   Search,
   X,
+  GraduationCap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -35,10 +38,31 @@ interface CategorySlugClientProps {
 export function CategorySlugClient({ category, categoryWebsites }: CategorySlugClientProps) {
   const [isSuggestModalOpen, setIsSuggestModalOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [mobileTab, setMobileTab] = useState<"portals" | "curriculum" | "protocol" | "faqs">("portals");
   const [searchQuery, setSearchQuery] = useState("");
 
   const guide = getCategoryGuide(category.name, category.id);
+
+  const relevantRoadmaps = useMemo(() => {
+    const cId = category.id.toLowerCase();
+    const cName = category.name.toLowerCase();
+    const matched = ROADMAPS.filter((r) => {
+      const rec = (r.recommendedResourceCategory || "").toLowerCase();
+      const title = r.title.toLowerCase();
+      return rec.includes(cId) || rec.includes(cName) || title.includes(cName);
+    });
+    return (matched.length > 0 ? matched : ROADMAPS).slice(0, 2);
+  }, [category]);
+
+  const relevantArticles = useMemo(() => {
+    const cName = category.name.toLowerCase();
+    const matched = ARTICLES.filter((a) => {
+      return (
+        a.category.toLowerCase().includes(cName) ||
+        a.title.toLowerCase().includes(cName)
+      );
+    });
+    return (matched.length > 0 ? matched : ARTICLES).slice(0, 2);
+  }, [category]);
 
   const filteredWebsites = useMemo(() => {
     if (!searchQuery.trim()) return categoryWebsites;
@@ -207,65 +231,67 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
             )}
           </div>
 
-          {/* Mobile App Segmented Navigation Tabs */}
-          <div className="flex md:hidden items-center bg-slate-200/70 p-1 rounded-2xl border border-slate-200 gap-1 text-xs font-bold shadow-2xs">
+          {/* Category Quick Navigation Chips (Mobile & Desktop) */}
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-1 text-xs font-bold">
             <button
               type="button"
-              onClick={() => setMobileTab("portals")}
-              className={cn(
-                "flex-1 py-2 rounded-xl transition-all text-center cursor-pointer min-h-[36px]",
-                mobileTab === "portals"
-                  ? "bg-white text-blue-700 shadow-xs"
-                  : "text-slate-600 hover:text-slate-900"
-              )}
+              onClick={() => {
+                const el = document.getElementById("section-portals");
+                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              className="shrink-0 px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-blue-600 hover:border-blue-300 shadow-2xs transition-colors cursor-pointer"
             >
-              Batches ({filteredWebsites.length})
+              Portals ({filteredWebsites.length})
             </button>
             <button
               type="button"
-              onClick={() => setMobileTab("curriculum")}
-              className={cn(
-                "flex-1 py-2 rounded-xl transition-all text-center cursor-pointer min-h-[36px]",
-                mobileTab === "curriculum"
-                  ? "bg-white text-blue-700 shadow-xs"
-                  : "text-slate-600 hover:text-slate-900"
-              )}
+              onClick={() => {
+                const el = document.getElementById("section-curriculum");
+                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              className="shrink-0 px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-blue-600 hover:border-blue-300 shadow-2xs transition-colors cursor-pointer"
             >
-              Curriculum
+              Curriculum Scope
             </button>
             <button
               type="button"
-              onClick={() => setMobileTab("protocol")}
-              className={cn(
-                "flex-1 py-2 rounded-xl transition-all text-center cursor-pointer min-h-[36px]",
-                mobileTab === "protocol"
-                  ? "bg-white text-blue-700 shadow-xs"
-                  : "text-slate-600 hover:text-slate-900"
-              )}
+              onClick={() => {
+                const el = document.getElementById("section-protocol");
+                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              className="shrink-0 px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-blue-600 hover:border-blue-300 shadow-2xs transition-colors cursor-pointer"
             >
-              Protocol
+              Study Protocol & Pitfalls
             </button>
             {guide.faqs && guide.faqs.length > 0 && (
               <button
                 type="button"
-                onClick={() => setMobileTab("faqs")}
-                className={cn(
-                  "flex-1 py-2 rounded-xl transition-all text-center cursor-pointer min-h-[36px]",
-                  mobileTab === "faqs"
-                    ? "bg-white text-blue-700 shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
-                )}
+                onClick={() => {
+                  const el = document.getElementById("section-faqs");
+                  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="shrink-0 px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-blue-600 hover:border-blue-300 shadow-2xs transition-colors cursor-pointer"
               >
-                FAQs
+                Category FAQs
               </button>
             )}
+            <button
+              type="button"
+              onClick={() => {
+                const el = document.getElementById("section-roadmaps");
+                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              className="shrink-0 px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-blue-600 hover:border-blue-300 shadow-2xs transition-colors cursor-pointer"
+            >
+              Curriculum Roadmaps
+            </button>
           </div>
 
           {/* AdSense Unit in Category Free Space */}
           <AdBanner format="auto" minHeight="min-h-[100px]" label="ADVERTISEMENT" />
 
           {/* Section 1: Resource Directory (Batches & Portals) */}
-          <div className={cn(mobileTab === "portals" ? "block" : "hidden md:block", "space-y-3 sm:space-y-4")}>
+          <div id="section-portals" className="space-y-3 sm:space-y-4 scroll-mt-24">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-slate-200 pb-2.5 sm:pb-3">
               <div>
                 <h2 className="text-base sm:text-2xl font-bold text-slate-900">
@@ -286,10 +312,10 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
           </div>
 
           {/* Section 2: Curriculum Overview Box */}
-          <div className={cn(mobileTab === "curriculum" ? "block" : "hidden md:block", "bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 border border-slate-200/90 shadow-2xs space-y-2.5 sm:space-y-3")}>
+          <div id="section-curriculum" className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 border border-slate-200/90 shadow-2xs space-y-2.5 sm:space-y-3 scroll-mt-24">
             <h2 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-700 flex items-center gap-2">
               <BookOpen className="w-4 h-4 text-blue-600 shrink-0" />
-              <span>Curriculum & Scope Overview</span>
+              <span>Curriculum & Academic Scope</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
               {guide.curriculumOverview}
@@ -297,12 +323,12 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
           </div>
 
           {/* Section 3: Educational Study Protocol & Pitfalls */}
-          <div className={cn(mobileTab === "protocol" ? "grid" : "hidden md:grid", "grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6")}>
+          <div id="section-protocol" className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6 scroll-mt-24">
             {/* Study Protocol */}
             <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200/90 shadow-2xs space-y-3 sm:space-y-4">
               <div className="flex items-center gap-2 text-slate-900 font-bold text-sm sm:text-lg">
                 <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 shrink-0" />
-                <span>Recommended Study Protocol</span>
+                <h2>Recommended Study Protocol</h2>
               </div>
               <p className="text-xs text-slate-500">
                 Follow this systematic preparation workflow when studying {category.name}:
@@ -323,7 +349,7 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
             <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200/90 shadow-2xs space-y-3 sm:space-y-4">
               <div className="flex items-center gap-2 text-slate-900 font-bold text-sm sm:text-lg">
                 <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600 shrink-0" />
-                <span>Common Mistakes to Avoid</span>
+                <h2>Common Mistakes to Avoid</h2>
               </div>
               <p className="text-xs text-slate-500">
                 Avoid these frequent learning traps identified by our academic review team:
@@ -353,7 +379,7 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
 
           {/* Section 4: Category FAQs */}
           {guide.faqs && guide.faqs.length > 0 && (
-            <div className={cn(mobileTab === "faqs" ? "block" : "hidden md:block", "bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200/90 shadow-2xs space-y-4 sm:space-y-6")}>
+            <div id="section-faqs" className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200/90 shadow-2xs space-y-4 sm:space-y-6 scroll-mt-24">
               <h2 className="text-base sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-blue-600 shrink-0" />
                 <span>Frequently Asked Questions about {category.name}</span>
@@ -389,6 +415,78 @@ export function CategorySlugClient({ category, categoryWebsites }: CategorySlugC
               </div>
             </div>
           )}
+
+          {/* Section 5: Related Roadmaps & Study Guides */}
+          <div id="section-roadmaps" className="bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-800 shadow-xs space-y-5 scroll-mt-24">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                <GraduationCap className="w-3.5 h-3.5 text-blue-400" />
+                <span>Structured Learning Pathways</span>
+              </div>
+              <h2 className="text-base sm:text-xl font-bold text-white">
+                Recommended Roadmaps & Study Guides for {category.name}
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300">
+                Reinforce your portal study with complete learning stages and self-study methodologies.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {relevantRoadmaps.map((roadmap) => (
+                <Link
+                  key={roadmap.slug}
+                  href={`/roadmaps/${roadmap.slug}`}
+                  className="group p-4 sm:p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-400/40 transition-all flex flex-col justify-between space-y-2.5"
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-[11px]">
+                      <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-semibold border border-blue-500/30">
+                        {roadmap.difficulty}
+                      </span>
+                      <span className="text-slate-400">{roadmap.estimatedTime}</span>
+                    </div>
+                    <h3 className="font-bold text-sm sm:text-base text-white group-hover:text-blue-300 transition-colors">
+                      {roadmap.title}
+                    </h3>
+                    <p className="text-xs text-slate-300 line-clamp-2">
+                      {roadmap.subtitle}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1 text-xs font-bold text-blue-400 pt-1">
+                    <span>View Curriculum</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </Link>
+              ))}
+
+              {relevantArticles.map((article) => (
+                <Link
+                  key={article.slug}
+                  href={`/articles/${article.slug}`}
+                  className="group p-4 sm:p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-emerald-400/40 transition-all flex flex-col justify-between space-y-2.5"
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-[11px]">
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30">
+                        {article.category}
+                      </span>
+                      <span className="text-slate-400">{article.readingTime}</span>
+                    </div>
+                    <h3 className="font-bold text-sm sm:text-base text-white group-hover:text-emerald-300 transition-colors">
+                      {article.title}
+                    </h3>
+                    <p className="text-xs text-slate-300 line-clamp-2">
+                      {article.excerpt}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1 text-xs font-bold text-emerald-400 pt-1">
+                    <span>Read Study Guide</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
 
           {/* Native Sponsored Educational Ad */}
           <NativeAdBanner className="my-6" />

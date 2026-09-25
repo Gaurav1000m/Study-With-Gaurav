@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { WEBSITES, getWebsiteById } from "@/data/websites";
 import { CATEGORY_MAP } from "@/data/categories";
-import { getResourceEditorialData } from "@/data/resourceDetails";
+import { getResourceEditorialData, isPrimaryResource } from "@/data/resourceDetails";
 import ResourceDetailClient from "./ResourceDetailClient";
 
 interface ResourceDetailPageProps {
@@ -28,23 +28,27 @@ export async function generateMetadata({ params }: ResourceDetailPageProps): Pro
   const categoryObj = CATEGORY_MAP.get(website.category);
   const categoryName = categoryObj ? categoryObj.name : website.category;
   const editorial = getResourceEditorialData(website);
+  const isPrimary = isPrimaryResource(website);
 
   return {
-    title: `${website.name} — Review, Overview & Study Guide | Study with Gaurav`,
-    description: `${website.name} educational review for ${categoryName}: ${editorial.targetAudience} Explore key features, study advice, syllabus coverage, and verified access portal.`,
+    title: `${website.name} — Overview & Student Study Guide | Study with Gaurav`,
+    description: `${website.name} educational review for ${categoryName}: ${editorial.targetAudience} Features, study tips, syllabus notes, and official access link.`,
+    robots: isPrimary
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
     alternates: {
       canonical: `https://studywithgaurav.cc.cd/resources/${website.id}`,
     },
     openGraph: {
-      title: `${website.name} — Study Guide & Educational Resource Review`,
-      description: `${editorial.targetAudience} Key features, learning benefits, prerequisites, and verified platform access.`,
+      title: `${website.name} — Study Guide & Educational Resource Overview`,
+      description: `${editorial.targetAudience} Key features, learning benefits, and access information.`,
       url: `https://studywithgaurav.cc.cd/resources/${website.id}`,
       type: "article",
       images: website.logo ? [{ url: website.logo }] : undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${website.name} Review & Guide | Study with Gaurav`,
+      title: `${website.name} Guide | Study with Gaurav`,
       description: editorial.targetAudience,
       images: website.logo ? [website.logo] : undefined,
     },

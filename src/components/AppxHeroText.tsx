@@ -87,10 +87,10 @@ export function AppxHeroText() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span>Study-With-Gaurav — Open Access Index</span>
+          <span>Study-With-Gaurav — Educational Resource Index</span>
           <span className="hidden sm:inline text-slate-300">•</span>
           <span className="hidden sm:inline text-blue-600 font-semibold lowercase tracking-normal font-sans">
-            100% verified
+            Editorially Reviewed
           </span>
         </div>
         <span className="h-px w-6 sm:w-12 bg-gradient-to-l from-transparent to-slate-300" />
@@ -99,7 +99,7 @@ export function AppxHeroText() {
       {/* Main Headline */}
       <h1 className="font-heading tracking-tight leading-[1.06] text-slate-950">
         
-        {/* Inspirational Quote Eyebrow */}
+        {/* Inspirational Eyebrow */}
         <div className="flex items-center justify-center mb-2.5 sm:mb-3.5">
           <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-blue-50/80 border border-blue-200/70 text-blue-800 text-xs sm:text-sm font-semibold tracking-tight shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-blue-600 shrink-0" />
@@ -109,10 +109,10 @@ export function AppxHeroText() {
 
         {/* Primary Impact Line */}
         <span className="block font-black text-[clamp(2.3rem,7.2vw,4.5rem)] pb-2 sm:pb-3">
-          Gain{" "}
+          Explore{" "}
           <span className="relative inline-block text-blue-600 pb-1.5 sm:pb-2">
             <i className="font-serif italic font-medium tracking-normal relative z-10 px-1 sm:px-1.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 bg-clip-text text-transparent">
-              Unrestricted
+              Structured
             </i>
             
             {/* Upgraded Multi-Layer Animated Underline */}
@@ -149,7 +149,7 @@ export function AppxHeroText() {
               />
             </svg>
           </span>{" "}
-          Access To
+          Learning For
         </span>
 
         {/* Dynamic Category Showcase Ticker */}
@@ -183,11 +183,11 @@ export function AppxHeroText() {
               {scrambledName}
             </span>
 
-            {/* Lottie Animated Verified Badge beside logo and name */}
+            {/* Lottie Animated Badge beside logo and name */}
             <div
               className="inline-flex items-center shrink-0 drop-shadow-xs transition-transform duration-300 hover:scale-110 cursor-default"
-              title="100% Verified Batches"
-              aria-label="Verified"
+              title="Curated Category Listing"
+              aria-label="Reviewed"
             >
               <LottieVerified size={34} className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9" />
             </div>
@@ -202,19 +202,19 @@ export function AppxHeroText() {
         </span>
       </h1>
 
-      {/* Trust & Guarantee Pills (Instant Student Friction Reducer) */}
+      {/* Trust & Educational Context Pills */}
       <div className="mt-7 sm:mt-9 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-[13px] text-slate-600 font-medium">
         <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-          <Zap className="w-3.5 h-3.5 text-amber-500" />
-          <span>100% Free Batches</span>
+          <BookOpen className="w-3.5 h-3.5 text-blue-600" />
+          <span>Structured Learning Roadmaps</span>
         </span>
         <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-          <span>Zero Paywalls & No Ads</span>
+          <span>Editorially Evaluated Portals</span>
         </span>
         <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-          <BookOpen className="w-3.5 h-3.5 text-blue-600" />
-          <span>PW • RWA • Next Toppers • Vidhakul • Gyan Bindu • Vidhyagram</span>
+          <Zap className="w-3.5 h-3.5 text-amber-500" />
+          <span>Free Study Guides & Syllabus Notes</span>
         </span>
       </div>
 

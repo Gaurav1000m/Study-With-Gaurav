@@ -24,7 +24,7 @@ export function AboutClient() {
     "name": "Study with Gaurav",
     "url": "https://studywithgaurav.cc.cd",
     "logo": "https://studywithgaurav.cc.cd/black-and-white-portrait-of-a-lion.webp",
-    "description": "Study with Gaurav is a student resource hub providing categorized access to verified educational platforms, notes, batches, and competitive exam portals.",
+    "description": "Study with Gaurav is a student resource hub providing categorized access to curated educational platforms, notes, batches, and competitive exam portals.",
     "sameAs": [
       "https://t.me/studywithgaurav0"
     ]
@@ -67,21 +67,15 @@ export function AboutClient() {
       {/* Main Page Layout */}
       <main id="main-content" className="flex-1 pb-24 md:pb-0">
         <AboutHero />
-        <div className="hidden md:block">
-          <WhySection />
-        </div>
+        <WhySection />
         <MissionSection />
         <HowItWorks />
         <ResourceCategories />
-        <div className="hidden md:block">
-          <StudentFirst />
-          <CuratedResourceDirectory />
-        </div>
+        <StudentFirst />
+        <CuratedResourceDirectory />
         <SuggestResourceCTA onOpenSuggestModal={() => setIsSuggestModalOpen(true)} />
         <ExternalDisclaimer />
-        <div className="hidden md:block">
-          <FinalCTA />
-        </div>
+        <FinalCTA />
       </main>
 
       {/* Footer */}

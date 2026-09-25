@@ -9,10 +9,11 @@ import { Footer } from "@/components/Footer";
 import { SuggestModal } from "@/components/SuggestModal";
 import { Website, Category } from "@/types/website";
 import { ResourceEditorialData } from "@/data/resourceDetails";
+import { ROADMAPS } from "@/data/roadmaps";
+import { ARTICLES } from "@/data/articles";
 import {
   ExternalLink,
   ShieldCheck,
-  Star,
   CheckCircle2,
   AlertCircle,
   BookOpen,
@@ -111,7 +112,7 @@ function RelatedResourceCard({
             {website.isOfficial && (
               <span
                 className="absolute -bottom-1 -right-1 bg-emerald-600 text-white p-0.5 rounded-full border border-white shadow-xs"
-                title="Verified Official"
+                title="Official Platform Portal"
               >
                 <ShieldCheck className="w-3 h-3 text-white" />
               </span>
@@ -168,14 +169,14 @@ function RelatedResourceCard({
           {website.description}
         </p>
 
-        {/* Quality Rating */}
+        {/* Editorial Status & Platform Type */}
         <div className="flex items-center gap-2 pt-2.5 pb-1 text-xs font-semibold text-slate-500 border-t border-slate-100 mt-2.5">
-          <span className="flex items-center gap-1 text-slate-800 font-bold">
-            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-            <span>{website.rating ? website.rating.toFixed(1) : "4.8"}</span>
+          <span className="inline-flex items-center gap-1 text-slate-700 font-semibold">
+            <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
+            <span>{website.isOfficial ? "Official Platform" : "Curated Resource"}</span>
           </span>
           <span className="text-slate-300">•</span>
-          <span className="text-emerald-700 font-medium">Free Access</span>
+          <span className="text-emerald-700 font-medium">Educational Listing</span>
         </div>
       </div>
 
@@ -191,7 +192,7 @@ function RelatedResourceCard({
 
         <a
           href={website.url}
-          target="_blank"
+          target="_self"
           rel="noopener noreferrer"
           onClick={(e) => {
             e.stopPropagation();
@@ -232,15 +233,15 @@ export function ResourceDetailClient({
   const bookmarked = isBookmarked(website.id);
   const categoryName = category ? category.name : website.category;
   const monogram = getMonogram(website.name);
-  const [activeTab, setActiveTab] = useState<"overview" | "features" | "guide" | "reviews" | "faqs">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "features" | "guide" | "reviews" | "faqs" | "guides">("overview");
 
-  const handleTabClick = (tab: "overview" | "features" | "guide" | "reviews" | "faqs", e?: React.MouseEvent) => {
+  const handleTabClick = (tab: "overview" | "features" | "guide" | "reviews" | "faqs" | "guides", e?: React.MouseEvent) => {
     setActiveTab(tab);
     if (e?.currentTarget) {
       (e.currentTarget as HTMLElement).scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
     }
     if (typeof window !== "undefined") {
-      const el = document.getElementById("tab-content-container");
+      const el = document.getElementById(`section-${tab}`);
       if (el) {
         const yOffset = -130;
         const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
@@ -344,12 +345,12 @@ export function ResourceDetailClient({
                   )}
                 </div>
 
-                {/* Verified Shield Badge on Icon Corner */}
+                {/* Official Platform Badge on Icon Corner */}
                 {website.isOfficial && (
                   <div
                     className="absolute -bottom-1 -right-1 bg-emerald-600 text-white p-1 sm:p-1.5 rounded-full border-2 border-white shadow-xs"
-                    title="Verified Official Educational Portal"
-                    aria-label="Verified Official Educational Portal"
+                    title="Official Educational Portal"
+                    aria-label="Official Educational Portal"
                   >
                     <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                   </div>
@@ -358,7 +359,7 @@ export function ResourceDetailClient({
 
               {/* Title & App Metadata Info */}
               <div className="space-y-1 sm:space-y-1.5 min-w-0 flex-1 pt-0.5">
-                {/* Category & Verified Tag Line */}
+                {/* Category & Status Tag Line */}
                 <div className="flex items-center gap-2 flex-wrap">
                   <Link
                     href={`/categories/${website.category}`}
@@ -369,7 +370,7 @@ export function ResourceDetailClient({
                   {website.isOfficial && (
                     <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/80">
                       <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                      <span>Verified Official</span>
+                      <span>Official Platform</span>
                     </span>
                   )}
                 </div>
@@ -379,56 +380,54 @@ export function ResourceDetailClient({
                   {website.name}
                 </h1>
 
-                {/* Verified Audit & Security Metadata (URL hidden) */}
+                {/* Editorial Review & Destination Metadata */}
                 <div className="flex items-center gap-2 text-xs text-slate-500 font-medium flex-wrap pt-0.5">
-                  <span className="inline-flex items-center gap-1 text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/80">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Official Portal</span>
+                  <span className="inline-flex items-center gap-1 text-slate-700 font-semibold bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
+                    <span>{website.isOfficial ? "Official Platform Portal" : "Curated Educational Resource"}</span>
                   </span>
                   <span className="text-slate-300">•</span>
-                  <span>Audited {editorial.lastReviewed}</span>
-                  <span className="text-slate-300">•</span>
-                  <span>StudyWithGaurav Verified</span>
+                  <span>Review updated: {editorial.lastReviewed}</span>
                 </div>
               </div>
             </div>
 
-            {/* Quick Metrics & App Store Stats Strip */}
+            {/* Quick Metrics & Educational Status Strip */}
             <div className="relative z-10 grid grid-cols-4 divide-x divide-slate-100 bg-slate-50/90 rounded-2xl border border-slate-200/70 p-2 sm:p-3 text-center">
-              {/* Stat 1: Rating */}
+              {/* Stat 1: Status */}
               <div className="flex flex-col items-center justify-center px-1 sm:px-2">
-                <div className="flex items-center gap-1 text-slate-900 font-black text-xs sm:text-base">
-                  <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400" />
-                  <span>{website.rating ? website.rating.toFixed(1) : "4.8"}</span>
+                <div className="flex items-center gap-1 text-slate-900 font-bold text-xs sm:text-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
+                  <span>{website.isOfficial ? "Official" : "Curated"}</span>
                 </div>
-                <span className="text-[10px] sm:text-xs font-semibold text-slate-500 mt-0.5">Rating</span>
+                <span className="text-[10px] sm:text-xs font-semibold text-slate-500 mt-0.5">Listing</span>
               </div>
 
-              {/* Stat 2: Pricing / Access */}
+              {/* Stat 2: Listing Type */}
               <div className="flex flex-col items-center justify-center px-1 sm:px-2">
-                <div className="flex items-center gap-1 text-emerald-700 font-black text-xs sm:text-base">
-                  <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
-                  <span>Free</span>
+                <div className="flex items-center gap-1 text-emerald-700 font-bold text-xs sm:text-sm truncate max-w-full">
+                  <Zap className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span className="truncate">{website.subcategory || "Portal"}</span>
                 </div>
-                <span className="text-[10px] sm:text-xs font-semibold text-slate-500 mt-0.5">Access</span>
+                <span className="text-[10px] sm:text-xs font-semibold text-slate-500 mt-0.5">Category</span>
               </div>
 
-              {/* Stat 3: Security / Verification */}
+              {/* Stat 3: Destination Link */}
               <div className="flex flex-col items-center justify-center px-1 sm:px-2">
-                <div className="flex items-center gap-1 text-blue-700 font-black text-xs sm:text-base">
-                  <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
-                  <span>Verified</span>
+                <div className="flex items-center gap-1 text-slate-800 font-bold text-xs sm:text-sm">
+                  <Globe className="w-3.5 h-3.5 text-slate-600" />
+                  <span>External</span>
                 </div>
-                <span className="text-[10px] sm:text-xs font-semibold text-slate-500 mt-0.5">Direct Link</span>
+                <span className="text-[10px] sm:text-xs font-semibold text-slate-500 mt-0.5">Destination</span>
               </div>
 
               {/* Stat 4: Academic Level */}
               <div className="flex flex-col items-center justify-center px-1 sm:px-2">
-                <div className="flex items-center gap-1 text-purple-700 font-black text-xs sm:text-base truncate max-w-full">
-                  <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-600 shrink-0" />
-                  <span className="truncate">All Levels</span>
+                <div className="flex items-center gap-1 text-purple-700 font-bold text-xs sm:text-sm truncate max-w-full">
+                  <GraduationCap className="w-3.5 h-3.5 text-purple-600 shrink-0" />
+                  <span className="truncate">Academic</span>
                 </div>
-                <span className="text-[10px] sm:text-xs font-semibold text-slate-500 mt-0.5 truncate">Academic</span>
+                <span className="text-[10px] sm:text-xs font-semibold text-slate-500 mt-0.5 truncate">Audience</span>
               </div>
             </div>
 
@@ -437,7 +436,7 @@ export function ResourceDetailClient({
               {/* High-Impact Launch Button */}
               <a
                 href={website.url}
-                target="_blank"
+                target="_self"
                 rel="noopener noreferrer"
                 onClick={() => addRecentlyViewed(website.id)}
                 className="group flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-blue-600 via-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 active:scale-98 text-white font-black text-sm sm:text-base shadow-lg shadow-blue-600/25 hover:shadow-blue-600/35 transition-all flex items-center justify-center gap-2 text-center"
@@ -486,19 +485,14 @@ export function ResourceDetailClient({
               </div>
             </div>
 
-            {/* Direct Official Link Trust Strip (Replaces the clunky blue disclaimer card) */}
+            {/* Direct Official Link Trust Strip */}
             <div className="relative z-10 flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl bg-slate-50/80 border border-slate-200/60 text-slate-600 text-[11px] sm:text-xs">
               <div className="flex items-center gap-2 text-slate-700 font-semibold">
-                <Lock className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                <span>Direct Official Portal Redirect</span>
+                <Globe className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                <span>External Educational Provider Link</span>
               </div>
               <div className="hidden sm:flex items-center gap-3 text-slate-500 font-medium">
-                <span className="flex items-center gap-1 text-emerald-700 font-semibold">
-                  <Check className="w-3 h-3 text-emerald-600" /> Zero Middleman Ads
-                </span>
-                <span className="flex items-center gap-1 text-emerald-700 font-semibold">
-                  <Check className="w-3 h-3 text-emerald-600" /> Official SSL Encrypted
-                </span>
+                <span>Opens official external destination</span>
               </div>
             </div>
           </section>
@@ -508,131 +502,84 @@ export function ResourceDetailClient({
           {/* ============================================================ */}
           <div className="sticky top-14 sm:top-16 z-20 py-2.5 bg-slate-50/95 backdrop-blur-md -mx-3 px-3 sm:-mx-0 sm:px-0">
             <div className="flex items-center gap-2 overflow-x-auto scrollbar-none pb-1 sm:pb-0 touch-pan-x">
-              <button
-                type="button"
-                onClick={(e) => handleTabClick("overview", e)}
-                className={cn(
-                  "shrink-0 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all cursor-pointer select-none active:scale-95 min-h-[40px]",
-                  activeTab === "overview"
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-600/25 font-black border border-blue-600"
-                    : "bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 border border-slate-200/90 shadow-2xs"
-                )}
-              >
-                <BookOpen className={cn("w-4 h-4 shrink-0", activeTab === "overview" ? "text-white" : "text-slate-500")} />
-                <span className="whitespace-nowrap">Overview</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={(e) => handleTabClick("features", e)}
-                className={cn(
-                  "shrink-0 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all cursor-pointer select-none active:scale-95 min-h-[40px]",
-                  activeTab === "features"
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-600/25 font-black border border-blue-600"
-                    : "bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 border border-slate-200/90 shadow-2xs"
-                )}
-              >
-                <Sparkles className={cn("w-4 h-4 shrink-0", activeTab === "features" ? "text-white" : "text-slate-500")} />
-                <span className="whitespace-nowrap">Features</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={(e) => handleTabClick("guide", e)}
-                className={cn(
-                  "shrink-0 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all cursor-pointer select-none active:scale-95 min-h-[40px]",
-                  activeTab === "guide"
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-600/25 font-black border border-blue-600"
-                    : "bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 border border-slate-200/90 shadow-2xs"
-                )}
-              >
-                <Compass className={cn("w-4 h-4 shrink-0", activeTab === "guide" ? "text-white" : "text-slate-500")} />
-                <span className="whitespace-nowrap">Study Guide</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={(e) => handleTabClick("reviews", e)}
-                className={cn(
-                  "shrink-0 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all cursor-pointer select-none active:scale-95 min-h-[40px]",
-                  activeTab === "reviews"
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-600/25 font-black border border-blue-600"
-                    : "bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 border border-slate-200/90 shadow-2xs"
-                )}
-              >
-                <ThumbsUp className={cn("w-4 h-4 shrink-0", activeTab === "reviews" ? "text-white" : "text-slate-500")} />
-                <span className="whitespace-nowrap">Review</span>
-              </button>
-
-              {editorial.faqs && editorial.faqs.length > 0 && (
+              {[
+                { id: "overview" as const, label: "Overview", icon: BookOpen },
+                { id: "features" as const, label: "Features", icon: Sparkles },
+                { id: "guide" as const, label: "Study Protocol", icon: Compass },
+                { id: "reviews" as const, label: "Analysis", icon: ThumbsUp },
+                ...(editorial.faqs && editorial.faqs.length > 0
+                  ? [{ id: "faqs" as const, label: "FAQs", icon: HelpCircle }]
+                  : []),
+                { id: "guides" as const, label: "Related Guides", icon: GraduationCap },
+              ].map(({ id, label, icon: Icon }) => (
                 <button
+                  key={id}
                   type="button"
-                  onClick={(e) => handleTabClick("faqs", e)}
+                  onClick={(e) => handleTabClick(id, e)}
                   className={cn(
-                    "shrink-0 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all cursor-pointer select-none active:scale-95 min-h-[40px]",
-                    activeTab === "faqs"
+                    "shrink-0 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-1.5 sm:gap-2 transition-all cursor-pointer select-none active:scale-95 min-h-[38px] sm:min-h-[40px]",
+                    activeTab === id
                       ? "bg-blue-600 text-white shadow-md shadow-blue-600/25 font-black border border-blue-600"
-                    : "bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 border border-slate-200/90 shadow-2xs"
+                      : "bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 border border-slate-200/90 shadow-2xs"
                   )}
                 >
-                  <HelpCircle className={cn("w-4 h-4 shrink-0", activeTab === "faqs" ? "text-white" : "text-slate-500")} />
-                  <span className="whitespace-nowrap">FAQs</span>
+                  <Icon className={cn("w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0", activeTab === id ? "text-white" : "text-slate-500")} />
+                  <span className="whitespace-nowrap">{label}</span>
                 </button>
-              )}
+              ))}
             </div>
           </div>
 
           {/* ============================================================ */}
-          {/* TAB CONTENT AREA (Smoothly switches on web and mobile)       */}
+          {/* CONTENT SECTIONS (All permanently in DOM for SEO/Crawlability)*/}
           {/* ============================================================ */}
-          <div id="tab-content-container" className="space-y-6 scroll-mt-28">
-            {/* Detailed Editorial Overview */}
-            {activeTab === "overview" && (
-              <section className="bg-white rounded-3xl p-5 sm:p-10 border border-slate-200/90 shadow-sm space-y-6 animate-fade-in">
-                <div className="space-y-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">
-                    <FileText className="w-3.5 h-3.5 text-blue-600" />
-                    <span>Editorial Review & Platform Overview</span>
+          <div id="tab-content-container" className="space-y-6 sm:space-y-8 scroll-mt-28">
+            
+            {/* Section 1: Detailed Editorial Overview */}
+            <section id="section-overview" className="bg-white rounded-3xl p-5 sm:p-10 border border-slate-200/90 shadow-xs space-y-6 scroll-mt-32">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">
+                  <FileText className="w-3.5 h-3.5 text-blue-600" />
+                  <span>Editorial Review & Platform Overview</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                  About {website.name}
+                </h2>
+              </div>
+
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium whitespace-pre-line">
+                {editorial.longDescription}
+              </p>
+
+              {/* Quick Metadata Highlights */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/70 space-y-1">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                    <Users className="w-3.5 h-3.5 text-blue-600" />
+                    <span>Target Student Audience</span>
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                    About {website.name}
-                  </h2>
+                  <p className="text-xs sm:text-sm text-slate-800 font-semibold leading-snug">
+                    {editorial.targetAudience}
+                  </p>
                 </div>
 
-                <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium whitespace-pre-line">
-                  {editorial.longDescription}
-                </p>
-
-                {/* Quick Metadata Highlights */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
-                  <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/70 space-y-1">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 uppercase tracking-wider">
-                      <Users className="w-3.5 h-3.5 text-blue-600" />
-                      <span>Target Audience</span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-slate-800 font-semibold leading-snug">
-                      {editorial.targetAudience}
-                    </p>
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/70 space-y-1">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                    <BookOpen className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Academic & Preparation Level</span>
                   </div>
-
-                  <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/70 space-y-1">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 uppercase tracking-wider">
-                      <BookOpen className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>Academic Level</span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-slate-800 font-semibold leading-snug">
-                      {editorial.academicLevel}
-                    </p>
-                  </div>
+                  <p className="text-xs sm:text-sm text-slate-800 font-semibold leading-snug">
+                    {editorial.academicLevel}
+                  </p>
                 </div>
-              </section>
-            )}
+              </div>
+            </section>
 
-            {/* Key Features & Benefits */}
-            {activeTab === "features" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in">
+            {/* Section 2: Key Features & Student Benefits */}
+            <section id="section-features" className="space-y-4 scroll-mt-32">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Features Card */}
-                <section className="bg-white rounded-3xl p-5 sm:p-8 border border-slate-200/90 shadow-sm space-y-4">
+                <div className="bg-white rounded-3xl p-5 sm:p-8 border border-slate-200/90 shadow-xs space-y-4">
                   <div className="flex items-center gap-2 text-slate-900 font-black text-lg sm:text-xl">
                     <Sparkles className="w-5 h-5 text-blue-600 shrink-0" />
                     <h2>Key Educational Features</h2>
@@ -645,10 +592,10 @@ export function ResourceDetailClient({
                       </li>
                     ))}
                   </ul>
-                </section>
+                </div>
 
                 {/* Learning Benefits Card */}
-                <section className="bg-white rounded-3xl p-5 sm:p-8 border border-slate-200/90 shadow-sm space-y-4">
+                <div className="bg-white rounded-3xl p-5 sm:p-8 border border-slate-200/90 shadow-xs space-y-4">
                   <div className="flex items-center gap-2 text-slate-900 font-black text-lg sm:text-xl">
                     <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
                     <h2>Student Learning Benefits</h2>
@@ -661,95 +608,97 @@ export function ResourceDetailClient({
                       </li>
                     ))}
                   </ul>
-                </section>
+                </div>
               </div>
-            )}
+            </section>
 
-            {/* How to Study with This Resource (Actionable Advice) */}
-            {activeTab === "guide" && (
-              <section className="bg-white rounded-3xl p-5 sm:p-10 border border-slate-200/90 shadow-sm space-y-6 animate-fade-in">
-                <div className="space-y-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200">
-                    <Compass className="w-3.5 h-3.5 text-amber-600" />
-                    <span>Actionable Study Protocol</span>
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                    How to Study with {website.name} Effectively
-                  </h2>
+            {/* Section 3: How to Study with This Resource (Actionable Advice) */}
+            <section id="section-guide" className="bg-white rounded-3xl p-5 sm:p-10 border border-slate-200/90 shadow-xs space-y-6 scroll-mt-32">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200">
+                  <Compass className="w-3.5 h-3.5 text-amber-600" />
+                  <span>Actionable Study Protocol</span>
                 </div>
-
-                <ol className="space-y-4 text-xs sm:text-sm text-slate-700">
-                  {editorial.howToUse.map((step, idx) => (
-                    <li key={idx} className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/60">
-                      <span className="w-6 h-6 rounded-full bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0">
-                        {idx + 1}
-                      </span>
-                      <span className="leading-relaxed font-medium">{step}</span>
-                    </li>
-                  ))}
-                </ol>
-
-                <div className="p-4 rounded-2xl bg-blue-50/60 border border-blue-100 space-y-1">
-                  <span className="text-xs font-bold uppercase tracking-wider text-blue-800">
-                    Recommended Starting Point
-                  </span>
-                  <p className="text-xs sm:text-sm text-slate-800 font-medium">
-                    {editorial.recommendedStartingPoint}
-                  </p>
-                </div>
-              </section>
-            )}
-
-            {/* Advantages & Limitations (Honest Objective Review) */}
-            {activeTab === "reviews" && (
-              <section className="bg-white rounded-3xl p-5 sm:p-10 border border-slate-200/90 shadow-sm space-y-6 animate-fade-in">
                 <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                  Objective Editorial Analysis: Advantages & Limitations
+                  How to Study with {website.name} Effectively
                 </h2>
+              </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Advantages */}
-                  <div className="p-5 sm:p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200/80 space-y-3">
-                    <div className="flex items-center gap-2 text-emerald-900 font-bold text-base">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                      <span>Advantages</span>
-                    </div>
-                    <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
-                      {editorial.advantages.map((adv, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <span className="text-emerald-600 font-bold">•</span>
-                          <span>{adv}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              <ol className="space-y-4 text-xs sm:text-sm text-slate-700">
+                {editorial.howToUse.map((step, idx) => (
+                  <li key={idx} className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/60">
+                    <span className="w-6 h-6 rounded-full bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0">
+                      {idx + 1}
+                    </span>
+                    <span className="leading-relaxed font-medium">{step}</span>
+                  </li>
+                ))}
+              </ol>
 
-                  {/* Limitations */}
-                  <div className="p-5 sm:p-6 rounded-2xl bg-amber-50/50 border border-amber-200/80 space-y-3">
-                    <div className="flex items-center gap-2 text-amber-900 font-bold text-base">
-                      <AlertCircle className="w-5 h-5 text-amber-600" />
-                      <span>Limitations to Consider</span>
-                    </div>
-                    <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
-                      {editorial.limitations.map((lim, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <span className="text-amber-600 font-bold">•</span>
-                          <span>{lim}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              <div className="p-4 rounded-2xl bg-blue-50/60 border border-blue-100 space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-800">
+                  Recommended Starting Point
+                </span>
+                <p className="text-xs sm:text-sm text-slate-800 font-medium">
+                  {editorial.recommendedStartingPoint}
+                </p>
+              </div>
+            </section>
+
+            {/* Section 4: Advantages & Limitations (Honest Objective Review) */}
+            <section id="section-reviews" className="bg-white rounded-3xl p-5 sm:p-10 border border-slate-200/90 shadow-xs space-y-6 scroll-mt-32">
+              <div className="space-y-1">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">
+                  <ThumbsUp className="w-3.5 h-3.5 text-blue-600" />
+                  <span>Objective Editorial Assessment</span>
                 </div>
-              </section>
-            )}
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                  Advantages & Considerations for {website.name}
+                </h2>
+              </div>
 
-            {/* Resource Specific FAQs */}
-            {activeTab === "faqs" && editorial.faqs && editorial.faqs.length > 0 && (
-              <section className="bg-white rounded-3xl p-5 sm:p-10 border border-slate-200/90 shadow-sm space-y-6 animate-fade-in">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Advantages */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200/80 space-y-3">
+                  <div className="flex items-center gap-2 text-emerald-900 font-bold text-base">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                    <h3>Key Strengths</h3>
+                  </div>
+                  <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
+                    {editorial.advantages.map((adv, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-emerald-600 font-bold">•</span>
+                        <span>{adv}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Limitations */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-amber-50/50 border border-amber-200/80 space-y-3">
+                  <div className="flex items-center gap-2 text-amber-900 font-bold text-base">
+                    <AlertCircle className="w-5 h-5 text-amber-600" />
+                    <h3>Considerations to Note</h3>
+                  </div>
+                  <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
+                    {editorial.limitations.map((lim, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-amber-600 font-bold">•</span>
+                        <span>{lim}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            {/* Section 5: Resource Specific FAQs */}
+            {editorial.faqs && editorial.faqs.length > 0 && (
+              <section id="section-faqs" className="bg-white rounded-3xl p-5 sm:p-10 border border-slate-200/90 shadow-xs space-y-6 scroll-mt-32">
                 <div className="space-y-2">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">
                     <HelpCircle className="w-3.5 h-3.5 text-blue-600" />
-                    <span>Student Queries</span>
+                    <span>Student Questions</span>
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
                     Frequently Asked Questions about {website.name}
@@ -770,6 +719,80 @@ export function ResourceDetailClient({
                 </div>
               </section>
             )}
+
+            {/* Section 6: Related Study Guides & Structured Roadmaps */}
+            <section id="section-guides" className="bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-md space-y-6 scroll-mt-32">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                  <GraduationCap className="w-3.5 h-3.5 text-blue-400" />
+                  <span>Curriculum & Preparation Pathways</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+                  Related Learning Roadmaps & Study Guides
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
+                  Pair your study of {website.name} with structured curricula and proven study methodologies from StudyWithGaurav.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                {/* Related Roadmap Cards */}
+                {ROADMAPS.slice(0, 2).map((roadmap) => (
+                  <Link
+                    key={roadmap.slug}
+                    href={`/roadmaps/${roadmap.slug}`}
+                    className="group p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-400/40 transition-all flex flex-col justify-between space-y-3"
+                  >
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-semibold border border-blue-500/30">
+                          {roadmap.difficulty} Roadmap
+                        </span>
+                        <span className="text-slate-400">{roadmap.estimatedTime}</span>
+                      </div>
+                      <h3 className="font-bold text-base text-white group-hover:text-blue-300 transition-colors">
+                        {roadmap.title}
+                      </h3>
+                      <p className="text-xs text-slate-300 line-clamp-2">
+                        {roadmap.subtitle}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-blue-400 pt-2">
+                      <span>View Full Curriculum</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                ))}
+
+                {/* Related Article Cards */}
+                {ARTICLES.slice(0, 2).map((article) => (
+                  <Link
+                    key={article.slug}
+                    href={`/articles/${article.slug}`}
+                    className="group p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-emerald-400/40 transition-all flex flex-col justify-between space-y-3"
+                  >
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30">
+                          {article.category} Guide
+                        </span>
+                        <span className="text-slate-400">{article.readingTime}</span>
+                      </div>
+                      <h3 className="font-bold text-base text-white group-hover:text-emerald-300 transition-colors">
+                        {article.title}
+                      </h3>
+                      <p className="text-xs text-slate-300 line-clamp-2">
+                        {article.excerpt}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400 pt-2">
+                      <span>Read Study Guide</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
           </div>
 
           {/* Attribution & Legal Notice */}

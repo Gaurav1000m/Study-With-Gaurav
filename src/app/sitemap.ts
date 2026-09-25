@@ -3,6 +3,7 @@ import { CATEGORIES } from '@/data/categories';
 import { WEBSITES } from '@/data/websites';
 import { ARTICLES } from '@/data/articles';
 import { ROADMAPS } from '@/data/roadmaps';
+import { isPrimaryResource } from '@/data/resourceDetails';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://studywithgaurav.cc.cd';
@@ -15,8 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  // Resource detail review pages (all 225+ curated resources)
-  const resourceUrls = WEBSITES.map((website) => ({
+  // Primary resource detail pages (distinct canonical resources with editorial reviews)
+  const primaryWebsites = WEBSITES.filter(isPrimaryResource);
+  const resourceUrls = primaryWebsites.map((website) => ({
     url: `${baseUrl}/resources/${website.id}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,

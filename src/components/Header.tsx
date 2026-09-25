@@ -145,16 +145,6 @@ export function Header({ onFocusSearch }: HeaderProps = {}) {
 
           {/* Header Action Buttons */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            {/* Mobile Action: Get APK Button */}
-            <Link
-              href="/download"
-              className="inline-flex md:hidden items-center gap-1 px-2.5 py-1 rounded-full text-xs font-extrabold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 transition-all shadow-xs border border-blue-500 min-h-[30px]"
-              title="Get Android APK"
-              aria-label="Get Android APK"
-            >
-              <Download className="w-3.5 h-3.5 shrink-0" />
-              <span>Get APK</span>
-            </Link>
 
             {/* Mobile Action: Quick Search Icon */}
             <button
