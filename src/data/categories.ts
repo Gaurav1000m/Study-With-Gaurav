@@ -324,6 +324,15 @@ export const CATEGORIES: Category[] = [
     logo: "https://decicqog4ulhy.cloudfront.net/0/admin_v1/application_management/clientlogo/2897883166_Eduteria-logo.png",
     description: "Premier learning platform by Pravin Sir for BPSC, Bihar Daroga, SSC, and Current Affairs preparation.",
     featured: true
+  },
+  {
+    id: "yes-officer",
+    name: "Yes Officer",
+    shortName: "Yes Officer",
+    iconName: "Shield",
+    logo: "https://i.ibb.co/8gVcx0RF/IMG-5939.webp",
+    description: "Prepare for competitive exams with expert guidance.",
+    featured: true
   }
 ];
 
