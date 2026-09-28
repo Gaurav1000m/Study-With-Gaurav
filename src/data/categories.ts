@@ -333,6 +333,15 @@ export const CATEGORIES: Category[] = [
     logo: "https://i.ibb.co/8gVcx0RF/IMG-5939.webp",
     description: "Prepare for competitive exams with expert guidance.",
     featured: true
+  },
+  {
+    id: "vidhyagram",
+    name: "Vidhyagram",
+    shortName: "Vidhyagram",
+    iconName: "GraduationCap",
+    logo: "https://vidyagram.online/arvidyapeeth/vidyagram.png",
+    description: "Vidyagram online learning and competitive exam preparation.",
+    featured: true
   }
 ];
 
