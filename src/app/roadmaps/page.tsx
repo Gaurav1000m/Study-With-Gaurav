@@ -6,14 +6,14 @@ import { ROADMAPS } from "@/data/roadmaps";
 import { Clock, CheckCircle2, ArrowRight, Compass, Sparkles, Layers } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Structured Learning Roadmaps | Study with Gaurav",
-  description: "Follow curated, step-by-step educational roadmaps in Full-Stack Web Development, Python, Data Structures & Algorithms, and Competitive Exam Preparation.",
+  title: "Career & Learning Roadmaps",
+  description: "Follow step-by-step learning roadmaps in Full-Stack Development, Python, DSA, and Competitive Exams curated for ambitious students on Study with Gaurav.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/roadmaps",
   },
   openGraph: {
-    title: "Structured Learning Roadmaps | Study with Gaurav",
-    description: "Follow curated, step-by-step educational roadmaps in Full-Stack Web Development, Python, Data Structures & Algorithms, and Competitive Exam Preparation.",
+    title: "Career & Learning Roadmaps | Study with Gaurav",
+    description: "Follow step-by-step learning roadmaps in Full-Stack Development, Python, DSA, and Competitive Exams curated for ambitious students on Study with Gaurav.",
     url: "https://studywithgaurav.cc.cd/roadmaps",
     type: "website",
   },

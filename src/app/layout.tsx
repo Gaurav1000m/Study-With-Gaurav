@@ -32,10 +32,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://studywithgaurav.cc.cd"),
   title: {
-    default: "Study with Gaurav — Educational Resources, Learning Guides & Roadmaps",
+    default: "Study with Gaurav — Free Educational Resources & Roadmaps",
     template: "%s | Study with Gaurav"
   },
-  description: "Discover verified educational platforms, subject learning guides, competitive exam study materials, and academic roadmaps to help Indian students excel.",
+  description: "Discover 100+ verified educational portals, JEE, NEET, and SSC batch resources, lecture notes, and academic roadmaps 100% free for students.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd",
   },
@@ -61,11 +61,11 @@ export const metadata: Metadata = {
   category: "Education",
   icons: {
     icon: [
-      { url: "/images/logo.gif?v=2", type: "image/gif" },
-      { url: "/images/lionbg.webp?v=2", type: "image/webp" }
+      { url: "/images/lionbg.webp", type: "image/webp" },
+      { url: "/lion.webp", type: "image/webp" }
     ],
-    shortcut: "/images/logo.gif?v=2",
-    apple: "/images/logo.gif?v=2",
+    shortcut: "/images/lionbg.webp",
+    apple: "/images/lionbg.webp",
   },
   robots: {
     index: true,
@@ -79,8 +79,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Study with Gaurav — Educational Resources, Learning Guides & Roadmaps",
-    description: "Discover curated educational platforms, subject learning guides, competitive exam study materials, and academic roadmaps for students.",
+    title: "Study with Gaurav — Free Educational Resources & Roadmaps",
+    description: "Discover 100+ verified educational portals, JEE, NEET, and SSC batch resources, lecture notes, and academic roadmaps 100% free for students.",
     url: "https://studywithgaurav.cc.cd",
     type: "website",
     locale: "en_IN",
@@ -97,8 +97,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Study with Gaurav — Educational Resources & Learning Roadmaps",
-    description: "Discover curated educational platforms, learning guides, and academic roadmaps for students.",
+    title: "Study with Gaurav — Free Educational Resources & Roadmaps",
+    description: "Discover 100+ verified educational portals, JEE, NEET, and SSC batch resources, lecture notes, and academic roadmaps 100% free for students.",
     images: ["https://studywithgaurav.cc.cd/lionbg.png"],
   },
   other: {

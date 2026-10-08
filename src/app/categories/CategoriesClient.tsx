@@ -223,11 +223,11 @@ export function CategoriesClient() {
           {/* Top Leaderboard AdBanner */}
           <AdBanner className="my-2 sm:my-4" />
 
-          {/* Results Count Bar */}
+          {/* Results Count Bar & Section Heading */}
           <div className="flex items-center justify-between text-xs font-medium text-slate-500 px-1">
-            <span>
-              Showing <strong className="text-slate-900 font-bold">{filteredCategories.length}</strong> categories
-            </span>
+            <h2 className="text-sm sm:text-base font-bold text-slate-900">
+              Explore Available Categories ({filteredCategories.length})
+            </h2>
             {(searchQuery || selectedDomain !== "all") && (
               <button
                 onClick={() => {

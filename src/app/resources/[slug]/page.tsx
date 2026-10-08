@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: ResourceDetailPageProps): Pro
 
   if (!website) {
     return {
-      title: "Resource Not Found | Study with Gaurav",
+      title: "Resource Not Found",
     };
   }
 
@@ -30,9 +30,14 @@ export async function generateMetadata({ params }: ResourceDetailPageProps): Pro
   const editorial = getResourceEditorialData(website);
   const isPrimary = isPrimaryResource(website);
 
+  const cleanName = website.name.replace(/[^\w\s-]/g, '').trim();
+  const title = `${cleanName} Portal & Batches`;
+  const baseDesc = `${website.name} for ${categoryName}: ${editorial.targetAudience} Verified links, batch details, and study guides on Study with Gaurav.`;
+  const description = baseDesc.length > 158 ? `${baseDesc.slice(0, 155).trim()}...` : baseDesc;
+
   return {
-    title: `${website.name} — Overview & Student Study Guide | Study with Gaurav`,
-    description: `${website.name} educational review for ${categoryName}: ${editorial.targetAudience} Features, study tips, syllabus notes, and official access link.`,
+    title,
+    description,
     robots: isPrimary
       ? { index: true, follow: true }
       : { index: false, follow: true },
@@ -40,16 +45,16 @@ export async function generateMetadata({ params }: ResourceDetailPageProps): Pro
       canonical: `https://studywithgaurav.cc.cd/resources/${website.id}`,
     },
     openGraph: {
-      title: `${website.name} — Study Guide & Educational Resource Overview`,
-      description: `${editorial.targetAudience} Key features, learning benefits, and access information.`,
+      title: `${cleanName} — Study Guide & Educational Resource`,
+      description,
       url: `https://studywithgaurav.cc.cd/resources/${website.id}`,
       type: "article",
       images: website.logo ? [{ url: website.logo }] : undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${website.name} Guide | Study with Gaurav`,
-      description: editorial.targetAudience,
+      title: `${cleanName} | Study with Gaurav`,
+      description,
       images: website.logo ? [website.logo] : undefined,
     },
   };

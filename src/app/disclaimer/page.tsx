@@ -5,14 +5,14 @@ import { Footer } from "@/components/Footer";
 import { AlertTriangle, ShieldCheck, Scale, FileText, ArrowLeft, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Disclaimer & Copyright Notice | Study with Gaurav",
-  description: "Read the official Disclaimer, DMCA Copyright Notice, and Non-Affiliation statements for Study with Gaurav.",
+  title: "Disclaimer & DMCA Notice",
+  description: "Read the official Disclaimer, DMCA Copyright Notice, and non-affiliation statements for educational links and directory listings on Study with Gaurav.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/disclaimer",
   },
   openGraph: {
-    title: "Disclaimer & Copyright Notice | Study with Gaurav",
-    description: "Read the official Disclaimer, DMCA Copyright Notice, and Non-Affiliation statements for Study with Gaurav.",
+    title: "Disclaimer & DMCA Notice | Study with Gaurav",
+    description: "Read the official Disclaimer, DMCA Copyright Notice, and non-affiliation statements for educational links and directory listings on Study with Gaurav.",
     url: "https://studywithgaurav.cc.cd/disclaimer",
     type: "website",
   },

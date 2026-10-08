@@ -120,6 +120,11 @@ export function PopularClient() {
           {/* Top Leaderboard AdBanner */}
           <AdBanner className="my-3 sm:my-4" />
 
+          {/* Section Heading */}
+          <h2 className="text-base sm:text-lg font-bold text-navy-900 flex items-center justify-between">
+            <span>{activeTab === "popular" ? "Trending Student Portals" : "Recently Added Portals"} ({filteredWebsites.length})</span>
+          </h2>
+
           {/* Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6">
             {filteredWebsites.map((website) => (

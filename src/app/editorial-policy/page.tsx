@@ -14,14 +14,14 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Editorial Policy & Review Standards | Study with Gaurav",
-  description: "Read the editorial guidelines, curation standards, verification methodology, and academic integrity policies governing StudyWithGaurav.",
+  title: "Editorial Policy & Standards",
+  description: "Learn about the curation guidelines, link verification standards, and quality criteria used by the Study with Gaurav team to review educational resources.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/editorial-policy",
   },
   openGraph: {
-    title: "Editorial Policy & Review Standards | Study with Gaurav",
-    description: "Read the editorial guidelines, curation standards, verification methodology, and academic integrity policies governing StudyWithGaurav.",
+    title: "Editorial Policy & Standards | Study with Gaurav",
+    description: "Learn about the curation guidelines, link verification standards, and quality criteria used by the Study with Gaurav team to review educational resources.",
     url: "https://studywithgaurav.cc.cd/editorial-policy",
     type: "website",
   },

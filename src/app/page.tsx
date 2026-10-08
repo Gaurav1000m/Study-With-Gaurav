@@ -156,7 +156,7 @@ export default function Home() {
       <div className="h-14 sm:h-16" />
 
       <main id="main-content" className="flex-1">
-        
+
         {/* Hero Section */}
         <section id="hero" className="w-full bg-white pt-6 pb-2 sm:pt-10 sm:pb-4 text-center relative overflow-hidden border-b border-slate-100">
           {/* Background Split: Left Side */}
@@ -416,9 +416,8 @@ export default function Home() {
                               {Array.from({ length: 4 }).map((_, i) => (
                                 <div
                                   key={i}
-                                  className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
-                                    i < 3 ? themeConfig.bar : "bg-slate-200/80 group-hover:bg-slate-300"
-                                  }`}
+                                  className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${i < 3 ? themeConfig.bar : "bg-slate-200/80 group-hover:bg-slate-300"
+                                    }`}
                                 />
                               ))}
                             </div>

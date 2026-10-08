@@ -6,14 +6,14 @@ import { ARTICLES } from "@/data/articles";
 import { BookOpen, Clock, ArrowRight, User } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Educational Articles & Study Guides | Study with Gaurav",
-  description: "Browse in-depth educational guides, programming roadmaps, competitive exam study strategies, and academic survival tips written for students.",
+  title: "Educational Guides & Articles",
+  description: "Read in-depth academic guides, programming roadmaps, competitive exam preparation strategies, and verified learning tips curated by educators.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/articles",
   },
   openGraph: {
-    title: "Educational Articles & Study Guides | Study with Gaurav",
-    description: "Browse in-depth educational guides, programming roadmaps, competitive exam study strategies, and academic survival tips written for students.",
+    title: "Educational Guides & Articles | Study with Gaurav",
+    description: "Read in-depth academic guides, programming roadmaps, competitive exam preparation strategies, and verified learning tips curated by educators.",
     url: "https://studywithgaurav.cc.cd/articles",
     type: "website",
   },

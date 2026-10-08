@@ -5,14 +5,14 @@ import { Footer } from "@/components/Footer";
 import { Shield, Lock, Eye, Cookie, FileText, Mail, ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Study with Gaurav",
-  description: "Learn how Study with Gaurav handles information, cookies, Google AdSense advertising, Google Analytics, and student privacy rights.",
+  title: "Privacy Policy",
+  description: "Read the Study with Gaurav Privacy Policy to understand how we protect user data, handle browser cookies, and ensure a secure, private learning experience.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/privacy",
   },
   openGraph: {
     title: "Privacy Policy | Study with Gaurav",
-    description: "Learn how Study with Gaurav handles information, cookies, Google AdSense advertising, Google Analytics, and student privacy rights.",
+    description: "Read the Study with Gaurav Privacy Policy to understand how we protect user data, handle browser cookies, and ensure a secure, private learning experience.",
     url: "https://studywithgaurav.cc.cd/privacy",
     type: "website",
   },

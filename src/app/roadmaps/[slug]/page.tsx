@@ -26,8 +26,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const title = `${roadmap.title} | Study with Gaurav`;
-  const description = roadmap.subtitle || roadmap.description.slice(0, 160);
+  const title = roadmap.title;
+  const rawDesc = roadmap.subtitle || roadmap.description;
+  const description = rawDesc.length > 158 ? `${rawDesc.slice(0, 155).trim()}...` : rawDesc;
   const url = `https://studywithgaurav.cc.cd/roadmaps/${roadmap.slug}`;
 
   return {

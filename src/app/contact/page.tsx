@@ -5,14 +5,14 @@ import { Footer } from "@/components/Footer";
 import { Mail, MessageCircle, Send, HelpCircle, ArrowLeft, ShieldCheck, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact Us & Support | Study with Gaurav",
-  description: "Get in touch with the Study with Gaurav editorial team for resource submissions, broken link reports, feedback, and student support.",
+  title: "Contact Support & Submit Portals",
+  description: "Get in touch with the Study with Gaurav editorial team for resource corrections, new portal submissions, copyright questions, or technical support.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/contact",
   },
   openGraph: {
-    title: "Contact Us & Support | Study with Gaurav",
-    description: "Get in touch with the Study with Gaurav editorial team for resource submissions, broken link reports, feedback, and student support.",
+    title: "Contact Support & Submit Portals | Study with Gaurav",
+    description: "Get in touch with the Study with Gaurav editorial team for resource corrections, new portal submissions, copyright questions, or technical support.",
     url: "https://studywithgaurav.cc.cd/contact",
     type: "website",
   },

@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { PopularClient } from "./PopularClient";
 
 export const metadata: Metadata = {
-  title: "Most Popular Educational Portals & Recent Resources | Study with Gaurav",
-  description: "Discover the most frequently visited student platforms, newly added study tools, and top-rated competitive exam resources.",
+  title: "Popular Educational Portals & Batches",
+  description: "Explore the most visited student platforms, trending exam batches, and top-rated study resources for JEE, NEET, and SSC on Study with Gaurav.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/popular",
   },
   openGraph: {
-    title: "Most Popular Educational Portals & Recent Resources | Study with Gaurav",
-    description: "Discover the most frequently visited student platforms, newly added study tools, and top-rated competitive exam resources.",
+    title: "Popular Educational Portals & Batches | Study with Gaurav",
+    description: "Explore the most visited student platforms, trending exam batches, and top-rated study resources for JEE, NEET, and SSC on Study with Gaurav.",
     url: "https://studywithgaurav.cc.cd/popular",
     type: "website",
   },

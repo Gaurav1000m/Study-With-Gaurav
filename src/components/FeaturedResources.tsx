@@ -26,10 +26,10 @@ export function FeaturedResources({ resources, onTagClick }: FeaturedResourcesPr
             </p>
           </div>
           <Link
-            href="/featured"
+            href="/popular"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800 transition-colors"
           >
-            <span>View All Featured</span>
+            <span>Explore All Popular Resources</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

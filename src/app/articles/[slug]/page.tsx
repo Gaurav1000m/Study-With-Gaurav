@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   }
 
   return {
-    title: `${article.title} | Study with Gaurav`,
-    description: article.excerpt,
+    title: article.title,
+    description: article.excerpt.length > 158 ? `${article.excerpt.slice(0, 155).trim()}...` : article.excerpt,
     alternates: {
       canonical: `https://studywithgaurav.cc.cd/articles/${article.slug}`,
     },

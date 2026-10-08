@@ -5,14 +5,14 @@ import { Footer } from "@/components/Footer";
 import { Megaphone, Info, ShieldCheck, ExternalLink, ArrowLeft, DollarSign, Eye, BarChart2, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Advertising Disclosure | Study with Gaurav",
-  description: "Full transparency on how Study with Gaurav uses advertising (Google AdSense) and sponsored content. We are committed to honest disclosure.",
+  title: "Advertising Disclosure",
+  description: "Read our Advertising Disclosure and learn how Study with Gaurav maintains editorial independence while utilizing ethical, non-intrusive sponsorships.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/advertising",
   },
   openGraph: {
     title: "Advertising Disclosure | Study with Gaurav",
-    description: "Full transparency on how Study with Gaurav uses advertising (Google AdSense) and sponsored content.",
+    description: "Read our Advertising Disclosure and learn how Study with Gaurav maintains editorial independence while utilizing ethical, non-intrusive sponsorships.",
     url: "https://studywithgaurav.cc.cd/advertising",
     type: "website",
   },

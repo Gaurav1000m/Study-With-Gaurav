@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { DownloadClient } from "./DownloadClient";
 
 export const metadata: Metadata = {
-  title: "Download Official Android App (APK v1.0.4) | Study With Gaurav",
+  title: "Download Android App (APK v1.0.4)",
   description:
     "Download official Study With Gaurav Android APK v1.0.4 (4.5 MB). Free JEE, NEET, SSC batch portals, verified lecture archives, and notes with smart security.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/download",
   },
   openGraph: {
-    title: "Download Official Android App (APK v1.0.4) | Study With Gaurav",
+    title: "Download Android App (APK v1.0.4) | Study with Gaurav",
     description:
       "Official Android App for Study With Gaurav. Fast, zero-distraction access to 100+ verified batches, notes, and study portals. 100% Free & Clean.",
     url: "https://studywithgaurav.cc.cd/download",

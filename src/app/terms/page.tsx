@@ -5,14 +5,14 @@ import { Footer } from "@/components/Footer";
 import { BookCheck, ShieldAlert, Scale, CheckCircle2, ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | Study with Gaurav",
-  description: "Read the Terms and Conditions governing use of the Study with Gaurav open-access educational directory and study catalog.",
+  title: "Terms & Conditions",
+  description: "Review the Terms and Conditions governing your access and use of educational directories, verified portals, and study guides on Study with Gaurav.",
   alternates: {
     canonical: "https://studywithgaurav.cc.cd/terms",
   },
   openGraph: {
     title: "Terms & Conditions | Study with Gaurav",
-    description: "Read the Terms and Conditions governing use of the Study with Gaurav open-access educational directory and study catalog.",
+    description: "Review the Terms and Conditions governing your access and use of educational directories, verified portals, and study guides on Study with Gaurav.",
     url: "https://studywithgaurav.cc.cd/terms",
     type: "website",
   },

@@ -22,21 +22,24 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
   if (!category) {
     return {
-      title: "Category Not Found | Study with Gaurav",
+      title: "Category Not Found",
     };
   }
 
   const categoryWebsites = WEBSITES.filter((w) => w.category === slug);
+  const title = `${category.name} Portals & Batches`;
+  const baseDesc = `${category.description} Explore ${categoryWebsites.length}+ verified portals, batches, and notes on Study with Gaurav.`;
+  const description = baseDesc.length > 158 ? `${baseDesc.slice(0, 155).trim()}...` : baseDesc;
 
   return {
-    title: `${category.name} Resources & Study Guides (${categoryWebsites.length}+ Platforms) | Study with Gaurav`,
-    description: `${category.description} Discover ${categoryWebsites.length}+ curated ${category.name} educational portals, notes, courses, and structured study guides on Study with Gaurav.`,
+    title,
+    description,
     alternates: {
       canonical: `https://studywithgaurav.cc.cd/categories/${slug}`,
     },
     openGraph: {
       title: `${category.name} Educational Resources | Study with Gaurav`,
-      description: category.description,
+      description,
       url: `https://studywithgaurav.cc.cd/categories/${slug}`,
       type: "website",
       images: category.logo ? [{ url: category.logo }] : undefined,
@@ -44,7 +47,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     twitter: {
       card: "summary_large_image",
       title: `${category.name} Resources | Study with Gaurav`,
-      description: category.description,
+      description,
     },
   };
 }

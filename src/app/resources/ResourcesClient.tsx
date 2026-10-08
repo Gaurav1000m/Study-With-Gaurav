@@ -170,11 +170,11 @@ function ResourcesContent() {
             </div>
           </div>
 
-          {/* Results Count Bar */}
+          {/* Results Count Bar & Section Heading */}
           <div className="flex items-center justify-between text-xs font-medium text-slate-500 px-1">
-            <span>
-              Showing <strong className="text-slate-900 font-bold">{filteredWebsites.length}</strong> resources
-            </span>
+            <h2 className="text-sm sm:text-base font-bold text-slate-900">
+              Verified Study Portals & Batches ({filteredWebsites.length})
+            </h2>
             {(searchQuery || activeCategory !== "all") && (
               <button
                 onClick={handleResetFilters}
